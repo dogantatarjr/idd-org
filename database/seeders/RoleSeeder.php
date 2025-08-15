@@ -13,7 +13,7 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         $writerRole = Role::create(['name' => 'writer']); // Yazar Rolü
-        $editArticles_Permission = Permission::create(['name' => 'edit articles']); // Makaleleri Düzenleme İzni
+        $editArticles_Permission = Permission::create(['name' => 'edit-articles']); // Makaleleri Düzenleme İzni
 
         $writerRole->givePermissionTo($editArticles_Permission); // Yazar rolüne makaleleri düzenleme izni verilir.
 

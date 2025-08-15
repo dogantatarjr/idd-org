@@ -5,7 +5,9 @@
 @section('blog-sit', 'active')
 
 @section('content')
+
     <br><br><br><br><br>
+
     <section class="py-5 bg-light">
         <div class="container">
         <div class="row justify-content-center text-center">
@@ -17,5 +19,12 @@
             </div>
         </div>
     </section>
+
+    <div class="container text-center my-5">
+        <a class="btn btn-success btn-lg mx-2" href="/login">Giriş Yap</a>
+        <a class="btn btn-success btn-lg mx-2" href="/register">Kayıt Ol</a>
+    </div>
+
     <br><br><br><br><br>
+
 @endsection
