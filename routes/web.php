@@ -12,5 +12,5 @@ Route::get('/about', [TemplateController::class, 'about']);
 Route::get('/contact', [TemplateController::class, 'contact']);
 
 Route::get('/blog', [TemplateController::class, 'blog']);
-Route::get('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'register']);
