@@ -1,8 +1,19 @@
 @extends('frontend.master')
 
-@section('title', 'Login')
+@section('title', 'Giriş Yap')
 
 @section('blog-sit', 'active')
+
+<!-- Validation Errors -->
+@if ($errors->any())
+    <div class="alert alert-danger mt-3 text-center">
+        <ul class="list-unstyled mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 @section('content')
 
@@ -14,17 +25,33 @@
 
         <h2 class="text-center mb-4">Giriş Yap</h2>
 
-        <form>
+        <form action="{{ route('login') }}" method="POST">
+            @csrf
+
             <div class="mb-3">
                 <label for="email" class="form-label">E-posta Adresi</label>
-                <input type="email" class="form-control" id="email" placeholder="E-posta adresi girin..." required>
+                <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    class="form-control"
+                    placeholder="E-posta adresinizi girin..."
+                    required
+                    value="{{ old('email') }}"
+                >
             </div>
 
             <div class="mb-3">
                 <label for="password" class="form-label">Şifre</label>
-                <input type="password" class="form-control" id="password" placeholder="Şifre girin..." required>
+                <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    class="form-control"
+                    placeholder="Şifrenizi girin..."
+                    required
+                >
             </div>
-
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="rememberMe">
                 <label class="form-check-label" for="rememberMe">Beni hatırla</label>
@@ -38,8 +65,9 @@
                 </small>
             </div>
         </form>
-
     </div>
-  </div>
+</div>
+
+<br>
 
 @endsection
