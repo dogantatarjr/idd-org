@@ -51,7 +51,7 @@ class AuthController extends Controller
 
         return redirect()->route('blog');
     }
-    
+
     public function logout(Request $request)
     {
         Auth::logout();
@@ -59,6 +59,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('auth.login');
+        return redirect()->route('blog');
     }
 }
