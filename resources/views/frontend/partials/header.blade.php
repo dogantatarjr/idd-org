@@ -24,6 +24,9 @@
                     <a class="nav-link @yield('campaigns-sit')" href="/campaings">Kampanyalarımız</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link @yield('events-sit')" href="/events">Etkinliklerimiz</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link  @yield('about-sit')" href="/about">Hakkımızda</a>
                 </li>
                 <li class="nav-item">
@@ -38,13 +41,19 @@
                     <span class="lang-option" data-lang="tr">TR</span>
                     <span class="lang-option" data-lang="en">EN</span>
                 </div>
+                @yield('auth-section')
             </div>
-            <div class="d-lg-none lang-switcher-mobile">
+
+            <div class="d-lg-none lang-switcher-mobile mb-2">
                 <div class="lang-switcher">
                     <span class="lang-option" data-lang="tr">TR</span>
                     <span class="lang-option" data-lang="en">EN</span>
                 </div>
             </div>
+            <div class="d-lg-none">
+                @yield('auth-section')
+            </div>
+
         </div>
     </div>
 </nav>

@@ -26,6 +26,11 @@ class TemplateController extends Controller
         return view('frontend.campaigns');
     }
 
+    public function events()
+    {
+        return view('frontend.events');
+    }
+
     public function about()
     {
         return view('frontend.about');

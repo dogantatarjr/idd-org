@@ -8,6 +8,7 @@ Route::get('/', [TemplateController::class, 'index'])->name('home');
 Route::get('/book', [TemplateController::class, 'book'])->name('book');
 Route::get('/podcast', [TemplateController::class, 'podcast'])->name('podcast');
 Route::get('/campaings', [TemplateController::class, 'campaings'])->name('campaings');
+Route::get('/events', [TemplateController::class,  'events'])->name('events');
 Route::get('/about', [TemplateController::class, 'about'])->name('about');
 Route::get('/contact', [TemplateController::class, 'contact'])->name('contact');
 
