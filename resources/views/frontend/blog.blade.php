@@ -31,12 +31,14 @@
             </form>
             <a class="btn btn-danger btn-lg mx-2" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Çıkış Yap</a>
         </div>
-    @else
+    @endauth
+
+    @guest
         <div class="container text-center my-5">
             <a class="btn btn-success btn-lg mx-2" href="/login">Giriş Yap</a>
             <a class="btn btn-success btn-lg mx-2" href="/register">Kayıt Ol</a>
         </div>
-    @endauth
+    @endguest
 
     <br><br><br><br><br>
 
