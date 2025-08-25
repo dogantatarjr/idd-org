@@ -37,18 +37,18 @@
                 </li>
             </ul>
             <div class="d-none d-lg-flex align-items-center">
-                <div class="lang-switcher">
+                <!-- <div class="lang-switcher">
                     <span class="lang-option" data-lang="tr">TR</span>
                     <span class="lang-option" data-lang="en">EN</span>
-                </div>
+                </div> -->
                 @yield('auth-section')
             </div>
 
             <div class="d-lg-none lang-switcher-mobile mb-2">
-                <div class="lang-switcher">
+                <!-- <div class="lang-switcher">
                     <span class="lang-option" data-lang="tr">TR</span>
                     <span class="lang-option" data-lang="en">EN</span>
-                </div>
+                </div> -->
             </div>
             <div class="d-lg-none">
                 @yield('auth-section')

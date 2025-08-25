@@ -6,8 +6,6 @@
 
 @section('auth-section')
 
-    <span class="mx-3 text-secondary">|</span>
-
     @auth
         <div class="d-none d-lg-flex align-items-center">
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
