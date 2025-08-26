@@ -27,12 +27,16 @@
     <div class="card mb-4 shadow-sm border-0">
         <div class="card-header bg-white fw-bold">Popüler Gönderiler</div>
         <div class="card-body">
-            @foreach([1,2,3] as $i)
+            @foreach($articles_like as $article_like)
             <div class="d-flex mb-3 align-items-center">
-                <img src="https://picsum.photos/60/60?random={{ $i+20 }}" class="me-3 rounded shadow-sm" alt="Popüler Gönderi">
+                <img src="{{ $article_like->image }}" style="width:50px; height:50px; object-fit:cover;" class="me-3 rounded shadow-sm" alt="Popüler Gönderi">
                 <div>
-                    <p class="mb-1 fw-semibold">Lorem Popüler Gönderi {{ $i }}</p>
-                    <small class="text-muted">22 Haziran 202{{ $i }}</small>
+                    <p class="mb-1 fw-semibold">
+                        <a href="/blog/articles/{{ $article_like->id }}" class="text-decoration-none text-dark">
+                            {{ $article_like->title }}
+                        </a>
+                    </p>
+                    <small class="text-muted">{{ $article_like->category}}</small>
                 </div>
             </div>
             @endforeach
@@ -43,12 +47,16 @@
     <div class="card mb-4 shadow-sm border-0">
         <div class="card-header bg-white fw-bold">En Son Gönderiler</div>
         <div class="card-body">
-            @foreach([1,2,3] as $i)
+            @foreach($articles as $article)
             <div class="d-flex mb-3 align-items-center">
-                <img src="https://picsum.photos/60/60?random={{ $i+20 }}" class="me-3 rounded shadow-sm" alt="Popüler Gönderi">
+                <img src="{{ $article->image }}" style="width:50px; height:50px; object-fit:cover;" class="me-3 rounded shadow-sm" alt="Popüler Gönderi">
                 <div>
-                    <p class="mb-1 fw-semibold">Lorem Son Gönderi {{ $i }}</p>
-                    <small class="text-muted">22 Haziran 202{{ $i }}</small>
+                    <p class="mb-1 fw-semibold">
+                        <a href="/blog/articles/{{ $article->id }}" class="text-decoration-none text-dark">
+                            {{ $article->title }}
+                        </a>
+                    </p>
+                    <small class="text-muted">{{ $article->category}}</small>
                 </div>
             </div>
             @endforeach

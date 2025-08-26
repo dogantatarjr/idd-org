@@ -75,47 +75,8 @@
                 </div>
             </div>
 
-            <!-- Yan Panel -->
-            <div class="col-lg-4">
-                <!-- Arama -->
-                <div class="card mb-4 shadow-sm border-0">
-                    <div class="card-body">
-                        <div class="input-group">
-                            <span class="input-group-text bg-white border-end-0"><i class="fa fa-search"></i></span>
-                            <input type="text" class="form-control border-start-0" placeholder="Ara...">
-                        </div>
-                    </div>
-                </div>
+            @include('frontend.blog.sidebar')
 
-                <!-- Kategoriler -->
-                <div class="card mb-4 shadow-sm border-0">
-                    <div class="card-header bg-white fw-bold">Kategoriler</div>
-                    <div class="card-body">
-                        <div class="d-flex flex-wrap gap-2">
-                            <a href="#" class="badge bg-light border text-dark px-3 py-2">Teknoloji</a>
-                            <a href="#" class="badge bg-light border text-dark px-3 py-2">Tasarım</a>
-                            <a href="#" class="badge bg-light border text-dark px-3 py-2">Yazılım</a>
-                            <a href="#" class="badge bg-light border text-dark px-3 py-2">Girişimcilik</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Popüler Gönderiler -->
-                <div class="card mb-4 shadow-sm border-0">
-                    <div class="card-header bg-white fw-bold">Popüler Gönderiler</div>
-                    <div class="card-body">
-                        @foreach([1,2,3] as $i)
-                        <div class="d-flex mb-3 align-items-center">
-                            <img src="https://picsum.photos/60/60?random={{ $i+30 }}" class="me-3 rounded shadow-sm" alt="Popüler Gönderi">
-                            <div>
-                                <p class="mb-1 fw-semibold">Lorem Popüler {{ $i }}</p>
-                                <small class="text-muted">22 Haziran 202{{ $i }}</small>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 

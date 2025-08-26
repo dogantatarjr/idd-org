@@ -24,4 +24,4 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-Route::get('/blog/articles/{id}', [ArticleController::class, 'show'])->middleware(RoleMiddleware::class.':admin|writer|user')->name('blog.show');
+Route::get('/blog/articles/{id}', [ArticleController::class, 'show'])->middleware('auth')->name('blog.show');

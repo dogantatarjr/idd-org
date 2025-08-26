@@ -6,16 +6,12 @@
                 <img src="{{ $article->image }}"
                     class="img-fluid rounded" alt="article-image">
             </div>
-            <h3 class="h5 fw-bold">
-                <a href="{{ route('blog', $article->id) }}" class="text-decoration-none text-dark">
-                    {{ $article->title }}
-                </a>
-            </h3>
+            <h3 class="h5 fw-bold">{{ $article->title }}</h3>
             <p class="text-muted">
                 {{ Str::limit($article->content, 300) }}
             </p>
             <div class="d-flex justify-content-between align-items-center">
-                <a href="{{ route('blog.show', $article->id) }}" class="btn btn-outline-success btn-sm rounded-pill px-4">
+                <a href="/blog/articles/{{ $article->id }}" class="btn btn-outline-success btn-sm rounded-pill px-4">
                     Devamını Oku
                 </a>
                 <ul class="list-inline mb-0">

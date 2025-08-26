@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <img src="idd-logo.png" alt="idd-logo" class="img-fluid mb-3" style="max-height: 100px;">
+                <img src="{{ asset('idd-logo.png') }}" alt="idd-logo" class="img-fluid mb-3" style="max-height: 100px;">
                 <h5>İklim Değişmeden Değiş</h5>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a vestibulum ante. Fusce vitae commodo lectus. Sed semper varius molestie. Donec iaculis erat at arcu lobortis, egestas molestie tortor tristique. Etiam et metus quam. In lobortis ut augue in sodales. Etiam sagittis elit et ante aliquam sodales. Donec et felis sit amet lorem porta vestibulum.</p>
             </div>
