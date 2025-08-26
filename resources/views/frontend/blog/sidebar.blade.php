@@ -1,6 +1,7 @@
 <div class="col-lg-4">
     <!-- Arama -->
     <div class="card mb-4 shadow-sm border-0">
+        <div class="card-header bg-white fw-bold">Arama</div>
         <div class="card-body">
             <div class="input-group">
                 <span class="input-group-text bg-white border-end-0"><i class="fa fa-search"></i></span>
@@ -72,6 +73,25 @@
                 <button class="btn btn-success"><i class="fa fa-paper-plane"></i></button>
             </div>
             <small class="text-muted d-block mt-2">Blogumuza abone olun ve bu sayede en yeni yazılar e-posta kutunuza gelsin.</small>
+        </div>
+    </div>
+
+    <!-- Sosyal Medya -->
+    <div class="card mb-4 shadow-sm border-0">
+        <div class="card-header bg-white fw-bold">Bizi Takip Edin</div>
+        <div class="card-body d-flex gap-3">
+            <a href="#" target="_blank" class="text-success fs-4">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" target="_blank" class="text-success fs-4">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" target="_blank" class="text-success fs-4">
+                <i class="fab fa-spotify"></i>
+            </a>
+            <a href="#" target="_blank" class="text-success fs-4">
+                <i class="fab fa-youtube"></i>
+            </a>
         </div>
     </div>
 </div>
