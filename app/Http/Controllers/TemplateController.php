@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Article;
 
 class TemplateController extends Controller
 {
@@ -43,6 +44,9 @@ class TemplateController extends Controller
 
     public function blog()
     {
-        return view('frontend.blog');
+
+        $articles = Article::with('user')->latest()->paginate(3);
+        return view('frontend.blog', compact('articles'));
+
     }
 }

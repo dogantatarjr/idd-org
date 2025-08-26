@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="border-bottom: none; box-shadow: none;">
     <div class="container">
         <a class="navbar-brand" href="">
-            <img src="idd_logo.png" alt="idd-logo" height="48" class="me-2">
+            <img src="idd-logo.png" alt="idd-logo" height="48" class="me-2">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>

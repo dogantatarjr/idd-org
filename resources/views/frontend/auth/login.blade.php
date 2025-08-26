@@ -20,7 +20,7 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
         <div class="mb-4 text-center">
-            <img src="idd_logo.png" alt="logo" class="img-fluid" style="max-width: 150px;">
+            <img src="idd-logo.png" alt="logo" class="img-fluid" style="max-width: 150px;">
         </div>
 
         <h2 class="text-center mb-4">Giriş Yap</h2>

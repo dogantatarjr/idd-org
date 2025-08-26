@@ -12,4 +12,5 @@ class ArticleController extends Controller
         $article = Article::with('user')->findOrFail($id);
         return view('frontend.blog.show-article', compact('article'));
     }
+
 }

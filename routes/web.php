@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\AuthController;
+use Spatie\Permission\Middleware\RoleMiddleware;
 use App\Http\Controllers\ArticleController;
 
 Route::get('/', [TemplateController::class, 'index'])->name('home');
@@ -23,6 +24,4 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('blog/articles/{id}', [ArticleController::class, 'show'])->name('show-article');
-});
+Route::get('/blog/articles/{id}', [ArticleController::class, 'show'])->middleware(RoleMiddleware::class.':admin|writer|user')->name('blog.show');

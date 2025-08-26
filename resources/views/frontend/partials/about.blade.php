@@ -3,7 +3,7 @@
         <br><br><br>
         <div class="row align-items-center">
             <div class="col-md-4 text-center" data-aos="fade-right">
-                <img src="idd_logo.png" alt="IDD Logo" class="img-fluid" style="max-height: 280px;">
+                <img src="idd-logo.png" alt="idd-logo" class="img-fluid" style="max-height: 280px;">
             </div>
             <div class="col-md-8 logo-about" data-aos="fade-left">
                 <div class="about-title">

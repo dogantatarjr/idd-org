@@ -12,7 +12,7 @@ class RoleSeeder extends Seeder
 {
     public function run(): void
     {
-        $user = User::find(1);
-        $user->assignRole('admin');
+        $user = User::find(2);
+        $user->assignRole('writer');
     }
 }
