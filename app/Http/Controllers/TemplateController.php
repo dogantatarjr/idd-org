@@ -47,11 +47,11 @@ class TemplateController extends Controller
     {
 
         // Yazılan yazılar
-        $articles = Article::with('user')->latest()->paginate(3);
+        $articles = Article::with(relations: 'user')->latest()->paginate(3);
         $articles_like = Article::with('user')->orderBy('likes', 'desc')->paginate(3);
 
         // Kategoriler
-        $categories = Category::with('user')->get('name');
+        $categories = Category::all();
 
         return view('frontend.blog', compact('articles', 'articles_like', 'categories'));
 
