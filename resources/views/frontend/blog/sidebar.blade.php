@@ -13,12 +13,11 @@
     <!-- Kategoriler -->
     <div class="card mb-4 shadow-sm border-0">
         <div class="card-header bg-white fw-bold">Kategoriler</div>
-        <div class="card-body"></div>
-            <div class="d-flex flex-wrap gap-2">
-                <a href="#" class="badge bg-light border text-dark px-3 py-2">Teknoloji</a>
-                <a href="#" class="badge bg-light border text-dark px-3 py-2">Tasarım</a>
-                <a href="#" class="badge bg-light border text-dark px-3 py-2">Yazılım</a>
-                <a href="#" class="badge bg-light border text-dark px-3 py-2">Girişimcilik</a>
+        <div class="card-body">
+            <div class="d-flex flex-wrap gap-2 mb-2">
+                @foreach ($categories as $category)
+                <a href="#" class="badge bg-light border text-dark px-3 py-2">{{ $category->name }}</a>
+                @endforeach
             </div>
         </div>
     </div>
