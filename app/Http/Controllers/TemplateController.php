@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\Category;
 
 class TemplateController extends Controller
 {
@@ -47,7 +48,10 @@ class TemplateController extends Controller
 
         $articles = Article::with('user')->latest()->paginate(3);
         $articles_like = Article::with('user')->orderBy('likes', 'desc')->paginate(3);
-        return view('frontend.blog', compact('articles', 'articles_like'));
+
+        $categories = Category::all();
+
+        return view('frontend.blog', compact('articles', 'articles_like', 'categories'));
 
     }
 }
