@@ -43,7 +43,7 @@ class ArticleSeeder extends Seeder
                         4.	Yetiştirilen bitkinin hasat edilmesi: Hasat zamanı yetiştirilen bitkilerin en verimli olduğu zamanlarda yapılır. Hasat zamanı ise bitkinin büyüme durumuna bağlı.',
             'user_id' => 2,
             'category_id' => 8,
-            'image' => 'https://www.isbank.com.tr/blog/PublishingImages/organik-tarim-nedir-nasil-yapilir-kapak.jpg',
+            'image' => 'https://topraktangetir.com/wp-content/uploads/2020/10/Organik_Tarim_Kredileri.jpg',
             'likes' => 32,
             'comments' => 1,
             'created_at' => now(),

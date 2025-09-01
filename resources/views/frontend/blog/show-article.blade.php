@@ -39,7 +39,7 @@
                             <span class="mx-2">|</span>
                             <i class="fa fa-calendar me-2"></i> {{ $article->created_at->format('d.m.Y') }}
                             <span class="mx-2">|</span>
-                            <i class="fa fa-folder-open me-2"></i> {{ $article->category }}
+                            <i class="fa fa-folder-open me-2"></i> {{ $categories->where('id', $article->category_id)->first()->name }}
                         </div>
 
                         {!! nl2br(e($article->content)) !!}
@@ -69,10 +69,17 @@
                             <div class="mb-3">
                                 <textarea class="form-control" rows="3" placeholder="Yorumunuzu yazın..."></textarea>
                             </div>
-                            <button class="btn btn-success">Gönder</button>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-success">Gönder</button>
+                                <a href="{{ route('blog') }}" class="btn btn-outline-success">
+                                    <i class="fa fa-arrow-left me-2"></i> Blog Anasayfasına Dön
+                                </a>
+                            </div>
                         </form>
                     </div>
                 </div>
+
+
             </div>
 
             @include('frontend.blog.sidebar')
