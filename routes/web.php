@@ -5,6 +5,8 @@ use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\AuthController;
 use Spatie\Permission\Middleware\RoleMiddleware;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CategoryController;
+use App\Models\Category;
 
 Route::get('/', [TemplateController::class, 'index'])->name('home');
 Route::get('/book', [TemplateController::class, 'book'])->name('book');
@@ -25,3 +27,4 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::get('/blog/articles/{id}', [ArticleController::class, 'show'])->middleware('auth')->name('blog.show');
+Route::get('/blog/categories/{id}', [CategoryController::class, 'show'])->name('blog.category');

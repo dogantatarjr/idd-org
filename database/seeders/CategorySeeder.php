@@ -13,8 +13,8 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::create(['name' => 'Sürdürülebilirlik']);
-        Category::create(['name'=> 'Tarım']);
-        Category::create(['name'=> 'Sanat']);
+        Category::create(['id' => 1, 'name' => 'Sürdürülebilirlik']);
+        Category::create(['id' => 2, 'name'=> 'Tarım']);
+        Category::create(['id' => 3, 'name'=> 'Sanat']);
     }
 }

@@ -16,7 +16,7 @@
         <div class="card-body">
             <div class="d-flex flex-wrap gap-2 mb-2">
                 @foreach ($categories as $category)
-                <a href="#" class="badge bg-light border text-dark px-3 py-2">{{ $category->name }}</a>
+                <a href="/blog/categories/{{ $category->id }}" class="badge bg-light border text-dark px-3 py-2">{{ $category->name }}</a>
                 @endforeach
             </div>
         </div>
