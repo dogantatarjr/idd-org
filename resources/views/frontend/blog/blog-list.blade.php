@@ -16,7 +16,7 @@
                 </a>
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item text-uppercase small pe-3 border-end text-secondary">
-                        {{ $article->category}}
+                        {{ $categories->where('id', $article->category_id)->first()->name }}
                     </li>
                     <li class="list-inline-item"><i class="fa-regular fa-heart text-danger"></i> {{ $article->likes }}</li>
                     <li class="list-inline-item"><i class="fa-regular fa-comment text-primary"></i> {{ $article->comments }}</li>

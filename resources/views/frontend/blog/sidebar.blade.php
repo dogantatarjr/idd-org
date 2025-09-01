@@ -35,7 +35,7 @@
                             {{ $article_like->title }}
                         </a>
                     </p>
-                    <small class="text-muted">{{ $article_like->category}}</small>
+                    <small class="text-muted">{{ $categories->where('id', $article_like->category_id)->first()->name }}</small>
                 </div>
             </div>
             @endforeach
@@ -55,7 +55,7 @@
                             {{ $article->title }}
                         </a>
                     </p>
-                    <small class="text-muted">{{ $article->category}}</small>
+                    <small class="text-muted">{{ $categories->where('id', $article->category_id)->first()->name }}</small>
                 </div>
             </div>
             @endforeach
