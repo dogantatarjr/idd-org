@@ -4,7 +4,9 @@
         <div class="card-body">
             <div class="img-post mb-3">
                 <img src="{{ $article->image }}"
-                    class="img-fluid rounded" alt="article-image">
+                    class="img-fluid rounded object-fit-cover"
+                    style="height: 300px; width: 100%;"
+                    alt="article-image">
             </div>
             <h3 class="h5 fw-bold">{{ $article->title }}</h3>
             <p class="text-muted">

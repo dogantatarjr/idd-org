@@ -30,15 +30,17 @@
         <div class="row">
             <!-- Kategoriye Göre Yazı Listesi -->
             <div class="col-lg-8 mb-4">
-            @foreach($articles as $article)
             <div class="col-12 mb-4">
-                <h2 class="fw-bold">{{ $categories->where('id', $article->category_id)->first()->name }} Kategorisindeki Yazılar</h2>
+                <h2 class="fw-bold">{{ $categories->where('id', $articles[0]->category_id)->first()->name }} Hakkında Yazılar</h2>
             </div>
+            @foreach($articles as $article)
             <div class="card single_post mb-4 shadow-sm border-0">
                 <div class="card-body">
                     <div class="img-post mb-3">
                         <img src="{{ $article->image }}"
-                            class="img-fluid rounded" alt="article-image">
+                            class="img-fluid rounded object-fit-cover"
+                            style="height: 300px; width: 100%;"
+                            alt="article-image">
                     </div>
                     <h3 class="h5 fw-bold">{{ $article->title }}</h3>
                     <p class="text-muted">
