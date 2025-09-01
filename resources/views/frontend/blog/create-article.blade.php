@@ -1,5 +1,6 @@
 <div class="card mb-4 shadow-sm border-0">
-    <div class="card-body">
+    <div class="card-header fw-bold">
+        <br>
         <h3 class="h5 fw-bold mb-4">Yeni Yazı Oluştur</h3>
         <form action="{{ route('blog.create-article') }}" method="post">
             @csrf
@@ -25,5 +26,6 @@
             </div>
             <button type="submit" class="btn btn-success rounded-pill px-4">Oluştur</button>
         </form>
+        <br>
     </div>
 </div>
