@@ -31,7 +31,7 @@
             <!-- Kategoriye Göre Yazı Listesi -->
             <div class="col-lg-8 mb-4">
             <div class="col-12 mb-4">
-                <h2 class="fw-bold">{{ $categories->where('id', $articles[0]->category_id)->first()->name }} Hakkında Yazılar</h2>
+                <h2 class="fw-bold">{{ $categories->where('id', $articles[0]->category_id)->first()->name }} Konulu Yazılar</h2>
             </div>
             @foreach($articles as $article)
             <div class="card single_post mb-4 shadow-sm border-0">

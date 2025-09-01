@@ -30,12 +30,6 @@
         <div class="row">
             @include('frontend.blog.hello')
 
-            @guest()
-                <div class="col-12 mb-4">
-                    <h2 class="fw-bold">Blog Anasayfası</h2>
-                </div>
-            @endguest
-
             <!-- Blog Listesi -->
             @include('frontend.blog.blog-list')
 

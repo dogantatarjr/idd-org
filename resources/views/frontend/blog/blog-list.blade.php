@@ -1,3 +1,7 @@
+<div class="col-12 mb-4">
+    <h2 class="fw-bold">Blog Anasayfası</h2>
+</div>
+
 <div class="col-lg-8 mb-4">
     @foreach($articles as $article)
     <div class="card single_post mb-4 shadow-sm border-0">
@@ -27,4 +31,8 @@
         </div>
     </div>
     @endforeach
+
+    <div class="d-flex justify-content-center">
+        {{ $articles->links('pagination::bootstrap-5') }}
+    </div>
 </div>
