@@ -3,6 +3,11 @@
 </div>
 
 <div class="col-lg-8 mb-4">
+
+    @role('writer|admin')
+        @include('frontend.blog.create-article')
+    @endrole
+
     @foreach($articles as $article)
     <div class="card single_post mb-4 shadow-sm border-0">
         <div class="card-body">

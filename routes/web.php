@@ -32,3 +32,5 @@ Route::get('/blog/categories/{id}', [CategoryController::class, 'show'])->name('
 Route::get('/dashboard', function () {
     return view('frontend.admin.dashboard');
 })->middleware(['role:admin'])->name('admin.dashboard');
+
+Route::post('/blog/create', [ArticleController::class, 'create'])->middleware('role:writer|admin')->name('blog.create-article');
