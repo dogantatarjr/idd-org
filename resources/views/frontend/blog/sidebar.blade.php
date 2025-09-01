@@ -92,4 +92,25 @@
             </a>
         </div>
     </div>
+
+    @if (Route::currentRouteName() == 'blog.category')
+        <div class="card mb-4 shadow-sm border-0">
+            <div class="card-body text-center">
+                <a href="{{ route('blog') }}" class="btn btn-outline-success">
+                    <i class="fa fa-arrow-left me-2"></i> Blog Anasayfasına Dön
+                </a>
+            </div>
+        </div>
+    @endif
+
+    @role('admin')
+        <!-- Admin Paneli -->
+        <div class="card mb-4 shadow-sm border-0">
+            <div class="card-body text-center">
+                <a href="{{ route('admin.dashboard') }}" class="btn btn-primary w-100">
+                    <i class="fa fa-cog me-2"></i> Admin Paneline Git
+                </a>
+            </div>
+        </div>
+    @endrole
 </div>

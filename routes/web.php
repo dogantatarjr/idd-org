@@ -28,3 +28,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/blog/articles/{id}', [ArticleController::class, 'show'])->middleware('auth')->name('blog.show');
 Route::get('/blog/categories/{id}', [CategoryController::class, 'show'])->name('blog.category');
+
+Route::get('/dashboard', function () {
+    return view('frontend.admin.dashboard');
+})->middleware(['role:admin'])->name('admin.dashboard');
