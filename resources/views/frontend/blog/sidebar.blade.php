@@ -110,7 +110,7 @@
         <!-- Admin Paneli -->
         <div>
             <div class="text-center">
-                <a href="{{ route('admin.dashboard') }}" class="btn btn-success w-100">
+                <a href="{{ route('dashboard') }}" class="btn btn-success w-100">
                     <i class="fa fa-cog me-2"></i> Admin Paneline Git
                 </a>
             </div>

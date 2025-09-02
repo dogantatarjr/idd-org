@@ -56,4 +56,38 @@ class TemplateController extends Controller
         return view('frontend.blog', compact('articles', 'articles_like', 'categories'));
 
     }
+
+    // Admin Paneli Sayfaları
+
+    public function dashboard(){
+        return view('frontend.admin.dashboard');
+    }
+
+    public function adminPodcasts() {
+        return view('frontend.admin.podcasts');
+    }
+
+    public function adminCampaigns() {
+        return view('frontend.admin.campaigns');
+    }
+
+    public function adminEvents() {
+        return view('frontend.admin.events');
+    }
+
+    public function adminBlog() {
+        return view('frontend.admin.blog');
+    }
+
+    public function adminUsers() {
+        return view('frontend.admin.users');
+    }
+
+    public function adminMessages() {
+        return view('frontend.admin.messages');
+    }
+
+    public function adminSettings() {
+        return view('frontend.admin.settings');
+    }
 }
