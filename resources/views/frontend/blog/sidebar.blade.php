@@ -42,25 +42,28 @@
         </div>
     </div>
 
-    <!-- En Son Gönderiler -->
-    <div class="card mb-4 shadow-sm border-0">
-        <div class="card-header fw-bold">En Son Gönderiler</div>
-        <div class="card-body">
-            @foreach($articles as $article)
-            <div class="d-flex mb-3 align-items-center">
-                <img src="{{ $article->image }}" style="width:50px; height:50px; object-fit:cover;" class="me-3 rounded shadow-sm" alt="Popüler Gönderi">
-                <div>
-                    <p class="mb-1 fw-semibold">
-                        <a href="/blog/articles/{{ $article->id }}" class="text-decoration-none text-dark">
-                            {{ $article->title }}
-                        </a>
-                    </p>
-                    <small class="text-muted">{{ $categories->where('id', $article->category_id)->first()->name }}</small>
+    @if(!(Route::currentRouteName() == 'blog.category'))
+        <!-- En Son Gönderiler -->
+        <div class="card mb-4 shadow-sm border-0">
+            <div class="card-header fw-bold">En Son Gönderiler</div>
+            <div class="card-body">
+                @foreach($articles as $article)
+                <div class="d-flex mb-3 align-items-center">
+                    <img src="{{ $article->image }}" style="width:50px; height:50px; object-fit:cover;" class="me-3 rounded shadow-sm" alt="Popüler Gönderi">
+                    <div>
+                        <p class="mb-1 fw-semibold">
+                            <a href="/blog/articles/{{ $article->id }}" class="text-decoration-none text-dark">
+                                {{ $article->title }}
+                            </a>
+                        </p>
+                        <small class="text-muted">{{ $categories->where('id', $article->category_id)->first()->name }}</small>
+                    </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
-    </div>
+    @endif
+
 
     <!-- E-posta Bülteni -->
     <div class="card mb-4 shadow-sm border-0">
