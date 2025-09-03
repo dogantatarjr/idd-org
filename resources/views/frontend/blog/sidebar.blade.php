@@ -22,6 +22,11 @@
         </div>
     </div>
 
+    <!-- FIXME: blog?page={page} rotası 1. sayfadan sonra bize 3'den daha az yazı gösteriyor.
+                Yani 1. sayfada en son gönderilerde ve popüler gönderilerde 3 tane yazı görüyorsak,
+                2. sayfada 2 tane yazı görüyoruz. (Bu hata ile Laravel Pagination kullanılmaya başlanınca karşılaşıldı.)
+    -->
+
     <!-- Popüler Gönderiler -->
     <div class="card mb-4 shadow-sm border-0">
         <div class="card-header fw-bold">Popüler Gönderiler</div>
@@ -63,7 +68,6 @@
             </div>
         </div>
     @endif
-
 
     <!-- E-posta Bülteni -->
     <div class="card mb-4 shadow-sm border-0">
