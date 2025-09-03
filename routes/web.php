@@ -46,6 +46,10 @@ Route::get('/dashboard/podcasts', [TemplateController::class, 'adminPodcasts'])-
 Route::get('/dashboard/campaigns', [TemplateController::class, 'adminCampaigns'])->name('dashboard.campaigns');
 Route::get('/dashboard/events', [TemplateController::class, 'adminEvents'])->name('dashboard.events');
 Route::get('/dashboard/blog', [TemplateController::class, 'adminBlog'])->name('dashboard.blog');
+
 Route::get('/dashboard/users', [TemplateController::class, 'adminUsers'])->name('dashboard.users');
+
+
+
 Route::get('/dashboard/messages', [TemplateController::class, 'adminMessages'])->name('dashboard.messages');
 Route::get('/dashboard/settings', [TemplateController::class, 'adminSettings'])->name('dashboard.settings');

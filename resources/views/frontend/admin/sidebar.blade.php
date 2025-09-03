@@ -7,7 +7,7 @@
 
     <div class="sidebar-menu">
         <a href="{{ route('dashboard') }}" class="menu-item @yield('dashboard-sit')">
-            <i class="fas fa-cog"></i>
+            <i class="fas fa-house"></i>
             Dashboard
         </a>
 

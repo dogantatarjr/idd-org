@@ -115,7 +115,7 @@
         <div>
             <div class="text-center">
                 <a href="{{ route('dashboard') }}" class="btn btn-success w-100">
-                    <i class="fa fa-cog me-2"></i> Admin Paneline Git
+                    <i class="fa fa-house me-2"></i> Admin Paneline Git
                 </a>
             </div>
         </div>
