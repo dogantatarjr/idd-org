@@ -49,7 +49,7 @@ Route::get('/dashboard/events', [TemplateController::class, 'adminEvents'])->nam
 Route::get('/dashboard/blog', [TemplateController::class, 'adminBlog'])->name('dashboard.blog');
 
 Route::get('/dashboard/users', [UserController::class, 'show'])->name('dashboard.users');
-
+Route::put('/dashboard/users/{user}', [UserController::class, 'update'])->name('dashboard.users.update');
 
 Route::get('/dashboard/messages', [TemplateController::class, 'adminMessages'])->name('dashboard.messages');
 Route::get('/dashboard/settings', [TemplateController::class, 'adminSettings'])->name('dashboard.settings');

@@ -16,4 +16,17 @@ class UserController extends Controller
 
         return view('frontend.admin.users', compact('users'));
     }
+
+    public function update(Request $request) {
+        $user = User::findOrFail($request->id);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->syncRoles([$request->role]);
+        $user->status = $request->status;
+        $user->save();
+
+        return redirect()->back()->with('success', 'Kullanıcı güncellendi!');
+    }
+
 }
