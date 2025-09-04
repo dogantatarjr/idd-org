@@ -12,9 +12,7 @@ class UserController extends Controller
 
     public function show(){
 
-        $users = User::with(['roles'])
-                    ->select('id', 'name', 'email', 'created_at', 'updated_at', 'email_verified_at')
-                    ->get();
+        $users = User::with('roles')->get();
 
         return view('frontend.admin.users', compact('users'));
     }
