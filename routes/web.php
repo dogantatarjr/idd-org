@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use Spatie\Permission\Middleware\RoleMiddleware;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
 use App\Models\Category;
 
 // Site Sayfaları
@@ -47,8 +48,7 @@ Route::get('/dashboard/campaigns', [TemplateController::class, 'adminCampaigns']
 Route::get('/dashboard/events', [TemplateController::class, 'adminEvents'])->name('dashboard.events');
 Route::get('/dashboard/blog', [TemplateController::class, 'adminBlog'])->name('dashboard.blog');
 
-Route::get('/dashboard/users', [TemplateController::class, 'adminUsers'])->name('dashboard.users');
-
+Route::get('/dashboard/users', [UserController::class, 'show'])->name('dashboard.users');
 
 
 Route::get('/dashboard/messages', [TemplateController::class, 'adminMessages'])->name('dashboard.messages');

@@ -7,8 +7,10 @@
                     $message = "";
                     $hour = \Carbon\Carbon::now('Europe/Istanbul')->hour;
 
-                    if ($hour < 12) {
+                    if ($hour > 6) {
                         $message = "Günaydın";
+                    } elseif($hour < 6){
+                        $message = "İyi Geceler";
                     } elseif ($hour < 18) {
                         $message = "İyi Günler";
                     } else {

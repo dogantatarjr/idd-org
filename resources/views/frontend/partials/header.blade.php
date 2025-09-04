@@ -11,6 +11,9 @@
                 <li class="nav-item">
                     <a class="nav-link @yield('home-sit')" href="/">Ana Sayfa</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link  @yield('about-sit')" href="/about">Hakkımızda</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link @yield('projects-sit') dropdown-toggle" href="#" id="projectsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Projelerimiz
@@ -18,22 +21,19 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/book">Kitap</a></li>
                         <li><a class="dropdown-item" href="/podcast">Podcast</a></li>
+                        <li>
+                            <a class="dropdown-item @yield('campaigns-sit')" href="/campaings">Kampanyalarımız</a>
+                        </li>
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link @yield('campaigns-sit')" href="/campaings">Kampanyalarımız</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @yield('events-sit')" href="/events">Etkinliklerimiz</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  @yield('about-sit')" href="/about">Hakkımızda</a>
+                    <a class="nav-link @yield('blog-sit')" href="/blog">Blog</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link  @yield('contact-sit')" href="/contact">İletişim</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link @yield('blog-sit')" href="/blog">Blog</a>
                 </li>
             </ul>
             <div class="d-none d-lg-flex align-items-center">

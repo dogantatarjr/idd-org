@@ -79,10 +79,6 @@ class TemplateController extends Controller
         return view('frontend.admin.blog');
     }
 
-    public function adminUsers() {
-        return view('frontend.admin.users');
-    }
-
     public function adminMessages() {
         return view('frontend.admin.messages');
     }

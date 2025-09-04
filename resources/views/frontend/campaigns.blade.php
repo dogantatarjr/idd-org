@@ -2,7 +2,7 @@
 
 @section('title', 'Kampanyalarımız')
 
-@section('campaigns-sit', 'active')
+@section('projects-sit', 'active')
 
 @section('content')
     <br><br><br><br><br>
