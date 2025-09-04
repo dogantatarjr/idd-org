@@ -1,23 +1,34 @@
 @auth
+
+    @php
+        $message = "";
+        $icon = "";
+        $color = "";
+        $hour = \Carbon\Carbon::now('Europe/Istanbul')->hour;
+
+        if ($hour > 6 && $hour < 12) {
+            $message = "Günaydın";
+            $icon = "sun";
+            $color = "warning";
+        } elseif ($hour > 12 && $hour < 18) {
+            $message = "İyi Günler";
+            $icon = "coffee";
+            $color = "success";
+        } elseif($hour > 18 && $hour < 23){
+            $message = "İyi Akşamlar";
+            $icon = "laptop";
+            $color = "primary";
+        } else {
+            $message = "İyi Geceler";
+            $icon = "moon";
+            $color = "secondary";
+        }
+    @endphp
+
     <div class="col-12 mb-4">
-        <div class="alert alert-success d-flex align-items-center shadow-sm" role="alert">
-            <i class="fa fa-user-circle fa-2x me-3"></i>
+        <div class="alert alert-{{ $color }} d-flex align-items-center shadow-sm" role="alert">
+            <i class="fa fa-{{ $icon }} fa-2x me-3"></i>
             <div>
-                @php
-                    $message = "";
-                    $hour = \Carbon\Carbon::now('Europe/Istanbul')->hour;
-
-                    if ($hour > 6 && $hour < 12) {
-                        $message = "Günaydın";
-                    } elseif($hour < 6 && $hour > 18 ){
-                        $message = "İyi Geceler";
-                    } elseif ($hour < 18) {
-                        $message = "İyi Günler";
-                    } else {
-                        $message = "İyi Akşamlar";
-                    }
-                @endphp
-
                 <strong>{{ $message }}, {{ Auth::user()->name }}!</strong>
             </div>
         </div>
