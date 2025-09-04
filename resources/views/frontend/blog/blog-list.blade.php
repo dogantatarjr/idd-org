@@ -18,8 +18,23 @@
                     alt="article-image">
             </div>
             <h3 class="h5 fw-bold">{{ $article->title }}</h3>
+            @php
+                $maxWords = 50;
+
+                $text = $article->content;
+
+                $words = Str::words($text, $maxWords, '');
+
+                $lastPeriodPos = strrpos($words, '.');
+
+                if ($lastPeriodPos !== false) {
+                    $words = substr($words, 0, $lastPeriodPos + 1) . '..';
+                } else {
+                    $words .= '...';
+                }
+            @endphp
             <p class="text-muted">
-                {{ Str::limit($article->content, 300) }}
+                {{ $words }}
             </p>
             <div class="d-flex justify-content-between align-items-center">
                 <a href="/blog/articles/{{ $article->id }}" class="btn btn-outline-success btn-sm rounded-pill px-4">

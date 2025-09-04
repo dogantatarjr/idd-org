@@ -46,7 +46,12 @@ Route::get('/dashboard', [TemplateController::class, 'dashboard'])->name('dashbo
 Route::get('/dashboard/podcasts', [TemplateController::class, 'adminPodcasts'])->name('dashboard.podcasts');
 Route::get('/dashboard/campaigns', [TemplateController::class, 'adminCampaigns'])->name('dashboard.campaigns');
 Route::get('/dashboard/events', [TemplateController::class, 'adminEvents'])->name('dashboard.events');
+
+// Admin Blog Management Page
+
 Route::get('/dashboard/blog', [TemplateController::class, 'adminBlog'])->name('dashboard.blog');
+
+// Admin User Page
 
 Route::get('/dashboard/users', [UserController::class, 'show'])->name('dashboard.users');
 Route::put('/dashboard/users/{user}', [UserController::class, 'update'])->name('dashboard.users.update');

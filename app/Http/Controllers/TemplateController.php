@@ -76,7 +76,11 @@ class TemplateController extends Controller
     }
 
     public function adminBlog() {
-        return view('frontend.admin.blog');
+
+        $articles = Article::with(relations: 'user')->latest()->get();
+        $categories = Category::all();
+
+        return view('frontend.admin.blog', compact('articles', 'categories'));
     }
 
     public function adminMessages() {
