@@ -82,7 +82,7 @@
                                                 {{ $category->name }}
                                             </a>
                                         </td>
-                                        <td style="padding: 15px; text-color: dark;">{{ $category->number_of_articles }}</td>
+                                        <td style="padding: 15px; text-color: dark;"></td>
                                         <td style="padding: 15px;">
                                             <span class="badge badge-pill" style="background-color: {{ $category->status === 'active' ? 'green' : ($category->status === 'passive' ? 'gray' : 'red') }}; color: white;">{{ $category->status }}</span>
                                         </td>

@@ -19,11 +19,6 @@ class CategoryController extends Controller
             ->latest()
             ->paginate(3);
 
-        // En çok beğenilen yazılar
-        $articles_like = Article::with('user')
-            ->orderBy('likes', 'desc')
-            ->paginate(3);
-
         // Tüm kategoriler
         $categories = Category::all();
 

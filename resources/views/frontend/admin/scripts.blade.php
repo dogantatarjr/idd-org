@@ -32,6 +32,8 @@
 
 <script>
 
+    // Admin Dashboard - User Management
+
     function showUserDetails(id, name, email, role, created, status) {
         console.log('Function called:', id, name, email);
 

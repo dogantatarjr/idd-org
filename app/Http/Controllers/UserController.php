@@ -14,7 +14,7 @@ class UserController extends Controller
 
         $users = User::with('roles')->get();
 
-        return view('frontend.admin.users', compact('users'));
+        return view('frontend.admin.users.users', compact('users'));
     }
 
     public function update(Request $request) {

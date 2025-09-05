@@ -55,8 +55,8 @@
     </div>
 </div>
 
-@include('frontend.admin.user-detail')
+@include('frontend.admin.users.user-detail')
 
-@include('frontend.admin.user-edit')
+@include('frontend.admin.users.user-edit')
 
 @endsection
