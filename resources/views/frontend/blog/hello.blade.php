@@ -6,22 +6,22 @@
         $color = "";
         $hour = \Carbon\Carbon::now('Europe/Istanbul')->hour;
 
-        if ($hour > 6 && $hour < 12) {
-            $message = "Günaydın";
-            $icon = "sun";
-            $color = "warning";
-        } elseif ($hour > 12 && $hour < 18) {
-            $message = "İyi Günler";
-            $icon = "coffee";
-            $color = "success";
-        } elseif($hour > 18 && $hour < 23){
-            $message = "İyi Akşamlar";
-            $icon = "laptop";
-            $color = "primary";
-        } else {
+        if ($hour >= 0 && $hour < 6) {
             $message = "İyi Geceler";
             $icon = "moon";
             $color = "secondary";
+        } elseif ($hour >= 18) {
+            $message = "İyi Akşamlar";
+            $icon = "laptop";
+            $color = "primary";
+        } elseif($hour >= 12){
+            $message = "İyi Günler";
+            $icon = "coffee";
+            $color = "success";
+        } else {
+            $message = "Günaydın";
+            $icon = "sun";
+            $color = "warning";
         }
     @endphp
 

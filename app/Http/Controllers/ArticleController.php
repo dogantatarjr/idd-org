@@ -14,13 +14,13 @@ class ArticleController extends Controller
 
         // Yazılan yazılar
         $article = Article::with('user')->findOrFail($id);
-        $articles = Article::with('user')->latest()->paginate(3);
-        $articles_like = Article::with('user')->orderBy('likes', 'desc')->paginate(3);
+        $articles_latest = Article::with(relations: 'user')->latest()->limit(3)->get();
+        $articles_like = Article::with('user')->orderBy('likes', 'desc')->limit(3)->get();
 
         // Kategoriler
         $categories = Category::all();
 
-        return view('frontend.blog.show-article', compact('article', 'articles', 'articles_like', 'categories'));
+        return view('frontend.blog.show-article', compact('article', 'articles_latest', 'articles_like', 'categories'));
     }
 
     public function create(Request $request)

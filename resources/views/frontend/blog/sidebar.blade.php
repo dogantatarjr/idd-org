@@ -1,4 +1,16 @@
 <div class="col-lg-4">
+    @role('admin')
+        <!-- Admin Paneli -->
+        <div>
+            <div class="text-center">
+                <a href="{{ route('dashboard') }}" class="btn btn-success w-100">
+                    <i class="fa fa-house me-2"></i> Admin Paneline Git
+                </a>
+            </div>
+        </div>
+        <br>
+    @endrole
+
     <!-- Arama -->
     <div class="card mb-4 shadow-sm border-0">
         <div class="card-header fw-bold">Arama</div>
@@ -21,11 +33,6 @@
             </div>
         </div>
     </div>
-
-    <!-- FIXME: blog?page={page} rotası 1. sayfadan sonra bize 3'den daha az yazı gösteriyor.
-                Yani 1. sayfada en son gönderilerde ve popüler gönderilerde 3 tane yazı görüyorsak,
-                2. sayfada 2 tane yazı görüyoruz. (Bu hata ile Laravel Pagination kullanılmaya başlanınca karşılaşıldı.)
-    -->
 
     <!-- Popüler Gönderiler -->
     <div class="card mb-4 shadow-sm border-0">
@@ -52,7 +59,7 @@
         <div class="card mb-4 shadow-sm border-0">
             <div class="card-header fw-bold">En Son Gönderiler</div>
             <div class="card-body">
-                @foreach($articles as $article)
+                @foreach($articles_latest as $article)
                 <div class="d-flex mb-3 align-items-center">
                     <img src="{{ $article->image }}" style="width:50px; height:50px; object-fit:cover;" class="me-3 rounded shadow-sm" alt="Popüler Gönderi">
                     <div>
@@ -109,15 +116,4 @@
             </div>
         </div>
     @endif
-
-    @role('admin')
-        <!-- Admin Paneli -->
-        <div>
-            <div class="text-center">
-                <a href="{{ route('dashboard') }}" class="btn btn-success w-100">
-                    <i class="fa fa-house me-2"></i> Admin Paneline Git
-                </a>
-            </div>
-        </div>
-    @endrole
 </div>

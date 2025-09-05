@@ -1,8 +1,8 @@
 <div class="card mb-4 shadow-sm border-0">
     <div class="card-header fw-bold">
         <br>
-        <h3 class="h5 fw-bold mb-4">Yeni Yazı Oluştur</h3>
-        <form action="{{ route('blog.create-article') }}" method="post">
+        <h3 class="h5 fw-bold mb-4"><i class="fa fa-pencil" style="padding-right: 5px"></i> Yeni Yazı Oluştur</h3>
+        <form action="{{ route('blog.create-article') }}" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Başlık</label>

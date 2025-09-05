@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header" style="background-color: #6c757d; color: white;">
                 <h5 class="modal-title">
-                    <i class="fas fa-user-circle" style="margin-right: 10px;"></i>Kullanıcı Detayları
+                    <i class="fas fa-id-card" style="margin-right: 10px;"></i>Kullanıcı Detayları
                 </h5>
             </div>
             <div class="modal-body">
