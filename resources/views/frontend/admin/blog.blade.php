@@ -49,6 +49,10 @@
                 @endforeach
             </div>
 
+            <div class="d-flex justify-content-center fw-bold">
+                {{ $articles->links('pagination::bootstrap-5') }}
+            </div>
+
             <br><h2 class="fw-bold">Kategoriler</h2><br>
 
             <div class="container-fluid">
@@ -92,6 +96,8 @@
                     </div>
                 </div>
             </div>
+
+            <br><br>
 
         </div>
     </div>
