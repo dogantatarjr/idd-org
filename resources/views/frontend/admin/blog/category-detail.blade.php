@@ -17,10 +17,8 @@
                                 </h6>
                             </div>
                             <div class="card-body">
-                                <p><strong>Kullanıcı ID:</strong> <span id="modal-category-id"></span></p>
-                                <p><strong>Kullanıcı Adı:</strong> <span id="modal-category-name"></span></p>
-                                <p><strong>E-mail:</strong> <span id="modal-category-email"></span></p>
-                                <p><strong>Rol:</strong> <span id="modal-category-role"></span></p>
+                                <p><strong>Kategori ID:</strong> <span id="modal-category-id"></span></p>
+                                <p><strong>Kategori Adı:</strong> <span id="modal-category-name"></span></p>
                             </div>
                         </div>
                     </div>
@@ -40,7 +38,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="closecategoryDetails()">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="closeCategoryDetails()">
                     <i class="close fas fa-times" type="button" data-dismiss="modal" style="margin-right: 5px;"></i>Kapat
                 </button>
             </div>

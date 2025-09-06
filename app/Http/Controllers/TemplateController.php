@@ -54,7 +54,18 @@ class TemplateController extends Controller
         // Kategoriler
         $categories = Category::all();
 
-        return view('frontend.blog', compact('articles', 'articles_latest', 'articles_like', 'categories'));
+        $categories_popular = $categories->map(function($category) {
+            $articleCount = Article::where('category_id', $category->id)->count();
+            $totalLikes = Article::where('category_id', $category->id)->sum('likes');
+
+            $category->likePerArticle = $articleCount > 0 ? $totalLikes / $articleCount : 0;
+
+            return $category;
+        });
+
+        $categories_popular = $categories->sortByDesc('likePerArticle')->take(3);
+
+        return view('frontend.blog', compact('articles', 'articles_latest', 'articles_like', 'categories', 'categories_popular'));
 
     }
 

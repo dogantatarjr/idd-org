@@ -28,33 +28,44 @@
         <div class="card-body">
             <div class="d-flex flex-wrap gap-2 mb-2">
                 @foreach ($categories as $category)
-                <a href="/blog/categories/{{ $category->id }}" class="badge bg-light border text-dark px-3 py-2">{{ $category->name }}</a>
+                <a href="/blog/categories/{{ $category->id }}" class="badge text-decoration-none bg-light border text-dark px-3 py-2">{{ $category->name }}</a>
                 @endforeach
             </div>
         </div>
     </div>
 
-    <!-- Popüler Gönderiler -->
-    <div class="card mb-4 shadow-sm border-0">
-        <div class="card-header fw-bold">Popüler Gönderiler</div>
-        <div class="card-body">
-            @foreach($articles_like as $article_like)
-            <div class="d-flex mb-3 align-items-center">
-                <img src="{{ $article_like->image }}" style="width:50px; height:50px; object-fit:cover;" class="me-3 rounded shadow-sm" alt="Popüler Gönderi">
-                <div>
-                    <p class="mb-1 fw-semibold">
-                        <a href="/blog/articles/{{ $article_like->id }}" class="text-decoration-none text-dark">
-                            {{ $article_like->title }}
-                        </a>
-                    </p>
-                    <small class="text-muted">{{ $categories->where('id', $article_like->category_id)->first()->name }}</small>
+    @if(!(Route::currentRouteName() == 'blog.category'))
+        <!-- Popüler Kategoriler -->
+        <div class="card mb-4 shadow-sm border-0">
+            <div class="card-header fw-bold">Popüler Kategoriler</div>
+            <div class="card-body">
+                <div class="d-flex flex-wrap gap-2 mb-2">
+                    @foreach ($categories_popular as $category)
+                        <a href="/blog/categories/{{ $category->id }}" class="badge text-decoration-none text-bg-warning border text-dark px-3 py-2">{{ $category->name }}</a>
+                    @endforeach
                 </div>
             </div>
-            @endforeach
         </div>
-    </div>
+        <!-- Popüler Gönderiler -->
+        <div class="card mb-4 shadow-sm border-0">
+            <div class="card-header fw-bold">Popüler Gönderiler</div>
+            <div class="card-body">
+                @foreach($articles_like as $article_like)
+                <div class="d-flex mb-3 align-items-center">
+                    <img src="{{ $article_like->image }}" style="width:50px; height:50px; object-fit:cover;" class="me-3 rounded shadow-sm" alt="Popüler Gönderi">
+                    <div>
+                        <p class="mb-1 fw-semibold">
+                            <a href="/blog/articles/{{ $article_like->id }}" class="text-decoration-none text-dark">
+                                {{ $article_like->title }}
+                            </a>
+                        </p>
+                        <small class="text-muted">{{ $categories->where('id', $article_like->category_id)->first()->name }}</small>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
 
-    @if(!(Route::currentRouteName() == 'blog.category'))
         <!-- En Son Gönderiler -->
         <div class="card mb-4 shadow-sm border-0">
             <div class="card-header fw-bold">En Son Gönderiler</div>

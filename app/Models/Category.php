@@ -13,7 +13,7 @@ class Category extends Model
     protected $fillable = [
         'name',
         'id',
-        'number_of_articles',
+        'status',
     ];
 
     // Category & User ilişkisi

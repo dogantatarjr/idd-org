@@ -69,4 +69,45 @@
         $('#userEditModal').modal('hide');
     }
 
+    // Admin Dashboard - Category Management
+
+    function showCategoryDetails(id, name, created, status) {
+        console.log('Function called:', id, name);
+
+        document.getElementById('modal-category-id').textContent = id;
+        document.getElementById('modal-category-name').textContent = name;
+        document.getElementById('modal-category-created').textContent = created;
+        document.getElementById('modal-category-status').textContent = status;
+
+        $('#categoryDetailsModal').modal('show');
+    }
+
+    function closeCategoryDetails() {
+        $('#categoryDetailsModal').modal('hide');
+    }
+
+    function showCategoryEdit(id, name, status) {
+        console.log('Edit Function called:', id, name);
+
+        document.getElementById('edit-category-id').value = id;
+        document.getElementById('edit-category-name').value = name;
+        document.getElementById('edit-category-status').value = status.toLowerCase();
+
+        document.getElementById('categoryEditForm').action = '/dashboard/categories/' + id;
+
+        $('#categoryEditModal').modal('show');
+    }
+
+    function closeCategoryEdit() {
+        $('#categoryEditModal').modal('hide');
+    }
+
+    function showCategoryAdd() {
+        $('#categoryAddModal').modal('show');
+    }
+
+    function closeCategoryAdd() {
+        $('#categoryAddModal').modal('hide');
+    }
+
 </script>

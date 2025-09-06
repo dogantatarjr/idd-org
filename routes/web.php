@@ -50,6 +50,8 @@ Route::get('/dashboard/events', [TemplateController::class, 'adminEvents'])->nam
 // Admin Blog Management Page
 
 Route::get('/dashboard/blog', [TemplateController::class, 'adminBlog'])->name('dashboard.blog');
+Route::post('/dashboard/categories', [CategoryController::class, 'add'])->name('dashboard.categories.add');
+Route::put('/dashboard/categories/{category}', [CategoryController::class, 'update'])->name('dashboard.categories.update');
 
 // Admin User Page
 

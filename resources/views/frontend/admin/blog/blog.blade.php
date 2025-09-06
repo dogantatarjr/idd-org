@@ -78,21 +78,29 @@
                                     <tr>
                                         <th scope="row" style="padding: 15px;">{{ $category->id }}</th>
                                         <td style="padding: 15px;">
-                                            <a href="javascript:void(0)" style="text-decoration: none; color: #007bff; cursor: pointer;">
+                                            <a href="javascript:void(0)" style="text-decoration: none; color: #007bff; cursor: pointer;"
+                                                onclick="showCategoryDetails({{ $category->id }}, '{{ addslashes($category->name) }}', '{{ $category->created_at->format('d.m.Y H:i') }}', '{{ $category->status }}')">
                                                 {{ $category->name }}
                                             </a>
                                         </td>
-                                        <td style="padding: 15px; text-color: dark;"></td>
+                                        <td style="padding: 15px; text-color: dark;">{{ \App\Models\Article::where('category_id', $category->id)->count() }}</td>
                                         <td style="padding: 15px;">
                                             <span class="badge badge-pill" style="background-color: {{ $category->status === 'active' ? 'green' : ($category->status === 'passive' ? 'gray' : 'red') }}; color: white;">{{ $category->status }}</span>
                                         </td>
                                         <td style="padding: 15px;">
-                                            <i class="fas fa-edit" href="javascript:void(0)" style="cursor: pointer; color: orange;"></i>
+                                            <i class="fas fa-edit" href="javascript:void(0)" style="cursor: pointer; color: orange;"
+                                                onclick="showCategoryEdit({{ $category->id }}, '{{ addslashes($category->name) }}', '{{ $category->status }}')">
+                                            </i>
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="d-flex justify-content-end mb-3">
+                            <button type="button" class="btn btn-success" data-toggle="modal" onclick="showCategoryAdd()">
+                                <i class="fas fa-plus" href="javascript:void(0)"></i> Yeni Kategori
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -102,5 +110,11 @@
         </div>
     </div>
 </div>
+
+@include('frontend.admin.blog.category-detail')
+
+@include('frontend.admin.blog.category-edit')
+
+@include('frontend.admin.blog.category-add')
 
 @endsection

@@ -10,21 +10,44 @@ class CategoryController extends Controller
 {
     public function show($id)
     {
-        // Seçilen kategori
         $category = Category::findOrFail($id);
 
-        // O kategoriye ait yazılar
         $articles = Article::with('user')
             ->where('category_id', $id)
             ->latest()
             ->paginate(3);
 
-        // Tüm kategoriler
         $categories = Category::all();
 
         return view(
             'frontend.blog.show-category-articles',
-            compact('category', 'articles', 'articles_like', 'categories')
+            compact('category', 'articles', 'categories')
         );
     }
+
+    public function update(Request $request) {
+        $category = Category::findOrFail($request->id);
+
+        $category->name = $request->name;
+        $category->status = $request->status;
+        $category->save();
+
+        return redirect()->back()->with('success', 'Kategori güncellendi!');
+    }
+
+    public function add(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name',
+            'status' => 'required|string|in:active,passive',
+        ]);
+
+        Category::create([
+            'name' => $request->name,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->back()->with('success', 'Kategori başarıyla eklendi!');
+    }
+
 }
