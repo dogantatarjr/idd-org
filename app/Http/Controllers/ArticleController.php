@@ -44,4 +44,12 @@ class ArticleController extends Controller
         return redirect()->route('blog');
     }
 
+    public function edit(Article $article)
+    {
+        // Kategoriler
+        $categories = Category::all();
+
+        return view('frontend.admin.blog.edit-article', compact('article', 'categories'));
+    }
+
 }

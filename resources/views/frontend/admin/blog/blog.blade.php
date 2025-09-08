@@ -20,8 +20,8 @@
                         <div class="card h-100">
                         <img src="{{ $article->image }}" class="card-img-top" alt="article-image">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $article->title }}</h5>
-                            <p class="card-texts">{{ $article->user->name }} | {{ $categories->where('id', $article->category_id)->first()->name }}</p>
+                            <h5 class="card-title" style="padding-bottom: 5px;">{{ $article->title }}</h5>
+                            <p class="card-texts text-uppercase">{{ $categories->where('id', $article->category_id)->first()->name }}</p>
 
                             @php
                                 $maxWords = 25;
@@ -40,6 +40,10 @@
                             @endphp
 
                             <p class="card-text">{{ $words }}</p>
+                            <p class="card-texts">Yazar: {{ $article->user->name }}</p>
+
+                            <a href="/blog/articles/{{ $article->id }}" class="card-link text-decoration-none"><i class="fas fa-eye"></i> Görüntüle</a>
+                            <a href="/dashboard/articles/{{ $article->id }}" class="card-link text-decoration-none"><i class="fas fa-edit"></i> Düzenle</a>
                         </div>
                         <div class="card-footer">
                             <small class="text-body-secondary">En son güncelleme ~{{ round($article->updated_at->diffInDays(\Carbon\Carbon::now('Europe/Istanbul'))) }} gün önce</small>

@@ -17,9 +17,9 @@ class Category extends Model
     ];
 
     // Category & Article ilişkisi (Popular Categories Algoritması için)
-    public function Categorys()
+    public function articles()
     {
-        return $this->hasMany(Category::class, 'category_id');
+        return $this->hasMany(Article::class, 'category_id');
     }
 
     // Category & User ilişkisi
@@ -35,12 +35,10 @@ class Category extends Model
         return $query->where('status', $status);
     }
 
-    // Sadece aktif yazılar
-    // $categories_active = Category::with('user')->status('active')->get();
+    // Sadece aktif kategoriler
+    // $categories_active = Article::with('user')->status('active')->get();
 
-    // Pasif yazılar
-    // $categories_passive = Category::with('user')->status('passive')->get();
+    // Pasif kategoriler
+    // $categories_passive = Article::with('user')->status('passive')->get();
 
-    // Beklemede olanlar
-    // $categories_waiting = Category::with('user')->status('waiting')->get();
 }
