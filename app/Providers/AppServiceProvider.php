@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
                     return $category;
                 })
                 ->sortByDesc('likePerArticle')
-                ->take(10)
+                ->take(5)
                 ->values();
 
             $view->with('categories_popular', $categories_popular);
