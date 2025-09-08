@@ -45,13 +45,10 @@ class Article extends Model
         return $query->where('status', $status);
     }
 
-    // Sadece aktif yazılar
+    // Sadece aktif kategoriler
     // $articles_active = Article::with('user')->status('active')->get();
 
-    // Pasif yazılar
+    // Pasif kategoriler
     // $articles_passive = Article::with('user')->status('passive')->get();
-
-    // Beklemede olanlar
-    // $articles_waiting = Article::with('user')->status('waiting')->get();
 
 }
