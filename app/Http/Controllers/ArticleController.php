@@ -14,8 +14,8 @@ class ArticleController extends Controller
 
         // Yazılan yazılar
         $article = Article::with('user')->findOrFail($id);
-        $articles_latest = Article::with(relations: 'user')->latest()->limit(3)->get();
-        $articles_like = Article::with('user')->orderBy('likes', 'desc')->limit(3)->get();
+        $articles_latest = Article::with('user')->latestArticles(3)->get();
+        $articles_like = Article::with('user')->mostLiked(3)->get();
 
         // Kategoriler
         $categories = Category::all();

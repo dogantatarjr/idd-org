@@ -47,23 +47,21 @@ class TemplateController extends Controller
     {
 
         // Yazılan yazılar
-        $articles = Article::with(relations: 'user')->latest()->paginate(3);
-        $articles_latest = Article::with(relations: 'user')->latest()->limit(3)->get();
-        $articles_like = Article::with('user')->orderBy('likes', 'desc')->limit(3)->get();
+        $articles = Article::with(relations: 'user')->latestArticles()->paginate(3);
+        $articles_latest = Article::with('user')->latestArticles(3)->get();
+        $articles_like = Article::with('user')->mostLiked(3)->get();
 
         // Kategoriler
         $categories = Category::all();
 
-        $categories_popular = $categories->map(function($category) {
-            $articleCount = Article::where('category_id', $category->id)->count();
-            $totalLikes = Article::where('category_id', $category->id)->sum('likes');
+        $categories_popular = Category::withCount('articles')->withSum('articles', 'likes')->get();
 
-            $category->likePerArticle = $articleCount > 0 ? $totalLikes / $articleCount : 0;
-
+        $categories_popular->map(function ($category) {
+            $category->likePerArticle = $category->articles_count > 0
+                ? $category->articles_sum_likes / $category->articles_count
+                : 0;
             return $category;
         });
-
-        $categories_popular = $categories->sortByDesc('likePerArticle')->take(3);
 
         return view('frontend.blog', compact('articles', 'articles_latest', 'articles_like', 'categories', 'categories_popular'));
 

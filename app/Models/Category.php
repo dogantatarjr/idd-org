@@ -16,6 +16,12 @@ class Category extends Model
         'status',
     ];
 
+    // Category & Article ilişkisi (Popular Categories Algoritması için)
+    public function articles()
+    {
+        return $this->hasMany(Article::class, 'category_id');
+    }
+
     // Category & User ilişkisi
     public function user()
     {
