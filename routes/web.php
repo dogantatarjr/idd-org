@@ -52,7 +52,8 @@ Route::get('/dashboard/events', [TemplateController::class, 'adminEvents'])->mid
 Route::get('/dashboard/blog', [TemplateController::class, 'adminBlog'])->middleware('role:admin')->name('dashboard.blog');
 Route::post('/dashboard/categories', [CategoryController::class, 'add'])->middleware('role:admin')->name('dashboard.categories.add');
 Route::put('/dashboard/categories/{category}', [CategoryController::class, 'update'])->middleware('role:admin')->name('dashboard.categories.update');
-Route::get('/dashboard/articles/{article}', [ArticleController::class, 'edit'])->middleware('role:admin')->name('dashboard.articles.edit');
+Route::get('/dashboard/articles/{article}/edit', [ArticleController::class, 'edit'])->middleware('role:admin')->name('dashboard.articles.edit');
+Route::put('/dashboard/articles/{article}', [ArticleController::class, 'update'])->middleware('role:admin')->name('dashboard.articles.update');
 
 // Admin User Page
 

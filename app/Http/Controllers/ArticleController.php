@@ -46,10 +46,27 @@ class ArticleController extends Controller
 
     public function edit(Article $article)
     {
-        // Kategoriler
         $categories = Category::all();
-
-        return view('frontend.admin.blog.edit-article', compact('article', 'categories'));
+        return view('frontend.admin.blog.edit-article', compact('categories', 'article'));
     }
+
+    public function update(Request $request, Article $article)
+    {
+        $validated = $request->validate([
+            'title'    => 'required|string|max:255',
+            'content'  => 'required|string',
+            'image'    => 'nullable|url',
+            'category' => 'required|exists:categories,id',
+        ]);
+
+        $article->title       = $validated['title'];
+        $article->content     = $validated['content'];
+        $article->image       = $validated['image'];
+        $article->category_id = $validated['category'];
+        $article->save();
+
+        return redirect()->route('dashboard.blog')->with('success-article', 'Yazı başarıyla güncellendi.');
+    }
+
 
 }

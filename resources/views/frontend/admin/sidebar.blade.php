@@ -27,7 +27,7 @@
         </a>
 
         <a href="{{ route('dashboard.blog') }}" class="menu-item @yield('blog-sit')">
-            <i class="fas fa-blog"></i>
+            <i class="fas fa-wrench"></i>
             Blog Yönetimi
         </a>
 

@@ -32,7 +32,7 @@ class CategoryController extends Controller
         $category->status = $request->status;
         $category->save();
 
-        return redirect()->back()->with('success', 'Kategori güncellendi!');
+        return redirect()->back()->with('success-category', 'Kategori güncellendi!');
     }
 
     public function add(Request $request)
@@ -47,7 +47,7 @@ class CategoryController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect()->back()->with('success', 'Kategori başarıyla eklendi!');
+        return redirect()->back()->with('success-category', 'Kategori başarıyla eklendi!');
     }
 
 }
