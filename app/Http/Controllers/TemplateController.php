@@ -47,14 +47,17 @@ class TemplateController extends Controller
     {
 
         // Yazılan yazılar
-        $articles = Article::with(relations: 'user')->latestArticles()->paginate(3);
-        $articles_latest = Article::with('user')->latestArticles(3)->get();
-        $articles_like = Article::with('user')->mostLiked(3)->get();
+        $articles = Article::with(relations: 'user')->status('active')->latestArticles()->paginate(3);
+        $articles_latest = Article::with('user')->status('active')->latestArticles(3)->get();
+        $articles_like = Article::with('user')->status('active')->mostLiked(3)->get();
 
         // Kategoriler
-        $categories = Category::all();
+        $categories = Category::status('active')->get();
 
-        $categories_popular = Category::withCount('articles')->withSum('articles', 'likes')->get();
+        $categories_popular = Category::withCount('articles')->status('active')->withSum('articles', 'likes')->get();
+
+        // FIXME: $categories_popular değişkeni içindeki kategorilerin sadece "active" statuslu olanları gelmeli.
+        // Şu an tüm kategoriler geliyor.
 
         $categories_popular->map(function ($category) {
             $category->likePerArticle = $category->articles_count > 0
@@ -87,7 +90,7 @@ class TemplateController extends Controller
 
     public function adminBlog() {
 
-        $articles = Article::with(relations: 'user')->latest()->paginate(6);
+        $articles = Article::with('user')->latest()->paginate(6);
         $categories = Category::all();
 
         return view('frontend.admin.blog.blog', compact('articles', 'categories'));

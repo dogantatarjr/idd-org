@@ -52,6 +52,14 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="mb-3">
+                            <label for="status" class="form-label">Durum</label>
+                            <select id="status" name="status" class="form-select" required>
+                                <option value="active" {{ $article->status == 'active' ? 'selected' : '' }}>Aktif</option>
+                                <option value="passive" {{ $article->status == 'passive' ? 'selected' : '' }}>Pasif</option>
+                                <option value="waiting" {{ $article->status == 'waiting' ? 'selected' : '' }}>Beklemede</option>
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-success rounded-pill px-4">Yazıyı güncelle!</button>
                     </form>
                     <br>

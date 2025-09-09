@@ -32,10 +32,15 @@
                 @endphp
 
                 <p class="card-text">{{ $words }}</p>
-                <p class="card-texts">Yazar: {{ $article->user->name }}</p>
-
+                <p class="card-texts d-flex justify-content-between">
+                    <span>Yazar: {{ $article->user->name }}</span>
+                    <span class="badge badge-pill"
+                        style="background-color: {{ $article->status === 'active' ? 'green' : ($article->status === 'passive' ? 'gray' : 'orange') }}; color: white;">
+                        {{ $article->status }}
+                    </span>
+                </p>
                 <a href="/blog/articles/{{ $article->id }}" class="card-link text-decoration-none"><i class="fas fa-eye"></i> Görüntüle</a>
-                <a href="/dashboard/articles/{{ $article->id }}/edit" class="card-link text-decoration-none"><i class="fas fa-edit"></i> Düzenle</a>
+                <a href="/dashboard/articles/{{ $article->id }}/edit" class="card-link text-decoration-none"><i class="fas fa-edit"></i> Düzenle</a><br><br>
             </div>
             <div class="card-footer">
                 <small class="text-body-secondary">En son güncelleme ~{{ round($article->updated_at->diffInDays(\Carbon\Carbon::now('Europe/Istanbul'))) }} gün önce</small>

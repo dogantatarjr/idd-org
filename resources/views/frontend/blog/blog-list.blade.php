@@ -4,6 +4,12 @@
 
 <div class="col-lg-8 mb-4">
 
+    @if(session('success-article-add'))
+        <div class="alert alert-warning">
+           <i class="fas fa-info-circle"></i> {{ session('success-article-add') }}
+        </div>
+    @endif
+
     @role('writer|admin')
         @include('frontend.blog.create-article')
     @endrole

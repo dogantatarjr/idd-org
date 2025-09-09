@@ -41,7 +41,7 @@ class ArticleController extends Controller
         $article->likes = 0;
         $article->save();
 
-        return redirect()->route('blog');
+        return redirect()->route('blog')->with('success-article-add', 'Yazı başarıyla yüklendi! Yönetici yazınızı onayladığında sayfada yayınlanacaktır.');;
     }
 
     public function edit(Article $article)
@@ -57,12 +57,14 @@ class ArticleController extends Controller
             'content'  => 'required|string',
             'image'    => 'nullable|url',
             'category' => 'required|exists:categories,id',
+            'status'   => 'required|in:active,passive,waiting',
         ]);
 
         $article->title       = $validated['title'];
         $article->content     = $validated['content'];
         $article->image       = $validated['image'];
         $article->category_id = $validated['category'];
+        $article->status      = $validated['status'];
         $article->save();
 
         return redirect()->route('dashboard.blog')->with('success-article', 'Yazı başarıyla güncellendi.');
