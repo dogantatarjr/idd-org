@@ -13,7 +13,7 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
 
         $articles = Article::with('user')
-            ->where('category_id', $id)
+            ->status('active')->where('category_id', $id)
             ->latest()
             ->paginate(3);
 
