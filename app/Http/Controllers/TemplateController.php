@@ -54,7 +54,7 @@ class TemplateController extends Controller
         // Kategoriler
         $categories = Category::status('active')->get();
 
-        $categories_popular = Category::withCount('articles')->status('active')->withSum('articles', 'likes')->get();
+        $categories_popular = Category::withCount('articles')->withSum('articles', 'likes')->get();
 
         // FIXME: $categories_popular değişkeni içindeki kategorilerin sadece "active" statuslu olanları gelmeli.
         // Şu an tüm kategoriler geliyor.

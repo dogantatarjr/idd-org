@@ -19,7 +19,10 @@ class Category extends Model
     // Category & Article ilişkisi (Popular Categories Algoritması için)
     public function articles()
     {
-        return $this->hasMany(Article::class, 'category_id');
+        return $this->hasMany(Article::class, 'category_id')->status('active');
+
+        // FIXME: $categories_popular değişkeni içindeki kategorilerin sadece "active" statuslu olanları gelmeli.
+        // Şu an tüm kategoriler geliyor.
     }
 
     // Category & User ilişkisi
