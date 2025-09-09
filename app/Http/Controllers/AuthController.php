@@ -47,6 +47,8 @@ class AuthController extends Controller
 
         $user = User::create($validated);
 
+        $user->assignRole('user');
+
         Auth::login($user);
 
         return redirect()->route('blog');

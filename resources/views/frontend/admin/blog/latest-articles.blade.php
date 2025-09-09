@@ -43,7 +43,8 @@
                 <a href="/dashboard/articles/{{ $article->id }}/edit" class="card-link text-decoration-none"><i class="fas fa-edit"></i> Düzenle</a><br><br>
             </div>
             <div class="card-footer">
-                <small class="text-body-secondary">En son güncelleme ~{{ round($article->updated_at->diffInDays(\Carbon\Carbon::now('Europe/Istanbul'))) }} gün önce</small>
+                <small class="text-body-secondary">En son güncelleme <b>{{ round($article->updated_at->diffInDays(\Carbon\Carbon::now('Europe/Istanbul'))) }} gün önce</b> gerçekleştirilmiştir.</small>
+                <br><small class="text-body-secondary">Bu yazı <b>{{ round($article->created_at->diffInDays(\Carbon\Carbon::now('Europe/Istanbul'))) }} gün önce</b> oluşturulmuştur.</small>
             </div>
             </div>
         </div>
