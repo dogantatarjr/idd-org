@@ -32,6 +32,12 @@ class CategoryController extends Controller
         $category->status = $request->status;
         $category->save();
 
+        if ($request->status == 'passive') {
+            $category->articles()->update(['status' => 'passive']);
+        } else {
+            $category->articles()->update(['status' => 'active']);
+        }
+
         return redirect()->back()->with('success-category', 'Kategori güncellendi!');
     }
 
