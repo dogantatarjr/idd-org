@@ -36,6 +36,9 @@ class Category extends Model
             if ($category->articles()->where('status', 'active')->count() === 0) {
                 $category->status = 'passive';
                 $category->save();
+            } else if($category->articles()->where('status', 'active')->count() > 0 && $category->status === 'passive') {
+                $category->status = 'active';
+                $category->save();
             }
         });
     }

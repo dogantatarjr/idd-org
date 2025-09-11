@@ -32,7 +32,9 @@ class CategoryController extends Controller
         $category->status = $request->status;
         $category->save();
 
-        if ($request->status == 'passive') {
+        if($request->status == 'active' && $category->articles()->where('status', 'active')->count() === 0) {
+            return redirect()->back()->with('fail-category', 'Kategori aktif yapılmak isteniyor ancak bu kategoride aktif bir makale bulunmamaktadır. Lütfen önce bu kategoriye ait en az bir makaleyi aktif yapınız.');
+        } else if ($request->status == 'passive') {
             $category->articles()->update(['status' => 'passive']);
         } else {
             $category->articles()->update(['status' => 'active']);

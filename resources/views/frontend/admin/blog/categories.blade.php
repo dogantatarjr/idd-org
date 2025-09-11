@@ -8,6 +8,11 @@
                     {{ session('success-category') }}
                 </div>
             @endif
+            @if(session('fail-category'))
+                <div class="alert alert-warning">
+                    {{ session('fail-category') }}
+                </div>
+            @endif
             <table class="table table-hover" style="text-align: center; border-radius: 10px; overflow: hidden;">
                 <thead style="background-color: #6c757d;">
                     <tr>
