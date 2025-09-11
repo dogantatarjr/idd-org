@@ -90,6 +90,8 @@ class TemplateController extends Controller
 
     public function adminBlog() {
 
+        Category::articleActivity();
+
         $articles = Article::with('user')->latest()->paginate(6);
         $categories = Category::all();
 

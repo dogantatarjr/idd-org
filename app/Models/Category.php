@@ -19,10 +19,7 @@ class Category extends Model
     // Category & Article ilişkisi (Popular Categories Algoritması için)
     public function articles()
     {
-        return $this->hasMany(Article::class, 'category_id')->status('active');
-
-        // FIXME: $categories_popular değişkeni içindeki kategorilerin sadece "active" statuslu olanları gelmeli.
-        // Şu an tüm kategoriler geliyor.
+        return $this->hasMany(Article::class, 'category_id');
     }
 
     // Category & User ilişkisi
@@ -32,6 +29,16 @@ class Category extends Model
     }
 
     // Scope Definition
+
+    public function scopeArticleActivity($query)
+    {
+        $query->get()->each(function ($category) {
+            if ($category->articles()->where('status', 'active')->count() === 0) {
+                $category->status = 'passive';
+                $category->save();
+            }
+        });
+    }
 
     public function scopeStatus($query, $status)
     {
