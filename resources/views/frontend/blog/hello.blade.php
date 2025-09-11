@@ -12,11 +12,11 @@
             $color = "secondary";
         } elseif ($hour >= 18) {
             $message = "İyi Akşamlar";
-            $icon = "laptop";
+            $icon = "coffee";
             $color = "primary";
         } elseif($hour >= 12){
             $message = "İyi Günler";
-            $icon = "coffee";
+            $icon = "laptop";
             $color = "success";
         } else {
             $message = "Günaydın";

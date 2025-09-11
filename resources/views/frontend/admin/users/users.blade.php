@@ -38,7 +38,7 @@
                                 </a>
                             </td>
                             <td style="padding: 15px;">{{ $user->email }}</td>
-                            <td style="text-transform: capitalize; padding: 15px;"><span class="badge" style="background-color: {{ $user->roles->first()->name === 'admin' ? 'red' : ($user->roles->first()->name === 'writer' ? 'blue' : 'orange') }}; color: white;">{{ $user->roles->first()->name }}</span></td>
+                            <td style="text-transform: capitalize; padding: 15px;"><span class="badge" style="background-color: {{ $user->roles->first()->name === 'admin' ? 'red' : ($user->roles->first()->name === 'writer' ? 'blue' : 'orange') }}; color: white;">{{ $user->roles->first()->name }} ({{ $user->articles->count() }})</span></td>
                             <td style="padding: 15px;">
                                 <span class="badge badge-pill" style="background-color: {{ $user->status === 'active' ? 'green' : ($user->status === 'passive' ? 'gray' : 'red') }}; color: white;">{{ $user->status }}</span>
                             </td>
