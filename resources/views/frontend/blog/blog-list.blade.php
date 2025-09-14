@@ -10,6 +10,12 @@
         </div>
     @endif
 
+    @if(session('error-inactive'))
+        <div class="alert alert-warning">
+           <i class="fas fa-info-circle"></i> {{ session('error-inactive') }}
+        </div>
+    @endif
+
     @role('writer|admin')
         @include('frontend.blog.create-article')
     @endrole
@@ -48,7 +54,7 @@
                 </a>
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item text-uppercase small pe-3 border-end text-secondary">
-                        {{ $categories->where('id', $article->category_id)->first()->name }}
+                        {{ $article->category->name }}
                     </li>
                     <li class="list-inline-item"><i class="fa-regular fa-heart text-danger"></i> {{ $article->likes }}</li>
                     <li class="list-inline-item"><i class="fa-regular fa-comment text-primary"></i> {{ $article->comments }}</li>

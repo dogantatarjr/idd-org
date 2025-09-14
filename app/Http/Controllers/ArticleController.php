@@ -13,14 +13,13 @@ class ArticleController extends Controller
     {
 
         // Yazılan yazılar
-        $article = Article::with('user')->findOrFail($id);
-        $articles_latest = Article::with('user')->latestArticles(3)->get();
-        $articles_like = Article::with('user')->mostLiked(3)->get();
+        $article = Article::with('category')->with('user')->findOrFail($id);
 
-        // Kategoriler
-        $categories = Category::all();
+        if ($article->status != 'active') {
+            return redirect()->route('blog')->with('error-inactive', 'Bu yazı şu anda aktif değil.');
+        }
 
-        return view('frontend.blog.show-article', compact('article', 'articles_latest', 'articles_like', 'categories'));
+        return view('frontend.blog.show-article', compact('article'));
     }
 
     public function create(Request $request)

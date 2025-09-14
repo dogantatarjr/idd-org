@@ -39,7 +39,7 @@
                             <span class="mx-2">|</span>
                             <i class="fa fa-calendar me-2"></i> {{ $article->created_at->format('d.m.Y') }}
                             <span class="mx-2">|</span>
-                            <i class="fa fa-folder-open me-2"></i> {{ $categories->where('id', $article->category_id)->first()->name }}
+                            <i class="fa fa-folder-open me-2"></i> {{ $article->category->name }}
                         </div>
 
                         {!! nl2br(e($article->content)) !!}

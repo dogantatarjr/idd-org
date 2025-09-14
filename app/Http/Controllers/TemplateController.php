@@ -47,26 +47,9 @@ class TemplateController extends Controller
     {
 
         // Yazılan yazılar
-        $articles = Article::with(relations: 'user')->status('active')->latestArticles()->paginate(3);
-        $articles_latest = Article::with('user')->status('active')->latestArticles(3)->get();
-        $articles_like = Article::with('user')->status('active')->mostLiked(3)->get();
+        $articles = Article::with('category')->status('active')->latestArticles()->paginate(3);
 
-        // Kategoriler
-        $categories = Category::status('active')->get();
-
-        $categories_popular = Category::withCount('articles')->withSum('articles', 'likes')->get();
-
-        // FIXME: $categories_popular değişkeni içindeki kategorilerin sadece "active" statuslu olanları gelmeli.
-        // Şu an tüm kategoriler geliyor.
-
-        $categories_popular->map(function ($category) {
-            $category->likePerArticle = $category->articles_count > 0
-                ? $category->articles_sum_likes / $category->articles_count
-                : 0;
-            return $category;
-        });
-
-        return view('frontend.blog', compact('articles', 'articles_latest', 'articles_like', 'categories', 'categories_popular'));
+        return view('frontend.blog', data: compact('articles'));
 
     }
 

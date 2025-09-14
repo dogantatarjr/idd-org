@@ -12,16 +12,18 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
 
-        $articles = Article::with('user')
+        if ($category->status != 'active') {
+            return redirect()->route('blog')->with('error-inactive', 'Bu kategori şu anda aktif değil.');
+        }
+
+        $articles = Article::with('category')
             ->status('active')->where('category_id', $id)
             ->latest()
             ->paginate(3);
 
-        $categories = Category::all();
-
         return view(
             'frontend.blog.show-category-articles',
-            compact('category', 'articles', 'categories')
+            compact('category', 'articles')
         );
     }
 
