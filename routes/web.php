@@ -46,10 +46,14 @@ Route::get('/dashboard', [TemplateController::class, 'dashboard'])->middleware('
 Route::get('/dashboard/podcasts', [TemplateController::class, 'adminPodcasts'])->middleware('role:admin')->name('dashboard.podcasts');
 Route::get('/dashboard/campaigns', [TemplateController::class, 'adminCampaigns'])->middleware('role:admin')->name('dashboard.campaigns');
 Route::get('/dashboard/events', [TemplateController::class, 'adminEvents'])->middleware('role:admin')->name('dashboard.events');
+Route::get('/dashboard/messages', [TemplateController::class, 'adminMessages'])->middleware('role:admin')->name('dashboard.messages');
 
 // Admin Blog Management Page
 
 Route::get('/dashboard/blog', [TemplateController::class, 'adminBlog'])->middleware('role:admin')->name('dashboard.blog');
+Route::get('/dashboard/comments', [TemplateController::class, 'adminBlog'])->middleware('role:admin')->name('dashboard.blog.comments');
+Route::get('/dashboard/categories', [TemplateController::class, 'adminCategories'])->middleware('role:admin')->name('dashboard.blog.categories');
+
 Route::post('/dashboard/categories', [CategoryController::class, 'add'])->middleware('role:admin')->name('dashboard.categories.add');
 Route::put('/dashboard/categories/{category}', [CategoryController::class, 'update'])->middleware('role:admin')->name('dashboard.categories.update');
 Route::get('/dashboard/articles/{article}/edit', [ArticleController::class, 'edit'])->middleware('role:admin')->name('dashboard.articles.edit');
@@ -59,6 +63,3 @@ Route::put('/dashboard/articles/{article}', [ArticleController::class, 'update']
 
 Route::get('/dashboard/users', [UserController::class, 'show'])->middleware('role:admin')->name('dashboard.users');
 Route::put('/dashboard/users/{user}', [UserController::class, 'update'])->middleware('role:admin')->name('dashboard.users.update');
-
-Route::get('/dashboard/messages', [TemplateController::class, 'adminMessages'])->middleware('role:admin')->name('dashboard.messages');
-Route::get('/dashboard/settings', [TemplateController::class, 'adminSettings'])->middleware('role:admin')->name('dashboard.settings');

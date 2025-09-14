@@ -42,7 +42,7 @@ class CategoryController extends Controller
             $category->articles()->update(['status' => 'active']);
         }
 
-        return redirect()->back()->with('success-category', 'Kategori güncellendi!');
+        return redirect()->back()->with('success-category', 'Kategori başarıyla güncellendi!');
     }
 
     public function add(Request $request)

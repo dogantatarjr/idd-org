@@ -85,7 +85,11 @@ class TemplateController extends Controller
         return view('frontend.admin.messages');
     }
 
-    public function adminSettings() {
-        return view('frontend.admin.settings');
+    public function adminCategories() {
+        Category::articleActivity();
+
+        $categories = Category::all();
+
+        return view('frontend.admin.blog.categories', compact('categories'));
     }
 }

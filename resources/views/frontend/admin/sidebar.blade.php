@@ -26,24 +26,29 @@
             Etkinlikler
         </a>
 
-        <a href="{{ route('dashboard.blog') }}" class="menu-item @yield('blog-sit')">
-            <i class="fas fa-wrench"></i>
-            Blog Yönetimi
-        </a>
-
         <a href="{{ route('dashboard.users') }}" class="menu-item @yield('users-sit')">
             <i class="fas fa-users"></i>
             Kullanıcılar
         </a>
 
+        <a href="{{ route('dashboard.blog') }}" class="menu-item @yield('blog-sit')">
+            <i class="fas fa-pencil-square"></i>
+            Blog Yazıları
+        </a>
+
+        <a href="{{ route('dashboard.blog.categories') }}" class="menu-item @yield('categories-sit')">
+            <i class="fas fa-tags"></i>
+            Blog Kategorileri
+        </a>
+
+        <a href="{{ route('dashboard.blog.comments') }}" class="menu-item @yield('comments-sit')">
+            <i class="fas fa-comments"></i>
+            Blog Yorumları
+        </a>
+
         <a href="{{ route('dashboard.messages') }}" class="menu-item @yield('messages-sit')">
             <i class="fas fa-envelope"></i>
             Mesajlar
-        </a>
-
-        <a href="{{ route('dashboard.settings') }}" class="menu-item @yield('settings-sit')">
-            <i class="fas fa-cog"></i>
-            Ayarlar
         </a>
     </div>
 </div>
