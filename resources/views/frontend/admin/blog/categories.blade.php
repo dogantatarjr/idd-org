@@ -79,6 +79,7 @@
         </div>
     </div>
 </div>
+
 @include('frontend.admin.blog.category-detail')
 
 @include('frontend.admin.blog.category-edit')

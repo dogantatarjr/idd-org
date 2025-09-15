@@ -40,6 +40,15 @@
                             <i class="fa fa-calendar me-2"></i> {{ $article->created_at->format('d.m.Y') }}
                             <span class="mx-2">|</span>
                             <i class="fa fa-folder-open me-2"></i> {{ $article->category->name }}
+                            @role('admin')
+                                @if ($article->status === 'waiting')
+                                    &nbsp;&nbsp;&nbsp;
+                                    <span class="me-2 badge badge-pill"
+                                        style="background-color: {{ $article->status === 'active' ? 'green' : ($article->status === 'passive' ? 'gray' : 'orange') }}; color: white;">
+                                        {{ $article->status }}
+                                    </span>
+                                @endif
+                            @endrole
                         </div>
 
                         {!! nl2br(e($article->content)) !!}
@@ -51,13 +60,24 @@
                                 <i class="fa-regular fa-heart text-danger me-2"></i> {{ $article->likes }}
                                 <i class="fa-regular fa-comment text-primary ms-4 me-2"></i> {{ $article->comments }}
                             </div>
+                            @role('admin')
+                                @if ($article->status === 'waiting')
+                                    <form action="{{ route('dashboard.articles.approve', $article->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-outline-warning">
+                                            <i class="fa fa-check me-2"></i> Yazıyı Onayla!
+                                        </button>
+                                    </form>
+                                @endif
+                            @endrole
                         </div>
                     </div>
                 </div>
 
                 <!-- Yorumlar -->
                 <div class="card mt-4 shadow-sm border-0">
-                    <div class="card-header bg-white fw-bold">Yorumlar</div>
+                    <div class="card-header bg-gray fw-bold">Yorumlar</div>
                     <div class="card-body">
                         <div class="mb-3">
                             <strong>Ahmet</strong>

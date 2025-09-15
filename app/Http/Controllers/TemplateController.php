@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\User;
 
 class TemplateController extends Controller
 {
@@ -46,6 +48,8 @@ class TemplateController extends Controller
     public function blog()
     {
 
+        $user = Auth::user();
+
         // Yazılan yazılar
         $articles = Article::with('category')->status('active')->latestArticles()->paginate(3);
 
@@ -75,10 +79,20 @@ class TemplateController extends Controller
 
         Category::articleActivity();
 
-        $articles = Article::with('user')->latest()->paginate(6);
+        $user = Auth::user();
+
+        $articles = Article::with('user')->status('active')->latest()->paginate(6);
         $categories = Category::all();
 
-        return view('frontend.admin.blog.blog', compact('articles', 'categories'));
+        $pendingArticles = [];
+
+        if ($user->isAdmin()) {
+            $pendingArticles = Article::with(['category', 'user'])->where('status', 'waiting')->latest()->paginate(6);
+        }
+
+        $passiveArticles = Article::with('category')->where('status', 'passive')->latestArticles()->paginate(6);
+
+        return view('frontend.admin.blog.blog', compact('articles', 'categories', 'pendingArticles', 'passiveArticles'));
     }
 
     public function adminMessages() {
@@ -91,5 +105,9 @@ class TemplateController extends Controller
         $categories = Category::all();
 
         return view('frontend.admin.blog.categories', compact('categories'));
+    }
+
+    public function adminComments() {
+        return view('frontend.admin.comments');
     }
 }

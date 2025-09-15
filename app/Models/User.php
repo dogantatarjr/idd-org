@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -52,5 +53,11 @@ class User extends Authenticatable
     // User & Article ilişkisi
     public function articles() {
         return $this->hasMany(Article::class);
+    }
+
+    // isAdmin Scope
+    public function scopeIsAdmin($query)
+    {
+        return Auth::check() && $this->hasRole('admin');
     }
 }

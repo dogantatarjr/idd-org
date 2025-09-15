@@ -2,20 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Category;
-use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
     public function show($id)
     {
 
+        $user = Auth::user();
+
         // Yazılan yazılar
         $article = Article::with('category')->with('user')->findOrFail($id);
 
-        if ($article->status != 'active') {
+        if($article->status != 'active' && $user->isAdmin()){
+            return view('frontend.blog.show-article', compact('article'));
+        } else if ($article->status != 'active') {
             return redirect()->route('blog')->with('error-inactive', 'Bu yazı şu anda aktif değil.');
         }
 
@@ -69,5 +73,12 @@ class ArticleController extends Controller
         return redirect()->route('dashboard.blog')->with('success-article', 'Yazı başarıyla güncellendi.');
     }
 
+    public function approve(Article $article)
+    {
+        $article->status = 'active';
+        $article->save();
+
+        return redirect()->route('dashboard.blog')->with('success-article', 'Yazı başarıyla aktive edildi.');
+    }
 
 }

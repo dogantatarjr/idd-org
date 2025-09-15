@@ -51,13 +51,14 @@ Route::get('/dashboard/messages', [TemplateController::class, 'adminMessages'])-
 // Admin Blog Management Page
 
 Route::get('/dashboard/blog', [TemplateController::class, 'adminBlog'])->middleware('role:admin')->name('dashboard.blog');
-Route::get('/dashboard/comments', [TemplateController::class, 'adminBlog'])->middleware('role:admin')->name('dashboard.blog.comments');
+Route::get('/dashboard/comments', [TemplateController::class, 'adminComments'])->middleware('role:admin')->name('dashboard.comments');
 Route::get('/dashboard/categories', [TemplateController::class, 'adminCategories'])->middleware('role:admin')->name('dashboard.blog.categories');
 
 Route::post('/dashboard/categories', [CategoryController::class, 'add'])->middleware('role:admin')->name('dashboard.categories.add');
 Route::put('/dashboard/categories/{category}', [CategoryController::class, 'update'])->middleware('role:admin')->name('dashboard.categories.update');
 Route::get('/dashboard/articles/{article}/edit', [ArticleController::class, 'edit'])->middleware('role:admin')->name('dashboard.articles.edit');
 Route::put('/dashboard/articles/{article}', [ArticleController::class, 'update'])->middleware('role:admin')->name('dashboard.articles.update');
+Route::put('/dashboard/articles/{article}/approve', [ArticleController::class, 'approve'])->middleware('role:admin')->name('dashboard.articles.approve');
 
 // Admin User Page
 

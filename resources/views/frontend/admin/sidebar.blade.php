@@ -41,7 +41,7 @@
             Blog Kategorileri
         </a>
 
-        <a href="{{ route('dashboard.blog.comments') }}" class="menu-item @yield('comments-sit')">
+        <a href="{{ route('dashboard.comments') }}" class="menu-item @yield('comments-sit')">
             <i class="fas fa-comments"></i>
             Blog Yorumları
         </a>
