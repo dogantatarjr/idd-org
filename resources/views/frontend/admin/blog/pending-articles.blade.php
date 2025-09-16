@@ -20,7 +20,7 @@
 
                 @if (empty($pendingArticles) || $pendingArticles->count() == 0)
                     <div class="alert alert-info">
-                        Beklemede herhangi bir yazı bulunmamaktadır.
+                        <i class="fa fa-info-circle" style="padding-right: 5px;"></i> Beklemede herhangi bir yazı bulunmamaktadır.
                     </div>
                 @endif
 

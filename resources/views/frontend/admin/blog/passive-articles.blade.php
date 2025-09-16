@@ -20,7 +20,7 @@
 
                 @if (empty($passiveArticles) || $passiveArticles->count() == 0)
                     <div class="alert alert-info">
-                        Pasif durumda herhangi bir yazı bulunmamaktadır.
+                        <i class="fa fa-info-circle" style="padding-right: 5px;"></i> Pasif durumda herhangi bir yazı bulunmamaktadır.
                     </div>
                 @endif
 
