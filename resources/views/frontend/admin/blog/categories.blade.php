@@ -10,7 +10,6 @@
 
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <h2 class="fw-bold">Kategoriler</h2><br><br><br>
         <div class="col-auto">
 
             @if(session('success-category'))
