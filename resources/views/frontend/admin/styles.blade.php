@@ -64,17 +64,19 @@
     }
 
     .dropdown-menu-custom {
-        border: none;
-        margin-left: 20px;
-        margin-top: 5px;
-        padding-top: 15px;
-        padding-bottom: 15px;
+        display: none;
+        flex-direction: column;
+        padding: 4px 0;
+        margin-top: 2px;
     }
 
     .dropdown-item-custom {
-        color: rgba(255,255,255,0.7);
-        padding: 8px 20px;
+        display: block;
+        padding: 6px 25px;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.8);
         text-decoration: none;
+        transition: all 0.2s ease;
     }
 
     .dropdown-item-custom:hover {

@@ -31,10 +31,18 @@
             Kullanıcılar
         </a>
 
-        <a href="{{ route('dashboard.blog') }}" class="menu-item @yield('blog-sit')">
-            <i class="fas fa-pencil-square"></i>
-            Blog Yazıları
-        </a>
+        <div class="menu-item @yield('blog-sit')" style="padding: 0;">
+            <a href="#" class="menu-item d-flex align-items-center @yield('blog-sit')" style="padding: 12px 20px;" onclick="event.preventDefault(); this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';">
+                <i class="fas fa-pencil-square me-2"></i>
+                Blog Yazıları
+                <i class="fas fa-chevron-down ms-auto"></i>
+            </a>
+            <div class="dropdown-menu-custom" style="display: none; flex-direction: column;">
+                <a href="{{ route('dashboard.blog') }}" class="dropdown-item-custom" style="display: block; padding: 10px 30px;"><i class="fas fa-check-circle me-2"></i> Aktif Yazılar</a>
+                <a href="{{ route('dashboard.blog.pending') }}" class="dropdown-item-custom" style="display: block; padding: 10px 30px;"><i class="fas fa-clock me-2"></i> Beklemedeki Yazılar</a>
+                <a href="{{ route('dashboard.blog.passive') }}" class="dropdown-item-custom" style="display: block; padding: 10px 30px;"><i class="fas fa-minus-circle me-2"></i> Pasif Yazılar</a>
+            </div>
+        </div>
 
         <a href="{{ route('dashboard.blog.categories') }}" class="menu-item @yield('categories-sit')">
             <i class="fas fa-tags"></i>

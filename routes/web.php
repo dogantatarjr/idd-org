@@ -51,6 +51,9 @@ Route::get('/dashboard/messages', [TemplateController::class, 'adminMessages'])-
 // Admin Blog Management Page
 
 Route::get('/dashboard/blog', [TemplateController::class, 'adminBlog'])->middleware('role:admin')->name('dashboard.blog');
+Route::get('/dashboard/blog/pending', [TemplateController::class, 'adminBlogPending'])->middleware('role:admin')->name('dashboard.blog.pending');
+Route::get('/dashboard/blog/passive', [TemplateController::class, 'adminBlogPassive'])->middleware('role:admin')->name('dashboard.blog.passive');
+
 Route::get('/dashboard/comments', [TemplateController::class, 'adminComments'])->middleware('role:admin')->name('dashboard.comments');
 Route::get('/dashboard/categories', [TemplateController::class, 'adminCategories'])->middleware('role:admin')->name('dashboard.blog.categories');
 

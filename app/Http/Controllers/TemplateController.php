@@ -84,15 +84,35 @@ class TemplateController extends Controller
         $articles = Article::with('user')->status('active')->latest()->paginate(6);
         $categories = Category::all();
 
+        return view('frontend.admin.blog.blog', compact('articles', 'categories'));
+    }
+
+    public function adminBlogPending() {
+        Category::articleActivity();
+
+        $user = Auth::user();
+
         $pendingArticles = [];
 
         if ($user->isAdmin()) {
             $pendingArticles = Article::with(['category', 'user'])->where('status', 'waiting')->latest()->paginate(6);
         }
 
+        $categories = Category::all();
+
+        return view('frontend.admin.blog.pending-articles', compact('pendingArticles', 'categories'));
+    }
+
+    public function adminBlogPassive() {
+        Category::articleActivity();
+
+        $user = Auth::user();
+
         $passiveArticles = Article::with('category')->where('status', 'passive')->latestArticles()->paginate(6);
 
-        return view('frontend.admin.blog.blog', compact('articles', 'categories', 'pendingArticles', 'passiveArticles'));
+        $categories = Category::all();
+
+        return view('frontend.admin.blog.passive-articles', compact('passiveArticles', 'categories'));
     }
 
     public function adminMessages() {
