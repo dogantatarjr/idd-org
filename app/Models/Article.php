@@ -33,7 +33,7 @@ class Article extends Model
     // Article & Comment ilişkisi
     public function articleComments()
     {
-        return $this->hasMany(Comment::class, 'article_id');
+        return $this->hasMany(Comment::class, 'article_id')->whereNull('parent_comment_id')->with('children.user');
     }
 
     // Scope Definitions
