@@ -7,6 +7,7 @@ use Spatie\Permission\Middleware\RoleMiddleware;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
 use App\Models\Category;
 
 // Site Sayfaları
@@ -32,7 +33,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Blog Sayfaları
 
 Route::get('/blog/articles/{id}', [ArticleController::class, 'show'])->middleware('auth')->name('blog.show');
-Route::get('/blog/categories/{id}', [CategoryController::class, 'show'])->name('blog.category');
+Route::get('/blog/categories/{id}', [CategoryController::class, 'show'])->middleware('auth')->name('blog.category');
+
+Route::post('/comments/add/{article}', [CommentController::class, 'add'])->middleware('auth')->name('comments.add');
 
 Route::get('/dashboard', function () {
     return view('frontend.admin.dashboard');

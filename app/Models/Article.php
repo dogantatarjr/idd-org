@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Category;
+use App\Models\Comment;
 
 class Article extends Model
 {
@@ -26,6 +28,12 @@ class Article extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    // Article & Comment ilişkisi
+    public function articleComments()
+    {
+        return $this->hasMany(Comment::class, 'article_id');
     }
 
     // Scope Definitions

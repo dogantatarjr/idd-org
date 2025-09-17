@@ -116,7 +116,7 @@
         </div>
     </div>
 
-    @if (Route::currentRouteName() == 'blog.category')
+    @if (Route::currentRouteName() == 'blog.category' || Route::currentRouteName() == 'blog.show')
         <div>
             <div class="text-center">
                 <a href="{{ route('blog') }}" class="btn btn-outline-success">

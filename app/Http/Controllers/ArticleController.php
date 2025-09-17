@@ -15,7 +15,7 @@ class ArticleController extends Controller
         $user = Auth::user();
 
         // Yazılan yazılar
-        $article = Article::with('category')->with('user')->findOrFail($id);
+        $article = Article::with(['user', 'category', 'articleComments.user', 'articleComments.children'])->findOrFail($id);
 
         if($article->status != 'active' && $user->isAdmin()){
             return view('frontend.blog.show-article', compact('article'));
@@ -23,7 +23,7 @@ class ArticleController extends Controller
             return redirect()->route('blog')->with('error-inactive', 'Bu yazı şu anda aktif değil.');
         }
 
-        return view('frontend.blog.show-article', compact('article'));
+        return view('frontend.blog.show-article', compact('article', 'user'));
     }
 
     public function create(Request $request)

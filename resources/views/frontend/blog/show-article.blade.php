@@ -79,27 +79,52 @@
                 <div class="card mt-4 shadow-sm border-0">
                     <div class="card-header bg-gray fw-bold">Yorumlar</div>
                     <div class="card-body">
-                        <div class="mb-3">
-                            <strong>Ahmet</strong>
-                            <p class="mb-1">Gerçekten güzel bir yazı olmuş!</p>
-                            <small class="text-muted">2 saat önce</small>
-                        </div>
+
+                        <p class="fw-bold">{{ $user->name }}</p>
+
+                        @if(session('success-comment'))
+                            <div class="alert alert-success">
+                                {{ session('success-comment') }}
+                            </div>
+                        @endif
+
+                        <!-- Yorum ekleme formu -->
+                        @auth
+                            <form action="{{ route('comments.add', $article->id) }}" method="POST" class="mt-3">
+                                @csrf
+                                <input type="hidden" name="article_id" value="{{ $article->id }}">
+                                <div class="mb-3">
+                                    <textarea name="content" class="form-control @error('content') is-invalid @enderror" rows="3" placeholder="Yorumunuzu yazın...">{{ old('content') }}</textarea>
+                                    @error('content')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button type="submit" class="btn btn-success"><i class="fa fa-paper-plane" style="padding-right: 5px;"></i> Gönder</button>
+                                </div>
+                            </form>
+                        @else
+                            <div class="alert alert-info mt-3">
+                                Yorum yapmak için <a href="{{ route('login') }}">giriş yapın</a>.
+                            </div>
+                        @endauth
+
                         <hr>
-                        <form>
+
+                        <!-- Yorumlar listesi -->
+                        @forelse($article->articleComments as $comment)
                             <div class="mb-3">
-                                <textarea class="form-control" rows="3" placeholder="Yorumunuzu yazın..."></textarea>
+                                <strong>{{ $comment->user->name ?? 'Anonim Kullanıcı' }}</strong>
+                                <p class="mb-1">{{ $comment->content }}</p>
                             </div>
-                            <div class="d-flex justify-content-between">
-                                <button class="btn btn-success">Gönder</button>
-                                <a href="{{ route('blog') }}" class="btn btn-outline-success">
-                                    <i class="fa fa-arrow-left me-2"></i> Blog Anasayfasına Dön
-                                </a>
-                            </div>
-                        </form>
+                            @if(!$loop->last)
+                                <hr>
+                            @endif
+                        @empty
+                            <p class="text-muted">Bu makaleye henüz yorum yapılmamış.</p>
+                        @endforelse
                     </div>
                 </div>
-
-
             </div>
 
             @include('frontend.blog.sidebar')
