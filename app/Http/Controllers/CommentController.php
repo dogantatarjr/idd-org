@@ -24,6 +24,7 @@ class CommentController extends Controller
         $comment->user_id = Auth::id();
         $comment->save();
 
+        Article::where('id', $validated['article_id'])->increment('comments');
 
         return redirect()->back()->with('success-comment', 'Yorum başarıyla eklendi!');
     }

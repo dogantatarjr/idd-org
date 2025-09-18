@@ -107,7 +107,7 @@
                         <!-- Yorumlar listesi -->
                         @forelse($article->articleComments as $comment)
                             <div class="mb-3">
-                                <i class="fa fa-user" style="padding-right: 5px;"></i><strong>{{ $comment->user->name ?? 'Anonim Kullanıcı' }}</strong>
+                                <i class="fa fa-user" style="padding-right: 10px;"></i><strong>{{ $comment->user->name ?? 'Anonim Kullanıcı' }}</strong>
                                 <!-- Yanıtla ikonu -->
                                 <a href="javascript:void(0);" onclick="toggleReplyForm({{ $comment->id }})" title="Yanıtla">
                                     <i class="fa fa-reply text-success ms-2"></i>
