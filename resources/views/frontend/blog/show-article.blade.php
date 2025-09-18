@@ -147,11 +147,33 @@
                                                 $isAuthorChild = optional($child->user)->id === optional($article->user)->id;
                                             @endphp
 
+                                            @php
+                                                $isCommentOwner = optional($child->user)->id === optional(Auth::user())->id;
+                                            @endphp
+
                                             <div class="mb-2 {{ $isAuthorChild ? 'text-success' : '' }}">
                                                 <i class="fa fa-user" style="padding-right: 10px;"></i><strong>{{ $child->user->name ?? 'Anonim Kullanıcı' }}</strong>
+                                                @if ($isCommentOwner)
+                                                    <a href="javascript:void(0);" style="text-decoration: none;" onclick="editReply({{ $child->id }})" title="Düzenle">
+                                                        <i class="fa fa-pencil-square text-success ms-2"></i>
+                                                    </a>
+                                                @endif
                                                 <br>
                                                 <p class="mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $child->content }}</p>
                                             </div>
+
+                                            <!-- Yanıt düzenleme formu (varsayılan olarak gizli) -->
+                                            <form action="{{ route('comments.update', $child->id) }}" method="POST" class="mt-2 d-none" id="edit-reply-form-{{ $child->id }}">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" name="comment_id" value="{{ $child->id }}">
+                                                <div class="mb-2">
+                                                    <textarea name="content" class="form-control" rows="2">{{ $child->content }}</textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-sm btn-outline-success">Güncelle</button>
+                                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="editReply({{ $child->id }})">İptal</button>
+                                                <div style="padding-bottom: 15px;"></div>
+                                            </form>
                                         @endforeach
                                     </div>
                                 @endif
@@ -174,8 +196,8 @@
                                 <div style="padding-bottom: 15px;"></div>
                             </form>
 
-                            <!-- Düzenleme formu (varsayılan olarak gizli) -->
-                            <form action="{{ route('comments.update', $comment->id) }}" method="POST" class="mt-2 d-none" id="edit-form-{{ $comment->id }}">
+                            <!-- Yorum düzenleme formu (varsayılan olarak gizli) -->
+                            <form action="{{ route('comments.update', $comment->id) }}" method="POST" class="mt-2 d-none" id="edit-comment-form-{{ $comment->id }}">
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="comment_id" value="{{ $comment->id }}">
@@ -186,6 +208,7 @@
                                 <button type="button" class="btn btn-sm btn-outline-secondary" onclick="editComment({{ $comment->id }})">İptal</button>
                                 <div style="padding-bottom: 15px;"></div>
                             </form>
+
                         @empty
                             <p class="text-muted">Bu yazıya henüz yorum yapılmamış.</p>
                         @endforelse
@@ -221,7 +244,16 @@
         }
 
         function editComment(commentId) {
-            const form = document.getElementById('edit-form-' + commentId);
+            const form = document.getElementById('edit-comment-form-' + commentId);
+            if (form.classList.contains('d-none')) {
+                form.classList.remove('d-none');
+            } else {
+                form.classList.add('d-none');
+            }
+        }
+
+        function editReply(replyId) {
+            const form = document.getElementById('edit-reply-form-' + replyId);
             if (form.classList.contains('d-none')) {
                 form.classList.remove('d-none');
             } else {
