@@ -28,11 +28,13 @@
 
     <div class="blog-page container my-5">
         <div class="row">
+
             @if(session('success-comment'))
-        <div class="alert alert-success">
-            {{ session('success-comment') }}
-        </div>
-    @endif
+                <div class="alert alert-success">
+                    {{ session('success-comment') }}
+                </div>
+            @endif
+
             <div class="col-lg-8 mb-4">
                 <div class="card single_post shadow-sm border-0">
                     <img src="{{ $article->image }}" class="card-img-top rounded" alt="article-image">
@@ -113,11 +115,25 @@
                                 @endphp
 
                                 <i class="fa fa-user {{ $isAuthor ? 'text-success' : '' }}" style="padding-right: 10px;"></i></i><strong>{{ $comment->user->name ?? 'Anonim Kullanıcı' }}</strong>
+
                                 <!-- Yanıtla ikonu -->
-                                <a href="javascript:void(0);" onclick="toggleReplyForm({{ $comment->id }})" title="Yanıtla">
+                                <a href="javascript:void(0);" style="text-decoration: none;" onclick="toggleReplyForm({{ $comment->id }})" title="Yanıtla">
                                     <i class="fa fa-reply text-success ms-2"></i>
                                 </a>
+
+                                @php
+                                    $isCommentOwner = optional($comment->user)->id === optional(Auth::user())->id;
+                                @endphp
+
+                                <!-- Yorum düzenleme ikonu -->
+                                @if ($isCommentOwner)
+                                    <a href="javascript:void(0);" style="text-decoration: none;" onclick="editComment({{ $comment->id }})" title="Düzenle">
+                                        <i class="fa fa-pencil-square text-success ms-2"></i>
+                                    </a>
+                                @endif
+
                                 <br>
+
                                 <p class="mb-1" style="padding-top: 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $comment->content }}</p>
                                 @if($comment->children && $comment->children->count())
                                     <button class="btn btn-link btn-sm mb-2 ms-4" type="button" onclick="toggleChildren({{ $comment->id }})" id="toggle-btn-{{ $comment->id }}">
@@ -157,6 +173,19 @@
                                 <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleReplyForm({{ $comment->id }})">İptal</button>
                                 <div style="padding-bottom: 15px;"></div>
                             </form>
+
+                            <!-- Düzenleme formu (varsayılan olarak gizli) -->
+                            <form action="{{ route('comments.update', $comment->id) }}" method="POST" class="mt-2 d-none" id="edit-form-{{ $comment->id }}">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                                <div class="mb-2">
+                                    <textarea name="content" class="form-control" rows="2">{{ $comment->content }}</textarea>
+                                </div>
+                                <button type="submit" class="btn btn-sm btn-outline-success">Güncelle</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="editComment({{ $comment->id }})">İptal</button>
+                                <div style="padding-bottom: 15px;"></div>
+                            </form>
                         @empty
                             <p class="text-muted">Bu yazıya henüz yorum yapılmamış.</p>
                         @endforelse
@@ -188,6 +217,15 @@
             } else {
                 childrenDiv.classList.add('d-none');
                 btn.textContent = 'Yanıtları Göster';
+            }
+        }
+
+        function editComment(commentId) {
+            const form = document.getElementById('edit-form-' + commentId);
+            if (form.classList.contains('d-none')) {
+                form.classList.remove('d-none');
+            } else {
+                form.classList.add('d-none');
             }
         }
     </script>

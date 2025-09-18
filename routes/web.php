@@ -36,6 +36,7 @@ Route::get('/blog/articles/{id}', [ArticleController::class, 'show'])->middlewar
 Route::get('/blog/categories/{id}', [CategoryController::class, 'show'])->middleware('auth')->name('blog.category');
 
 Route::post('/comments/add/{article}', [CommentController::class, 'add'])->middleware('auth')->name('comments.add');
+Route::put('/comments/{comment}', [CommentController::class, 'update'])->middleware('auth')->name('comments.update');
 
 Route::get('/dashboard', function () {
     return view('frontend.admin.dashboard');

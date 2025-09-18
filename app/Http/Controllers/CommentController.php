@@ -28,4 +28,16 @@ class CommentController extends Controller
 
         return redirect()->back()->with('success-comment', 'Yorum başarıyla eklendi!');
     }
+
+    public function update(Request $request, Comment $comment)
+    {
+        $validated = $request->validate([
+            'content' => 'required|string|max:1000',
+        ]);
+
+        $comment->content = $validated['content'];
+        $comment->save();
+
+        return redirect()->back()->with('success-comment', 'Yorum başarıyla güncellendi!');
+    }
 }
