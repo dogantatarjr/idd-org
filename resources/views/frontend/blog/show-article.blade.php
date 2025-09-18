@@ -60,7 +60,7 @@
 
                         <hr>
 
-                        <div class="d-flex justify-content-between align-items-center mt-3">
+                        <div class="d-flex justify-content-{{ $article->status === 'active' ? 'end' : 'between' }} align-items-center mt-3">
                             <div>
                                 <i class="fa-regular fa-heart text-danger me-2"></i> {{ $article->likes }}
                                 <i class="fa-regular fa-comment text-primary ms-4 me-2"></i> {{ $article->comments }}
@@ -107,7 +107,12 @@
                         <!-- Yorumlar listesi -->
                         @forelse($article->articleComments as $comment)
                             <div class="mb-3">
-                                <i class="fa fa-user" style="padding-right: 10px;"></i><strong>{{ $comment->user->name ?? 'Anonim Kullanıcı' }}</strong>
+
+                                @php
+                                    $isAuthor = optional($comment->user)->id === optional($article->user)->id;
+                                @endphp
+
+                                <i class="fa fa-user {{ $isAuthor ? 'text-success' : '' }}" style="padding-right: 10px;"></i></i><strong>{{ $comment->user->name ?? 'Anonim Kullanıcı' }}</strong>
                                 <!-- Yanıtla ikonu -->
                                 <a href="javascript:void(0);" onclick="toggleReplyForm({{ $comment->id }})" title="Yanıtla">
                                     <i class="fa fa-reply text-success ms-2"></i>
@@ -118,10 +123,16 @@
                                     <button class="btn btn-link btn-sm mb-2 ms-4" type="button" onclick="toggleChildren({{ $comment->id }})" id="toggle-btn-{{ $comment->id }}">
                                         Yanıtları Göster
                                     </button>
+
                                     <div class="text-muted mb-3 ms-4 d-none" id="children-{{ $comment->id }}">
                                         @foreach($comment->children as $child)
-                                            <div class="mb-2">
-                                                <i class="fa fa-user" style="padding-right: 5px;"></i><strong>{{ $child->user->name ?? 'Anonim Kullanıcı' }}</strong>
+
+                                            @php
+                                                $isAuthorChild = optional($child->user)->id === optional($article->user)->id;
+                                            @endphp
+
+                                            <div class="mb-2 {{ $isAuthorChild ? 'text-success' : '' }}">
+                                                <i class="fa fa-user" style="padding-right: 10px;"></i><strong>{{ $child->user->name ?? 'Anonim Kullanıcı' }}</strong>
                                                 <br>
                                                 <p class="mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $child->content }}</p>
                                             </div>
