@@ -152,14 +152,31 @@
                                             @endphp
 
                                             <div class="mb-2 {{ $isAuthorChild ? 'text-success' : '' }}">
-                                                <i class="fa fa-user" style="padding-right: 10px;"></i><strong>{{ $child->user->name ?? 'Anonim Kullanıcı' }}</strong>
-                                                @if ($isCommentOwner)
-                                                    <a href="javascript:void(0);" style="text-decoration: none;" onclick="editReply({{ $child->id }})" title="Düzenle">
-                                                        <i class="fa fa-pencil-square text-success ms-2"></i>
-                                                    </a>
-                                                @endif
-                                                <br>
-                                                <p class="mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $child->content }}</p>
+                                                <div class="d-flex justify-content-left align-items-center">
+                                                    <div style="padding-right: 10px;">
+                                                        <i class="fa fa-user me-2"></i>
+                                                        <strong>{{ $child->user->name ?? 'Anonim Kullanıcı' }}</strong>
+                                                    </div>
+
+                                                    @if ($isCommentOwner)
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-link text-secondary p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="fa fa-ellipsis-h"></i>
+                                                            </button>
+
+                                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                                                                <a href="javascript:void(0);" class="dropdown-item" onclick="editReply({{ $child->id }})">
+                                                                    <i class="fa fa-pencil-square text-success me-2"></i> Düzenle
+                                                                </a>
+                                                                <a href="javascript:void(0);" class="dropdown-item" onclick="deleteReply({{ $child->id }})">
+                                                                    <i class="fa fa-trash text-danger me-2"></i> Sil
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                </div>
+
+                                                <p class="mb-1 ms-4">{{ $child->content }}</p>
                                             </div>
 
                                             <!-- Yanıt düzenleme formu (varsayılan olarak gizli) -->
@@ -170,7 +187,7 @@
                                                 <div class="mb-2">
                                                     <textarea name="content" class="form-control" rows="2">{{ $child->content }}</textarea>
                                                 </div>
-                                                <button type="submit" class="btn btn-sm btn-outline-success">Güncelle</button>
+                                                <button type="submit" class="btn btn-sm btn-outline-success">Güncelle!</button>
                                                 <button type="button" class="btn btn-sm btn-outline-secondary" onclick="editReply({{ $child->id }})">İptal</button>
                                                 <div style="padding-bottom: 15px;"></div>
                                             </form>
@@ -191,7 +208,7 @@
                                     <textarea name="content" class="form-control" rows="2" placeholder="Yanıtınızı yazın..."></textarea>
                                 </div>
 
-                                <button type="submit" class="btn btn-sm btn-outline-success">Yanıtla</button>
+                                <button type="submit" class="btn btn-sm btn-outline-success">Yanıtla!</button>
                                 <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleReplyForm({{ $comment->id }})">İptal</button>
                                 <div style="padding-bottom: 15px;"></div>
                             </form>
@@ -204,7 +221,7 @@
                                 <div class="mb-2">
                                     <textarea name="content" class="form-control" rows="2">{{ $comment->content }}</textarea>
                                 </div>
-                                <button type="submit" class="btn btn-sm btn-outline-success">Güncelle</button>
+                                <button type="submit" class="btn btn-sm btn-outline-success">Güncelle!</button>
                                 <button type="button" class="btn btn-sm btn-outline-secondary" onclick="editComment({{ $comment->id }})">İptal</button>
                                 <div style="padding-bottom: 15px;"></div>
                             </form>
