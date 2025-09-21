@@ -108,33 +108,79 @@
 
                         <!-- Yorumlar listesi -->
                         @forelse($article->articleComments as $comment)
+                            @php
+                                $isAuthor = optional($comment->user)->id === optional($article->user)->id;
+                                $isCommentOwner = optional($comment->user)->id === optional(Auth::user())->id;
+                            @endphp
+
                             <div class="mb-3">
 
-                                @php
-                                    $isAuthor = optional($comment->user)->id === optional($article->user)->id;
-                                @endphp
+                                <!-- Ana yorum -->
+                                <div class="mb-2 {{ $isAuthor ? 'text-success' : '' }}">
+                                    <div class="d-flex justify-content-left align-items-center">
 
-                                <i class="fa fa-user {{ $isAuthor ? 'text-success' : '' }}" style="padding-right: 10px;"></i></i><strong>{{ $comment->user->name ?? 'Anonim Kullanıcı' }}</strong>
+                                        <i class="fa fa-user me-2"></i>
+                                        <strong>{{ $comment->user->name ?? 'Anonim Kullanıcı' }}</strong>
+                                        <span class="text-muted ms-2" style="font-size: 0.85rem;">{{ $comment->created_at->format('d.m.Y H:i') }}</span>
 
-                                <!-- Yanıtla ikonu -->
-                                <a href="javascript:void(0);" style="text-decoration: none;" onclick="toggleReplyForm({{ $comment->id }})" title="Yanıtla">
-                                    <i class="fa fa-reply text-success ms-2"></i>
-                                </a>
+                                        <!-- Yanıtla ikonu -->
+                                        <a href="javascript:void(0);" style="text-decoration: none;" onclick="toggleReplyForm({{ $comment->id }})" title="Yanıtla">
+                                            <i class="fa fa-reply text-success ms-2"></i>
+                                        </a>
 
-                                @php
-                                    $isCommentOwner = optional($comment->user)->id === optional(Auth::user())->id;
-                                @endphp
+                                        <!-- Ana yorum için üç nokta dropdown -->
+                                        @if ($isCommentOwner)
+                                            <div class="dropdown ms-2">
+                                                <button class="btn btn-link text-secondary p-0" type="button" id="dropdownMenuButton{{ $comment->id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fa fa-ellipsis-h"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton{{ $comment->id }}">
+                                                    <a href="javascript:void(0);" class="dropdown-item" onclick="editComment({{ $comment->id }})">
+                                                        <i class="fa fa-pencil-square text-success me-2"></i> Düzenle
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="dropdown-item" onclick="deleteReply({{ $comment->id }})">
+                                                        <i class="fa fa-trash text-danger me-2"></i> Sil
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        @endif
 
-                                <!-- Yorum düzenleme ikonu -->
-                                @if ($isCommentOwner)
-                                    <a href="javascript:void(0);" style="text-decoration: none;" onclick="editComment({{ $comment->id }})" title="Düzenle">
-                                        <i class="fa fa-pencil-square text-success ms-2"></i>
-                                    </a>
-                                @endif
+                                    </div>
 
-                                <br>
+                                    <p class="mb-1 {{ $isAuthor ? 'text-success' : '' }} mt-2">{{ $comment->content }}</p>
+                                </div>
 
-                                <p class="mb-1" style="padding-top: 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $comment->content }}</p>
+                                <!-- Yanıt formu (varsayılan gizli) -->
+                                <form action="{{ route('comments.add', $article->id) }}" method="POST" class="mt-2 d-none" id="reply-form-{{ $comment->id }}">
+                                    @csrf
+                                    <input type="hidden" name="article_id" value="{{ $article->id }}">
+                                    <input type="hidden" name="parent_comment_id" value="{{ $comment->id }}">
+
+                                    <p class="fw-bold"><i class="fa fa-user me-2"></i> {{ $user->name }}</p>
+
+                                    <div class="mb-2">
+                                        <textarea name="content" class="form-control" rows="2" placeholder="Yanıtınızı yazın..."></textarea>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-sm btn-outline-success">Yanıtla!</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleReplyForm({{ $comment->id }})">İptal</button>
+                                    <div style="padding-bottom: 15px;"></div>
+                                </form>
+
+                                <!-- Ana yorum düzenleme formu (varsayılan gizli) -->
+                                <form action="{{ route('comments.update', $comment->id) }}" method="POST" class="mt-2 d-none" id="edit-comment-form-{{ $comment->id }}">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                                    <div class="mb-2">
+                                        <textarea name="content" class="form-control" rows="2">{{ $comment->content }}</textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-sm btn-outline-success">Güncelle!</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="editComment({{ $comment->id }})">İptal</button>
+                                    <div style="padding-bottom: 15px;"></div>
+                                </form>
+
+                                <!-- Child yorumlar -->
                                 @if($comment->children && $comment->children->count())
                                     <button class="btn btn-link btn-sm mb-2 ms-4" type="button" onclick="toggleChildren({{ $comment->id }})" id="toggle-btn-{{ $comment->id }}">
                                         Yanıtları Göster
@@ -142,29 +188,24 @@
 
                                     <div class="text-muted mb-3 ms-4 d-none" id="children-{{ $comment->id }}">
                                         @foreach($comment->children as $child)
-
                                             @php
                                                 $isAuthorChild = optional($child->user)->id === optional($article->user)->id;
-                                            @endphp
-
-                                            @php
-                                                $isCommentOwner = optional($child->user)->id === optional(Auth::user())->id;
+                                                $isCommentOwnerChild = optional($child->user)->id === optional(Auth::user())->id;
                                             @endphp
 
                                             <div class="mb-2 {{ $isAuthorChild ? 'text-success' : '' }}">
                                                 <div class="d-flex justify-content-left align-items-center">
-                                                    <div style="padding-right: 10px;">
-                                                        <i class="fa fa-user me-2"></i>
-                                                        <strong>{{ $child->user->name ?? 'Anonim Kullanıcı' }}</strong>
-                                                    </div>
+                                                    <i class="fa fa-user me-2"></i>
+                                                    <strong>{{ $child->user->name ?? 'Anonim Kullanıcı' }}</strong>
+                                                    <span class="text-muted ms-2" style="font-size: 0.85rem;">{{ $child->created_at->format('d.m.Y H:i') }}</span>
 
-                                                    @if ($isCommentOwner)
-                                                        <div class="dropdown">
-                                                            <button class="btn btn-link text-secondary p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <!-- Child için üç nokta dropdown -->
+                                                    @if ($isCommentOwnerChild)
+                                                        <div class="dropdown ms-2">
+                                                            <button class="btn btn-link text-secondary p-0" type="button" id="dropdownMenuButtonChild{{ $child->id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 <i class="fa fa-ellipsis-h"></i>
                                                             </button>
-
-                                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButtonChild{{ $child->id }}">
                                                                 <a href="javascript:void(0);" class="dropdown-item" onclick="editReply({{ $child->id }})">
                                                                     <i class="fa fa-pencil-square text-success me-2"></i> Düzenle
                                                                 </a>
@@ -177,55 +218,24 @@
                                                 </div>
 
                                                 <p class="mb-1 ms-4">{{ $child->content }}</p>
-                                            </div>
 
-                                            <!-- Yanıt düzenleme formu (varsayılan olarak gizli) -->
-                                            <form action="{{ route('comments.update', $child->id) }}" method="POST" class="mt-2 d-none" id="edit-reply-form-{{ $child->id }}">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="hidden" name="comment_id" value="{{ $child->id }}">
-                                                <div class="mb-2">
-                                                    <textarea name="content" class="form-control" rows="2">{{ $child->content }}</textarea>
-                                                </div>
-                                                <button type="submit" class="btn btn-sm btn-outline-success">Güncelle!</button>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="editReply({{ $child->id }})">İptal</button>
-                                                <div style="padding-bottom: 15px;"></div>
-                                            </form>
+                                                <!-- Child düzenleme formu (varsayılan gizli) -->
+                                                <form action="{{ route('comments.update', $child->id) }}" method="POST" class="mt-2 d-none" id="edit-reply-form-{{ $child->id }}">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="comment_id" value="{{ $child->id }}">
+                                                    <div class="mb-2">
+                                                        <textarea name="content" class="form-control" rows="2">{{ $child->content }}</textarea>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-sm btn-outline-success">Güncelle!</button>
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="editReply({{ $child->id }})">İptal</button>
+                                                    <div style="padding-bottom: 15px;"></div>
+                                                </form>
+                                            </div>
                                         @endforeach
                                     </div>
                                 @endif
                             </div>
-
-                            <!-- Yanıt formu (varsayılan olarak gizli) -->
-                            <form action="{{ route('comments.add', $article->id) }}" method="POST" class="mt-2 d-none" id="reply-form-{{ $comment->id }}">
-                                @csrf
-                                <input type="hidden" name="article_id" value="{{ $article->id }}">
-                                <input type="hidden" name="parent_comment_id" value="{{ $comment->id }}">
-
-                                <p class="fw-bold"><i class="fa fa-user" style="padding-right: 5px;"></i> {{ $user->name }}</p>
-
-                                <div class="mb-2">
-                                    <textarea name="content" class="form-control" rows="2" placeholder="Yanıtınızı yazın..."></textarea>
-                                </div>
-
-                                <button type="submit" class="btn btn-sm btn-outline-success">Yanıtla!</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleReplyForm({{ $comment->id }})">İptal</button>
-                                <div style="padding-bottom: 15px;"></div>
-                            </form>
-
-                            <!-- Yorum düzenleme formu (varsayılan olarak gizli) -->
-                            <form action="{{ route('comments.update', $comment->id) }}" method="POST" class="mt-2 d-none" id="edit-comment-form-{{ $comment->id }}">
-                                @csrf
-                                @method('PUT')
-                                <input type="hidden" name="comment_id" value="{{ $comment->id }}">
-                                <div class="mb-2">
-                                    <textarea name="content" class="form-control" rows="2">{{ $comment->content }}</textarea>
-                                </div>
-                                <button type="submit" class="btn btn-sm btn-outline-success">Güncelle!</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="editComment({{ $comment->id }})">İptal</button>
-                                <div style="padding-bottom: 15px;"></div>
-                            </form>
-
                         @empty
                             <p class="text-muted">Bu yazıya henüz yorum yapılmamış.</p>
                         @endforelse
@@ -311,7 +321,6 @@
                 }
             });
         }
-
     </script>
 
 @endsection

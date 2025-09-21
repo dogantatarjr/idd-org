@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Comment;
 
 class TemplateController extends Controller
 {
@@ -128,6 +129,9 @@ class TemplateController extends Controller
     }
 
     public function adminComments() {
-        return view('frontend.admin.comments');
+
+        $comments = Comment::with('user')->latest()->paginate(5);
+
+        return view('frontend.admin.comments.comments', compact('comments'));
     }
 }
