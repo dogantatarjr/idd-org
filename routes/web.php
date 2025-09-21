@@ -37,6 +37,7 @@ Route::get('/blog/categories/{id}', [CategoryController::class, 'show'])->middle
 
 Route::post('/comments/add/{article}', [CommentController::class, 'add'])->middleware('auth')->name('comments.add');
 Route::put('/comments/{comment}', [CommentController::class, 'update'])->middleware('auth')->name('comments.update');
+Route::delete('/comments/delete/{comment}', [CommentController::class, 'delete'])->middleware('auth')->name('comments.delete');
 
 Route::get('/dashboard', function () {
     return view('frontend.admin.dashboard');

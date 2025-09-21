@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
                     return $category;
                 })
                 ->sortByDesc('likePerArticle')
-                ->take(5)
+                ->take(3)
                 ->values();
 
             $articles_latest = Article::status('active')->latestArticles(3)->get();

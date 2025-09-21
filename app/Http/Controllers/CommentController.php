@@ -40,4 +40,14 @@ class CommentController extends Controller
 
         return redirect()->back()->with('success-comment', 'Yorum başarıyla güncellendi!');
     }
+
+    public function delete(Comment $comment)
+    {
+        $articleId = $comment->article_id;
+        $comment->delete();
+
+        Article::where('id', $articleId)->decrement('comments');
+
+        return redirect()->back()->with('success-comment', 'Yorum başarıyla silindi!');
+    }
 }
