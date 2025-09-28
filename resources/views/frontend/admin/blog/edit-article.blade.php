@@ -8,64 +8,82 @@
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Open Sans Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <!-- Google Fonts: Montserrat & Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-    <!-- AOS CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
+    <!-- CKEditor 5 -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 </head>
 <body>
-    <div class="d-flex justify-content-center align-items-center vh-100">
-        <div class="container">
-            <div class="card mb-4 shadow-sm border-0 mx-auto" style="max-width: 500px;">
-                <div class="card-header fw-bold">
-                    <br>
-                    <h3 class="h5 fw-bold mb-4"><i class="fa fa-edit" style="padding-right: 5px"></i> Yazıyı Güncelle</h3>
-                    <form action="{{ route('dashboard.articles.update', $article->id) }}" method="POST">
-                        @csrf
+    <div class="container my-5">
+        <div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header fw-bold">
+                        <h3 class="h5 fw-bold mb-4"><i class="fa fa-edit me-2"></i> Yazıyı Güncelle</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="edit-article-form" action="{{ route('dashboard.articles.update', $article->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
 
-                        @method('PUT')
-                        <div class="mb-3">
-                            <label for="title" class="form-label">Başlık</label>
-                            <input type="text" id="title" name="title" class="form-control" required value="{{ $article->title }}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="content" class="form-label">İçerik</label>
-                            <textarea id="content" name="content" class="form-control" rows="5" required>{{ old('content', $article->content) }}</textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="image" class="form-label">Görsel URL</label>
-                            <input type="text" id="image" name="image" class="form-control" required value="{{ $article->image }}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="category" class="form-label">Kategori</label>
-                            <select id="category" name="category" class="form-select" required>
-                                @foreach($categories as $category)
-                                    <option value="{{ $category->id }}"
-                                        {{ $category->id == $article->category_id ? 'selected' : '' }}>
-                                        {{ $category->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="status" class="form-label">Durum</label>
-                            <select id="status" name="status" class="form-select" required>
-                                <option value="active" {{ $article->status == 'active' ? 'selected' : '' }}>Aktif</option>
-                                <option value="passive" {{ $article->status == 'passive' ? 'selected' : '' }}>Pasif</option>
-                                <option value="waiting" {{ $article->status == 'waiting' ? 'selected' : '' }}>Beklemede</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-success rounded-pill px-4">Yazıyı güncelle!</button>
-                    </form>
-                    <br>
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Başlık</label>
+                                <input type="text" id="title" name="title" class="form-control" required value="{{ $article->title }}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="content" class="form-label">İçerik</label>
+                                <textarea id="content" name="content" class="form-control" rows="5" style="min-height:150px; resize: vertical;" required>{{ old('content', $article->content) }}</textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Görsel URL</label>
+                                <input type="text" id="image" name="image" class="form-control" required value="{{ $article->image }}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Kategori</label>
+                                <select id="category" name="category" class="form-select" required>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}" {{ $category->id == $article->category_id ? 'selected' : '' }}>
+                                            {{ $category->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="status" class="form-label">Durum</label>
+                                <select id="status" name="status" class="form-select" required>
+                                    <option value="active" {{ $article->status == 'active' ? 'selected' : '' }}>Aktif</option>
+                                    <option value="passive" {{ $article->status == 'passive' ? 'selected' : '' }}>Pasif</option>
+                                    <option value="waiting" {{ $article->status == 'waiting' ? 'selected' : '' }}>Beklemede</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-success rounded-pill px-4">Yazıyı Güncelle!</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // CKEditor'u textarea üzerinde başlat
+        ClassicEditor
+            .create(document.querySelector('#content'))
+            .then(editor => {
+                const form = document.querySelector('#edit-article-form');
+                form.addEventListener('submit', () => {
+                    // Form submit olmadan önce CKEditor içeriğini textarea'ya aktar
+                    document.querySelector('#content').value = editor.getData();
+                });
+            })
+            .catch(error => console.error(error));
+    </script>
 </body>
 </html>

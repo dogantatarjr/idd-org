@@ -1,0 +1,4 @@
+1. Admin panelinden article görüntüleme bugları fixlenecek.
+2. CKEditor tamamen işlevli, veri tabanına işlenebilir olarak eklenecek.
+3. Kullanıcı-yazar profili sayfası eklenecek. Alt başlıkları yapılmadan önce planlanacak.
+4. Like özelliği eklenecek.

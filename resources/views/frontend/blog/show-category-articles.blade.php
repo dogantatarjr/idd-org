@@ -43,8 +43,29 @@
                             alt="article-image">
                     </div>
                     <h3 class="h5 fw-bold">{{ $article->title }}</h3>
+                    @php
+                        $maxWords = 50;
+
+                        // <p> tag'i hariç tüm HTML tag'lerini ve içindekileri kaldır
+                        $text = preg_replace_callback('/<([^p][^>]*)>.*?<\/\1>/', function($matches) {
+                            return ''; // <p> hariç tüm tag'ler ve içi silinir
+                        }, $article->content);
+
+                        $temp = strip_tags($text);
+
+                        // Kelime sayısına göre kısalt
+                        $words = Str::words($temp, $maxWords, '...');
+
+                        $lastPeriodPos = strrpos($words, '.');
+
+                        if ($lastPeriodPos !== false) {
+                            $words = substr($words, 0, $lastPeriodPos + 1);
+                        } else {
+                            $words .= '...';
+                        }
+                    @endphp
                     <p class="text-muted">
-                        {{ Str::limit($article->content, 300) }}
+                        {{ $words }}
                     </p>
                     <div class="d-flex justify-content-between align-items-center">
                         <a href="/blog/articles/{{ $article->id }}" class="btn btn-outline-success btn-sm rounded-pill px-4">

@@ -58,7 +58,7 @@
                             @endrole
                         </div>
 
-                        {!! nl2br(e($article->content)) !!}
+                        {!! $article->content !!}
 
                         <hr>
 

@@ -130,7 +130,7 @@ class TemplateController extends Controller
 
     public function adminComments() {
 
-        $comments = Comment::with('user')->latest()->paginate(5);
+        $comments = Comment::with('user')->latest()->paginate(10);
 
         return view('frontend.admin.comments.comments', compact('comments'));
     }

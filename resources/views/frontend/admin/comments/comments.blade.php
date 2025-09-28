@@ -42,6 +42,21 @@
         padding-top: 0.5rem !important;
         padding-bottom: 0.5rem !important;
     }
+
+    /* Ana yorum satırlarının font boyutunu alt yorumlarla eşitle */
+    .parent-comment-row table td {
+        font-size: 0.9rem; /* alt yorumlarla aynı boyut */
+        font-weight: normal; /* bold yerine normal istersen bunu ekle */
+    }
+
+    .parent-comment-row table td strong {
+        font-weight: 600; /* sadece ID numarasını hafif kalın bırak */
+    }
+
+    /* Alt yorumların paddingini küçült */
+    .child-comment {
+        padding: 0.25rem 0.5rem !important; /* py-1 px-2 eşdeğeri */
+    }
 </style>
 
 <div class="container-fluid">
@@ -110,7 +125,7 @@
                                         <tr>
                                             <td style="width: 10%"><strong>{{ $parentComment->id }}</strong></td>
                                             <td style="width: 20%">{{ $parentComment->user->name }}</td>
-                                            <td style="width: 35%">"{{ Str::limit($parentComment->content, 50, '...') }}"</td>
+                                            <td style="width: 35%">"{{ $parentComment->content }}"</td>
                                             <td style="width: 15%">{{ $parentComment->created_at->format('d-m-Y H:i') }}</td>
                                             <td style="width: 10%">
                                                 <span class="badge bg-secondary">Alt Yorum Yok</span>
@@ -137,19 +152,20 @@
                                     <div class="p-3 rounded" style="background-color: #fff;">
                                         <h6 class="text-muted mb-3">Alt Yorumlar ({{ $childComments->count() }} adet)</h6>
 
-                                        @foreach($childComments as $childComment)
-                                            <div class="d-flex justify-content-between align-items-center py-2 px-3 mb-2 rounded child-comment">
+                                        @foreach($childComments as $child)
+                                            <div class="d-flex justify-content-between align-items-center mb-2 rounded child-comment">
                                                 <div>
-                                                    <strong>{{ $childComment->id }}</strong> –
-                                                    <span>{{ $childComment->user->name }}</span> :
-                                                    "<span>{{ Str::limit($childComment->content, 50, '...') }}</span>"
-                                                    <small class="text-muted ms-2">{{ $childComment->created_at->format('d-m-Y H:i') }}</small>
+                                                    <strong>{{ $child->id }}</strong> –
+                                                    <span>{{ $child->user->name }}</span>:
+                                                    "<span>{{ $child->content }}</span>"
                                                 </div>
-                                                <div>
-                                                    <a href="{{ route('blog.show', $childComment->article->id) }}" class="btn btn-xs btn-success me-1">
+
+                                                <div class="d-flex align-items-center">
+                                                    <small class="text-muted me-3">{{ $child->created_at->format('d-m-Y H:i') }}</small>
+                                                    <a href="{{ route('blog.show', $child->article->id) }}" class="btn btn-xs btn-success me-1">
                                                         <i class="fas fa-external-link-square"></i>
                                                     </a>
-                                                    <a href="javascript:void(0);" class="btn btn-xs btn-danger" onclick="deleteReply({{ $childComment->id }})">
+                                                    <a href="javascript:void(0);" class="btn btn-xs btn-danger" onclick="deleteReply({{ $child->id }})">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
                                                 </div>

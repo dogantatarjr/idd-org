@@ -8,20 +8,27 @@
         @php
             $maxWords = 25;
 
-            $text = $article->content;
+            // <p> tag'i hariç tüm HTML tag'lerini ve içindekileri kaldır
+            $text = preg_replace_callback('/<([^p][^>]*)>.*?<\/\1>/', function($matches) {
+                return ''; // <p> hariç tüm tag'ler ve içi silinir
+            }, $article->content);
 
-            $words = Str::words($text, $maxWords, '');
+            $temp = strip_tags($text);
+
+            // Kelime sayısına göre kısalt
+            $words = Str::words($temp, $maxWords, '...');
 
             $lastPeriodPos = strrpos($words, '.');
 
             if ($lastPeriodPos !== false) {
-                $words = substr($words, 0, $lastPeriodPos + 1) . '..';
+                $words = substr($words, 0, $lastPeriodPos + 1);
             } else {
                 $words .= '...';
             }
         @endphp
-
-        <p class="card-text">{{ $words }}</p>
+        <p class="card-text">
+            {{ $words }}
+        </p>
         <p class="card-texts d-flex justify-content-between">
             <span>Yazar: {{ $article->user->name }}</span>
             <span class="badge badge-pill"
