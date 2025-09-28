@@ -18,7 +18,7 @@ class ArticleController extends Controller
         $article = Article::with(['user', 'category', 'articleComments.user', 'articleComments.children'])->findOrFail($id);
 
         if($article->status != 'active' && $user->isAdmin()){
-            return view('frontend.blog.show-article', compact('article'));
+            return view('frontend.blog.show-article', compact('article', 'user'));
         } else if ($article->status != 'active') {
             return redirect()->route('blog')->with('error-inactive', 'Bu yazı şu anda aktif değil.');
         }
