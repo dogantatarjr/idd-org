@@ -33,4 +33,18 @@
             </div>
         </div>
     </div>
+
 @endauth
+
+@guest
+    <div class="col-12 mb-4">
+        <div class="alert alert-success d-flex align-items-center shadow-sm" role="alert">
+            <i class="fa fa-leaf fa-2x me-3"></i>
+            <div>
+                <strong>
+                    IDD ORG Blog'a Hoş Geldiniz!
+                </strong>
+            </div>
+        </div>
+    </div>
+@endguest

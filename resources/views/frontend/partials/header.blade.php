@@ -41,7 +41,6 @@
                     <span class="lang-option" data-lang="tr">TR</span>
                     <span class="lang-option" data-lang="en">EN</span>
                 </div> -->
-                @yield('auth-section')
             </div>
 
             <div class="d-lg-none lang-switcher-mobile mb-2">
@@ -50,10 +49,6 @@
                     <span class="lang-option" data-lang="en">EN</span>
                 </div> -->
             </div>
-            <div class="d-lg-none">
-                @yield('auth-section')
-            </div>
-
         </div>
     </div>
 </nav>

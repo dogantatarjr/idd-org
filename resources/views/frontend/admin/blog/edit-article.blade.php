@@ -22,7 +22,7 @@
             <div class="col-lg-8">
                 <div class="card shadow-sm border-0">
                     <div class="card-header fw-bold">
-                        <h3 class="h5 fw-bold mb-4"><i class="fa fa-edit me-2"></i> Yazıyı Güncelle</h3>
+                        <h3 class="h5 fw-bold mb-4" style="padding-top: 15px;"><i class="fa fa-edit me-2"></i> Yazıyı Güncelle</h3>
                     </div>
                     <div class="card-body">
                         <form id="edit-article-form" action="{{ route('dashboard.articles.update', $article->id) }}" method="POST">

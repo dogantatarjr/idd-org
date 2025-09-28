@@ -1,4 +1,54 @@
 <div class="col-lg-4">
+    @auth
+        <!-- Profil Kartı -->
+        <div class="card mb-4 shadow-sm border-0">
+            <div class="card-header fw-bold bg-success text-white">
+                <i class="fa fa-user me-2"></i>Profilim
+            </div>
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <div class="bg-success rounded-circle d-flex align-items-center justify-content-center text-white shadow-sm"
+                            style="width: 80px; height: 80px; margin: 0 auto;">
+                        <i class="fa fa-user fs-3"></i>
+                    </div>
+                </div>
+
+                <h6 class="fw-bold mb-1">{{ Auth::user()->name }}</h6>
+                <small class="text-muted d-block mb-3">{{ Auth::user()->email }}</small>
+
+                @if(Auth::user()->bio)
+                    <p class="small text-muted mb-3">{{ Str::limit(Auth::user()->bio, 60) }}</p>
+                @endif
+
+                <div class="d-grid gap-2">
+                    <a href="#" class="btn btn-outline-success btn-sm">
+                        <i class="fa fa-info-circle me-1"></i> Profil Bilgileri
+                    </a>
+                    <form method="POST" action="/logout" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-danger btn-sm w-100">
+                            <i class="fa fa-sign-out-alt me-1"></i> Çıkış Yap
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endauth
+
+    @guest
+        <div class="d-none d-lg-flex align-items-center mb-2">
+            <a class="btn btn-outline-success btn-sm w-100" href="{{ route('auth.login') }}">
+                <i class="fa fa-sign-in-alt me-1"></i> Giriş Yap
+            </a>
+        </div>
+
+        <div class="d-none d-lg-flex align-items-center mb-2">
+            <a class="btn btn-outline-success btn-sm w-100" href="{{ route('auth.register') }}">
+                <i class="fa fa-user-plus me-1"></i> Kayıt Ol
+            </a>
+        </div>
+    @endguest
+
     @role('admin')
         <!-- Admin Paneli -->
         <div>
