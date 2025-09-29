@@ -11,3 +11,5 @@
 - Like özelliği eklenecek.
 
 - Tanıtım sayfaları dinamikliği ile eklenecek!
+
+- Yazarın yazılarını pasife alma özelliği eklenecek.

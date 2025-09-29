@@ -4,6 +4,8 @@
 
 @section('blog-sit', 'active')
 
+@section('content')
+
 <!-- Validation Errors -->
 @if ($errors->any())
     <div class="alert alert-danger mt-3 text-center">
@@ -14,8 +16,6 @@
         </ul>
     </div>
 @endif
-
-@section('content')
 
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card shadow p-4" style="width: 100%; max-width: 400px;">

@@ -26,14 +26,27 @@ class AuthController extends Controller
             'password' => 'required|string'
         ]);
 
-        if (Auth::attempt($validated)){
-            $request->session()->regenerate();
+        $user = User::where('email', $validated['email'])->first();
 
+        if (!$user) {
+            throw ValidationException::withMessages([
+                'credentials' => 'Bu bilgilere sahip herhangi bir kullanıcı veritabanımızda bulunmamaktadır.'
+            ]);
+        }
+
+        if ($user->status === 'passive') {
+            throw ValidationException::withMessages([
+                'credentials' => 'Giriş başarısız! Bu bilgilere sahip kullanıcının hesabı geçici veya temelli olarak kapatılmıştır.'
+            ]);
+        }
+
+        if (Auth::attempt($validated)) {
+            $request->session()->regenerate();
             return redirect()->route('blog');
         }
 
         throw ValidationException::withMessages([
-            'credentials' => 'The provided credentials do not match our records.'
+            'credentials' => 'E-posta veya şifre yanlış.'
         ]);
     }
 
