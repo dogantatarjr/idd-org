@@ -29,6 +29,9 @@ class Comment extends Model
     // Child Comments ilişkisi
     public function children()
     {
-        return $this->hasMany(Comment::class, 'parent_comment_id')->with('children.user');
+        return $this->hasMany(Comment::class, 'parent_comment_id')
+            ->whereHas('user', function ($q) {
+                $q->where('status', 'active'); // Burada filtreyi koyduk
+            });
     }
 }
