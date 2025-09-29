@@ -45,17 +45,25 @@
 
     /* Ana yorum satırlarının font boyutunu alt yorumlarla eşitle */
     .parent-comment-row table td {
-        font-size: 0.9rem; /* alt yorumlarla aynı boyut */
-        font-weight: normal; /* bold yerine normal istersen bunu ekle */
+        font-size: 0.9rem;
+        font-weight: normal;
     }
 
     .parent-comment-row table td strong {
-        font-weight: 600; /* sadece ID numarasını hafif kalın bırak */
+        font-weight: 600;
     }
 
     /* Alt yorumların paddingini küçült */
     .child-comment {
-        padding: 0.25rem 0.5rem !important; /* py-1 px-2 eşdeğeri */
+        padding: 0.25rem 0.5rem !important;
+    }
+
+    /* Pasif kullanıcı yorum satırları için gri arka plan (tablo dahil) */
+    .inactive-user,
+    .inactive-user table,
+    .inactive-user tr,
+    .inactive-user td {
+        background-color: #e0e0e0 !important;
     }
 </style>
 
@@ -93,7 +101,8 @@
                         <h2 class="accordion-header" id="heading{{ $parentComment->id }}">
                             @if($hasChildren)
                                 <!-- Çocuk yorum varsa accordion -->
-                                <button class="accordion-button collapsed py-2 parent-comment-row" type="button"
+                                <button class="accordion-button collapsed py-2 parent-comment-row {{ $parentComment->user->status === 'passive' ? 'inactive-user' : '' }}"
+                                        type="button"
                                         data-bs-toggle="collapse"
                                         data-bs-target="#collapse{{ $parentComment->id }}"
                                         aria-expanded="false"
@@ -120,7 +129,7 @@
                                 </button>
                             @else
                                 <!-- Çocuk yorum yoksa düz satır -->
-                                <div class="px-3 no-children-row parent-comment-row d-flex align-items-center rounded-3">
+                                <div class="px-3 no-children-row parent-comment-row d-flex align-items-center rounded-3 {{ $parentComment->user->status === 'passive' ? 'inactive-user' : '' }}">
                                     <table class="table table-borderless mb-0 align-middle w-100">
                                         <tr>
                                             <td style="width: 10%"><strong>{{ $parentComment->id }}</strong></td>
@@ -153,7 +162,7 @@
                                         <h6 class="text-muted mb-3">Alt Yorumlar ({{ $childComments->count() }} adet)</h6>
 
                                         @foreach($childComments as $child)
-                                            <div class="d-flex justify-content-between align-items-center mb-2 rounded child-comment">
+                                            <div class="d-flex justify-content-between align-items-center mb-2 rounded child-comment {{ $child->user->status === 'passive' ? 'inactive-user' : '' }}">
                                                 <div>
                                                     <strong>{{ $child->id }}</strong> –
                                                     <span>{{ $child->user->name }}</span>:
