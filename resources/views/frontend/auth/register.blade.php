@@ -25,7 +25,7 @@
 
         <h2 class="text-center mb-4">Kayıt Ol</h2>
 
-        <form action="{{ route('register') }}" method="POST">
+        <form action="{{ route('register') }}" method="POST" id="register-form">
             @csrf
 
             <div class="mb-3">
@@ -78,7 +78,7 @@
                 >
             </div>
 
-            <button type="submit" class="btn btn-success w-100">Kayıt Ol!</button>
+            <button type="submit" class="btn btn-success w-100" onclick="register()">Kayıt Ol!</button>
 
             <div class="mt-3 text-center">
                 <small>
@@ -90,5 +90,19 @@
 </div>
 
 <br><br><br>
+
+<script>
+    function register(){
+        Swal.fire({
+            title: 'Giriş yapılıyor...',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500,
+            willClose: () => {
+                document.getElementById('register-form').submit();
+            }
+        });
+    }
+</script>
 
 @endsection

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profilim</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    @include('frontend.admin.styles')
+</head>
+<body>
+    <!-- Profile Details Sidebar -->
+    <div class="sidebar" id="sidebar">
+         <div class="sidebar-header">
+            <div class="profile-icon">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <h4>Profilim</h4>
+        </div>
+
+        <style>
+            .sidebar-header {
+                text-align: center;
+                padding: 20px;
+            }
+
+            .profile-icon i {
+                font-size: 80px;
+                color: light-gray;
+                margin-bottom: 10px;
+            }
+
+            .sidebar-header h4 {
+                margin: 0;
+                color: white;
+                font-weight: 600;
+            }
+        </style>
+
+        <div class="sidebar-menu">
+            <!-- Profil -->
+            <a href="#" class="menu-item @yield('profile-overview-sit')">
+                <i class="fas fa-user"></i>
+                Profil
+            </a>
+
+            <!-- Hesap Ayarları -->
+            <a href="#" class="menu-item @yield('account-settings-sit')">
+                <i class="fas fa-cog"></i>
+                Hesap Ayarları
+            </a>
+
+            <!-- Beğenilen Yazılar -->
+            <a href="#" class="menu-item @yield('liked-posts-sit')">
+                <i class="fas fa-heart"></i>
+                Beğenilen Yazılar
+            </a>
+
+            <!-- Yapılan Yorumlar -->
+            <a href="#" class="menu-item @yield('my-comments-sit')">
+                <i class="fas fa-comments"></i>
+                Yapılan Yorumlar
+            </a>
+
+            <!-- Yazılarım (Sadece Yazarlar için gösterilecek) -->
+            @role('writer|admin')
+                <a href="#" class="menu-item @yield('my-posts-sit')">
+                    <i class="fas fa-pencil-alt"></i>
+                    Yazılarım
+                </a>
+            @endrole
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        @yield('content')
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

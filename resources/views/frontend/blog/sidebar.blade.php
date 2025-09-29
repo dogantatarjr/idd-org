@@ -21,12 +21,12 @@
                 @endif
 
                 <div class="d-grid gap-2">
-                    <a href="#" class="btn btn-outline-success btn-sm">
+                    <a href="{{ route('blog.profile') }}" class="btn btn-outline-success btn-sm">
                         <i class="fa fa-info-circle me-1"></i> Profil Bilgileri
                     </a>
-                    <form method="POST" action="/logout" class="d-inline">
+                    <form id="logout-form" method="POST" action="/logout" class="d-inline">
                         @csrf
-                        <button type="submit" class="btn btn-outline-danger btn-sm w-100">
+                        <button type="button" onclick="logout()" class="btn btn-outline-danger btn-sm w-100">
                             <i class="fa fa-sign-out-alt me-1"></i> Çıkış Yap
                         </button>
                     </form>
@@ -37,13 +37,13 @@
 
     @guest
         <div class="d-none d-lg-flex align-items-center mb-2">
-            <a class="btn btn-outline-success btn-sm w-100" href="{{ route('auth.login') }}">
+            <a class="btn btn-outline-success btn-m w-100" href="{{ route('auth.login') }}">
                 <i class="fa fa-sign-in-alt me-1"></i> Giriş Yap
             </a>
         </div>
 
         <div class="d-none d-lg-flex align-items-center mb-2">
-            <a class="btn btn-outline-success btn-sm w-100" href="{{ route('auth.register') }}">
+            <a class="btn btn-outline-success btn-m w-100" href="{{ route('auth.register') }}">
                 <i class="fa fa-user-plus me-1"></i> Kayıt Ol
             </a>
         </div>
@@ -176,3 +176,31 @@
         </div>
     @endif
 </div>
+
+<script>
+    function logout() {
+        Swal.fire({
+            title: 'Emin misiniz?',
+            text: "Çıkış yapmak istediğinize emin misiniz?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Evet',
+            cancelButtonText: 'Vazgeç'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Çıkış yapılıyor...',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    willClose: () => {
+                        document.getElementById('logout-form').submit();
+                    }
+                });
+            }
+        });
+    }
+</script>
+

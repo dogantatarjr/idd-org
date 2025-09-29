@@ -25,7 +25,7 @@
 
         <h2 class="text-center mb-4">Giriş Yap</h2>
 
-        <form action="{{ route('login') }}" method="POST">
+        <form action="{{ route('login') }}" method="POST" id="login-form">
             @csrf
 
             <div class="mb-3">
@@ -57,7 +57,7 @@
                 <label class="form-check-label" for="rememberMe">Beni hatırla</label>
             </div>
 
-            <button type="submit" class="btn btn-success w-100">Giriş Yap!</button>
+            <button type="submit" class="btn btn-success w-100" onclick="login()">Giriş Yap!</button>
 
             <div class="mt-3 text-center">
                 <small>
@@ -69,5 +69,19 @@
 </div>
 
 <br>
+
+<script>
+    function login(){
+        Swal.fire({
+            title: 'Giriş yapılıyor...',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500,
+            willClose: () => {
+                document.getElementById('login-form').submit();
+            }
+        });
+    }
+</script>
 
 @endsection

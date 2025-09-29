@@ -32,6 +32,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Blog Sayfaları
 
+Route::get('/blog/profile', [TemplateController::class, 'profile'])->name('blog.profile');
+
 Route::get('/blog/articles/{id}', [ArticleController::class, 'show'])->middleware('auth')->name('blog.show');
 Route::get('/blog/categories/{id}', [CategoryController::class, 'show'])->middleware('auth')->name('blog.category');
 

@@ -54,8 +54,14 @@ class TemplateController extends Controller
         // Yazılan yazılar
         $articles = Article::with('category')->status('active')->latestArticles()->paginate(3);
 
-        return view('frontend.blog', data: compact('articles'));
+        return view('frontend.blog', compact('articles'));
+    }
 
+    public function profile()
+    {
+        $user = Auth::user();
+
+        return view('frontend.blog.profile-details', compact('user'));
     }
 
     // Admin Paneli Sayfaları
