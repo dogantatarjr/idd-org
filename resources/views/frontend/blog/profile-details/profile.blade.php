@@ -34,25 +34,25 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">İsim</span>
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
                         <input type="text" class="form-control" value="{{ $user->name }}" style="outline: none; box-shadow: none;" readonly>
-                        <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#editNameModal">
+                        <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#editNameModal">
                             <i class="fas fa-edit"></i> Düzenle
                         </button>
                     </div>
 
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">E-posta</span>
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"></i></span>
                         <input type="text" class="form-control" value="{{ $user->email }}" style="outline: none; box-shadow: none;" readonly>
-                        <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#editEmailModal">
+                        <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#editEmailModal">
                             <i class="fas fa-edit"></i> Düzenle
                         </button>
                     </div>
 
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Şifre</span>
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
                         <input type="password" class="form-control" value="********" style="outline: none; box-shadow: none;" readonly>
-                        <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#editPasswordModal">
+                        <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#editPasswordModal">
                             <i class="fas fa-edit"></i> Değiştir
                         </button>
                     </div>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
-                    <button type="button" class="btn btn-primary submit-btn" data-form="nameForm">Kaydet</button>
+                    <button type="button" class="btn btn-success submit-btn" data-form="nameForm">Kaydet</button>
                 </div>
             </form>
         </div>
@@ -112,7 +112,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
-                    <button type="button" class="btn btn-primary submit-btn" data-form="emailForm">Kaydet</button>
+                    <button type="button" class="btn btn-success submit-btn" data-form="emailForm">Kaydet</button>
                 </div>
             </form>
         </div>
@@ -147,7 +147,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
-                    <button type="button" class="btn btn-primary submit-btn" data-form="passwordForm">Şifreyi Değiştir</button>
+                    <button type="button" class="btn btn-success submit-btn" data-form="passwordForm">Şifreyi Değiştir</button>
                 </div>
             </form>
         </div>

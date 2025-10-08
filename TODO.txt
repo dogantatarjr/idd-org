@@ -1,5 +1,4 @@
 - Kullanıcı-yazar profili sayfası eklenecek.
-    - Kullanıcı adı düzenleme, şifre düzenleme, mail düzenleme
     - Beğendiğim yazılarım (alt ek özellik olarak favori kategorileriniz)
     - Yorumlarım
     - Yazılarım (Yazarlar)
