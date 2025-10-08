@@ -8,6 +8,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ProfileController;
 use App\Models\Category;
 
 // Site Sayfaları
@@ -37,6 +38,10 @@ Route::get('/blog/profile/account', [TemplateController::class, 'account'])->mid
 Route::get('/blog/profile/likes', [TemplateController::class, 'likedArticles'])->middleware('auth')->name('blog.profile.likes');
 Route::get('/blog/profile/comments', [TemplateController::class, 'commentsMade'])->middleware('auth')->name('blog.profile.comments');
 Route::get('/blog/profile/articles', [TemplateController::class, 'myArticles'])->middleware('role:writer|admin')->name('blog.profile.articles');
+
+Route::put('/profile/update-name', [ProfileController::class, 'updateName'])->name('profile.update.name');
+Route::put('/profile/update-email', [ProfileController::class, 'updateEmail'])->name('profile.update.email');
+Route::put('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
 
 // Blog Sayfaları
 
