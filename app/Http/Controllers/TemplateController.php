@@ -57,11 +57,33 @@ class TemplateController extends Controller
         return view('frontend.blog', compact('articles'));
     }
 
+    // Profil Paneli Sayfaları
+
     public function profile()
     {
         $user = Auth::user();
 
-        return view('frontend.blog.profile-details', compact('user'));
+        return view('frontend.blog.profile-details.profile', compact('user'));
+    }
+
+    public function account()
+    {
+        return view('frontend.blog.profile-details.account');
+    }
+
+    public function likedArticles()
+    {
+        return view('frontend.blog.profile-details.liked-articles');
+    }
+
+    public function commentsMade()
+    {
+        return view('frontend.blog.profile-details.comments-made');
+    }
+
+    public function myArticles()
+    {
+        return view('frontend.blog.profile-details.my-articles');
     }
 
     // Admin Paneli Sayfaları

@@ -14,9 +14,7 @@
     <!-- Profile Details Sidebar -->
     <div class="sidebar" id="sidebar">
          <div class="sidebar-header">
-            <div class="profile-icon">
-                <i class="fas fa-user-circle"></i>
-            </div>
+            <img src="{{ asset('idd-logo.png') }}" alt="Logo">
             <h4>Profilim</h4>
         </div>
 
@@ -41,38 +39,40 @@
 
         <div class="sidebar-menu">
             <!-- Profil -->
-            <a href="#" class="menu-item @yield('profile-overview-sit')">
+            <a href="{{ route('blog.profile') }}" class="menu-item @yield('account-details-sit')">
                 <i class="fas fa-user"></i>
-                Profil
+                Profil Bilgileri
             </a>
 
             <!-- Hesap Ayarları -->
-            <a href="#" class="menu-item @yield('account-settings-sit')">
+            <a href="{{ route('blog.profile.account') }}" class="menu-item @yield('account-settings-sit')">
                 <i class="fas fa-cog"></i>
                 Hesap Ayarları
             </a>
 
             <!-- Beğenilen Yazılar -->
-            <a href="#" class="menu-item @yield('liked-posts-sit')">
+            <a href="{{ route('blog.profile.likes') }}" class="menu-item @yield('likes-sit')">
                 <i class="fas fa-heart"></i>
                 Beğenilen Yazılar
             </a>
 
             <!-- Yapılan Yorumlar -->
-            <a href="#" class="menu-item @yield('my-comments-sit')">
+            <a href="{{ route('blog.profile.comments') }}" class="menu-item @yield('my-comments-sit')">
                 <i class="fas fa-comments"></i>
                 Yapılan Yorumlar
             </a>
 
             <!-- Yazılarım (Sadece Yazarlar için gösterilecek) -->
             @role('writer|admin')
-                <a href="#" class="menu-item @yield('my-posts-sit')">
-                    <i class="fas fa-pencil-alt"></i>
+                <a href="{{ route('blog.profile.articles') }}" class="menu-item @yield('my-articles-sit')">
+                    <i class="fas fa-file-alt"></i>
                     Yazılarım
                 </a>
             @endrole
         </div>
     </div>
+
+    @include('frontend.admin.topbar')
 
     <!-- Main Content Area -->
     <div class="main-content">
