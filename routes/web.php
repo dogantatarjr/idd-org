@@ -45,7 +45,7 @@ Route::put('/profile/update-password', [ProfileController::class, 'updatePasswor
 // Blog Sayfaları
 
 Route::get('/blog/articles/{id}', [ArticleController::class, 'show'])->middleware('auth')->name('blog.show');
-Route::get('/blog/categories/{id}', [CategoryController::class, 'show'])->middleware('auth')->name('blog.category');
+Route::get('/blog/categories/{id}', [CategoryController::class, 'show'])->name('blog.category');
 
 Route::post('/comments/add/{article}', [CommentController::class, 'add'])->middleware('auth')->name('comments.add');
 Route::put('/comments/{comment}', [CommentController::class, 'update'])->middleware('auth')->name('comments.update');

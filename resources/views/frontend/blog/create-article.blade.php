@@ -10,7 +10,6 @@
             </div>
             <div class="mb-3">
                 <label for="content" class="form-label">İçerik</label>
-                <!-- required kaldırıldı, CKEditor içeriği submit sırasında kontrol edilecek -->
                 <textarea id="content" name="content" class="form-control" rows="5"></textarea>
             </div>
             <div class="mb-3">
@@ -34,23 +33,37 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    ClassicEditor
-        .create(document.querySelector('#content'))
-        .then(editor => {
-            const form = document.querySelector('#create-article-form');
-            form.addEventListener('submit', (e) => {
-                // CKEditor içeriğini textarea'ya aktar
-                const content = editor.getData().trim();
-                document.querySelector('#content').value = content;
-
-                // Eğer içerik boşsa submit'i durdur
-                if(content === '') {
-                    e.preventDefault();
-                    alert('İçerik alanı boş olamaz.');
+    document.addEventListener('DOMContentLoaded', function () {
+        ClassicEditor
+            .create(document.querySelector('#content'), {
+                toolbar: {
+                    items: [
+                        'undo', 'redo',
+                        '|',
+                        'heading',
+                        '|',
+                        'fontfamily', 'fontsize',
+                        '|',
+                        'bold', 'italic', 'strikethrough', 'underline',
+                        '|',
+                        'link', 'blockQuote',
+                        '|',
+                        'bulletedList', 'numberedList'
+                    ],
+                    shouldNotGroupWhenFull: false
                 }
-            });
-        })
-        .catch(error => console.error(error));
-});
+            })
+            .then(editor => {
+                const form = document.querySelector('#create-article-form');
+                form.addEventListener('submit', (e) => {
+                    const content = editor.getData().trim();
+                    document.querySelector('#content').value = content;
+                    if(content === '') {
+                        e.preventDefault();
+                        alert('İçerik alanı boş olamaz.');
+                    }
+                });
+            })
+            .catch(error => console.error(error));
+    });
 </script>
