@@ -86,7 +86,10 @@ class TemplateController extends Controller
 
     public function myArticles()
     {
-        return view('frontend.blog.profile-details.my-articles');
+
+        $articles = Article::where('user_id', Auth::id())->latest()->paginate(10);
+
+        return view('frontend.blog.profile-details.my-articles', compact('articles'));
     }
 
     // Admin Paneli Sayfaları
@@ -120,6 +123,7 @@ class TemplateController extends Controller
     }
 
     public function adminBlogPending() {
+
         Category::articleActivity();
 
         $user = Auth::user();
@@ -152,6 +156,7 @@ class TemplateController extends Controller
     }
 
     public function adminCategories() {
+
         Category::articleActivity();
 
         $categories = Category::all();

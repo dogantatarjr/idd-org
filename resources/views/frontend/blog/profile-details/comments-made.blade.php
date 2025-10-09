@@ -1,4 +1,3 @@
-<!-- filepath: c:\xampp\htdocs\idd-org\resources\views\frontend\blog\profile-details\comments-made.blade.php -->
 @extends('frontend.blog.profile-details.profile-details')
 
 @section('my-comments-sit', 'active')
@@ -34,7 +33,7 @@
                                 <td class="py-4 px-4 align-middle">
                                     <div class="d-flex align-items-center">
                                         <i class="fas fa-file-alt text-primary me-2"></i>
-                                        <a href="{{ route('blog.show', $comment->article?->id ?? 0) }}" class="fw-semibold text-decoration-none text-dark" target="_blank">
+                                        <a href="{{ route('blog.show', $comment->article->id) }}" class="fw-semibold text-decoration-none text-dark" target="_blank">
                                             {{ Str::limit($comment->article?->title ?? '-', 30) }}
                                         </a>
                                     </div>

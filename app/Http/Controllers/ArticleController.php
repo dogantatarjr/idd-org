@@ -50,6 +50,7 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
         $categories = Category::all();
+
         return view('frontend.admin.blog.edit-article', compact('categories', 'article'));
     }
 
@@ -70,7 +71,15 @@ class ArticleController extends Controller
         $article->status      = $validated['status'];
         $article->save();
 
-        return redirect()->route('dashboard.blog')->with('success-article', 'Yazı başarıyla güncellendi.');
+        if (Auth::user()->isAdmin()) {
+            return redirect()->route('dashboard.blog')->with('success-article', 'Yazı başarıyla güncellendi.');
+        } else {
+
+            $article->status = 'waiting';
+            $article->save();
+
+            return redirect()->route('blog.profile.articles')->with('success-article', 'Yazı başarıyla güncellendi ve tekrar onay sürecine alındı.');
+        }
     }
 
     public function approve(Article $article)

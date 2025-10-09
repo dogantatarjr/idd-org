@@ -26,11 +26,12 @@
                 $words .= '...';
             }
         @endphp
+
         <p class="card-text">
             {{ $words }}
         </p>
         <p class="card-texts d-flex justify-content-between">
-            <span>Yazar: {{ $article->user->name }}</span>
+            <span><b>Yazar:</b> {{ $article->user->name }}</span>
             <span class="badge badge-pill"
                 style="background-color: {{ $article->status === 'active' ? 'green' : ($article->status === 'passive' ? 'gray' : 'orange') }}; color: white;">
                 {{ $article->status }}
