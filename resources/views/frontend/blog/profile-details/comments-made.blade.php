@@ -21,11 +21,11 @@
             @if($comments->count())
                 <table class="table table-hover align-middle">
                     <thead class="table-secondary">
-                        <tr class="text-center">
-                            <th class="text-center rounded-top">Yazı</th>
+                        <tr class="text-center" style="border-radius: 0.5rem 0.5rem 0 0; overflow: hidden;">
+                            <th class="text-center rounded-top-start" style="border-top-left-radius: 0.5rem;">Yazı</th>
                             <th class="text-center">Yorum</th>
                             <th class="text-center">Tarih</th>
-                            <th class="text-center rounded-top"></th>
+                            <th class="text-center rounded-top-end" style="border-top-right-radius: 0.5rem;"></th>
                         </tr>
                     </thead>
                     <tbody>

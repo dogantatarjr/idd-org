@@ -1,6 +1,5 @@
 - Kullanıcı-yazar profili sayfası eklenecek.
     - Beğendiğim yazılarım (alt ek özellik olarak favori kategorileriniz)
-    - Yorumlarım
     - Yazılarım (Yazarlar)
         - Bekleyen yazılarım
         - Yayındaki yazılarım
