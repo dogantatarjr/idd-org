@@ -44,12 +44,6 @@
                 Profil Bilgileri
             </a>
 
-            <!-- Hesap Ayarları -->
-            <a href="{{ route('blog.profile.account') }}" class="menu-item @yield('account-settings-sit')">
-                <i class="fas fa-cog"></i>
-                Hesap Ayarları
-            </a>
-
             <!-- Beğenilen Yazılar -->
             <a href="{{ route('blog.profile.likes') }}" class="menu-item @yield('likes-sit')">
                 <i class="fas fa-heart"></i>

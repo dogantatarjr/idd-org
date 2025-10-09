@@ -66,11 +66,6 @@ class TemplateController extends Controller
         return view('frontend.blog.profile-details.profile', compact('user'));
     }
 
-    public function account()
-    {
-        return view('frontend.blog.profile-details.account');
-    }
-
     public function likedArticles()
     {
         return view('frontend.blog.profile-details.liked-articles');

@@ -154,6 +154,23 @@
     </div>
 </div>
 
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header" style="background-color: #6c757d; color: white;">
+            <h5 class="mb-0">
+                <i class="fas fa-cog" style="margin-right: 10px;"></i> Hesap Ayarları
+            </h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     document.querySelectorAll('.submit-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {

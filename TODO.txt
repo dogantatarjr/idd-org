@@ -1,10 +1,6 @@
-- Kullanıcı-yazar profili sayfası eklenecek.
-    - Beğendiğim yazılarım (alt ek özellik olarak favori kategorileriniz)
-    - Hesap ayarları
-        - Hesap silme
-        - Çıkış yapma
-
 - Like özelliği eklenecek.
+
+- Beğendiğim yazılarım (alt ek özellik olarak favori kategorileriniz)
 
 - Tanıtım sayfaları dinamikliği ile eklenecek!
 

@@ -34,7 +34,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Profil Sayfaları
 
 Route::get('/blog/profile', [TemplateController::class, 'profile'])->middleware('auth')->name('blog.profile');
-Route::get('/blog/profile/account', [TemplateController::class, 'account'])->middleware('auth')->name('blog.profile.account');
 Route::get('/blog/profile/likes', [TemplateController::class, 'likedArticles'])->middleware('auth')->name('blog.profile.likes');
 Route::get('/blog/profile/comments', [TemplateController::class, 'commentsMade'])->middleware('auth')->name('blog.profile.comments');
 Route::get('/blog/profile/articles', [TemplateController::class, 'myArticles'])->middleware('role:writer|admin')->name('blog.profile.articles');
