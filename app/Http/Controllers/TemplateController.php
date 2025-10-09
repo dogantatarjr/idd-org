@@ -78,7 +78,10 @@ class TemplateController extends Controller
 
     public function commentsMade()
     {
-        return view('frontend.blog.profile-details.comments-made');
+
+        $comments = Comment::where('user_id', Auth::id())->latest()->paginate(10);
+
+        return view('frontend.blog.profile-details.comments-made', compact('comments'));
     }
 
     public function myArticles()

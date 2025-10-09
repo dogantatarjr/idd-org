@@ -55,6 +55,11 @@ class User extends Authenticatable
         return $this->hasMany(Article::class);
     }
 
+    // User & Comment ilişkisi
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
+
     // isAdmin Scope
     public function scopeIsAdmin($query)
     {
