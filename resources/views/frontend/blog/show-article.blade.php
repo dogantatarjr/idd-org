@@ -15,6 +15,12 @@
                 </div>
             @endif
 
+            @php
+                if($article->user->status != 'active'){
+                    $article->user->name = 'Anonim Yazar';
+                }
+            @endphp
+
             <div class="col-lg-8 mb-4">
                 <div class="card single_post shadow-sm border-0">
                     <img src="{{ $article->image }}" class="card-img-top rounded" alt="article-image">

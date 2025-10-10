@@ -47,4 +47,17 @@
             </div>
         </div>
     </div>
+
+    @if (session('deactivation'))
+        <div class="col-12 mb-4">
+            <div class="alert alert-info d-flex align-items-center shadow-sm" role="alert">
+                <i class="fa fa-info-circle fa-2x me-3"></i>
+                <div>
+                    <strong>
+                        {{ session('deactivation') }}
+                    </strong>
+                </div>
+            </div>
+        </div>
+    @endif
 @endguest

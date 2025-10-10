@@ -30,6 +30,13 @@
         <p class="card-text">
             {{ $words }}
         </p>
+
+        @php
+            if($article->user->status != 'active'){
+                $article->user->name = 'Anonim Yazar';
+            }
+        @endphp
+
         <p class="card-texts d-flex justify-content-between">
             <span><b>Yazar:</b> {{ $article->user->name }}</span>
             <span class="badge badge-pill"
