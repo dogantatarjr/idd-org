@@ -158,18 +158,94 @@
     <div class="card">
         <div class="card-header" style="background-color: #6c757d; color: white;">
             <h5 class="mb-0">
-                <i class="fas fa-cog" style="margin-right: 10px;"></i> Hesap Ayarları
+                <i class="fas fa-cog me-2"></i> Hesap Ayarları
             </h5>
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col-md-6">
-
+            <!-- Çıkış Yap Bölümü -->
+            <div class="mb-4 d-flex align-items-center justify-content-between">
+                <div class="flex-grow-1 me-3">
+                    <h6 class="mb-2"><i class="fas fa-sign-out-alt me-2"></i>Oturumu Kapat</h6>
+                    <p class="text-muted mb-0" style="font-size: 0.95rem;">
+                        Hesabınızdan çıkış yapmak için yandaki butona tıklayın.
+                    </p>
                 </div>
+                <form id="logout-form" method="POST" action="/logout" class="d-inline" onsubmit="return confirmLogout(event)">
+                    @csrf
+                    <button type="submit" class="btn btn-danger d-flex align-items-center justify-content-center" style="white-space: nowrap;">
+                        <i class="fas fa-sign-out-alt me-2"></i> Çıkış Yap
+                    </button>
+                </form>
+            </div>
+
+            <hr>
+
+            <!-- Hesap Deaktif Etme Bölümü -->
+            <div class="mt-4 d-flex align-items-center justify-content-between">
+                <div class="flex-grow-1 me-3">
+                    <h6 class="mb-2"><i class="fas fa-user-slash me-2"></i>Hesap Deaktivasyonu</h6>
+                    <p class="text-muted mb-0" style="font-size: 0.95rem;">
+                        Hesabınızı devre dışı bırakırsanız tekrar açtırmak için <b>info@iklimdd.org</b> adresine e-posta göndermelisiniz.
+                        <br>
+                        E-posta gönderdikten sonra size ulaşılana kadar <b>hesabınıza giriş yapamazsınız.</b>
+                    </p>
+                </div>
+                <form action="#" method="POST" onsubmit="return confirmDeactivate(event)">
+                    @csrf
+                    <button type="submit" class="btn btn-danger d-flex align-items-center justify-content-center" style="white-space: nowrap;">
+                        <i class="fas fa-user-slash me-2"></i> Hesabı Deaktive Et
+                    </button>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function confirmDeactivate(event) {
+        event.preventDefault();
+        Swal.fire({
+            title: 'Hesabınızı devre dışı bırakmak istediğinize emin misiniz?',
+            text: "Hesabınızı tekrar açtırmak için info@iklimdd.org adresine e-posta göndermelisiniz. E-posta gönderdikten sonra size ulaşılana kadar hesabınıza giriş yapamazsınız.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Devre Dışı Bırak',
+            cancelButtonText: 'İptal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                event.target.submit();
+            }
+        });
+        return false;
+    }
+
+    function confirmLogout(event) {
+        event.preventDefault();
+        Swal.fire({
+            title: 'Emin misiniz?',
+            text: "Çıkış yapmak istediğinize emin misiniz?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Evet',
+            cancelButtonText: 'Vazgeç'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Çıkış yapılıyor...',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    willClose: () => {
+                        document.getElementById('logout-form').submit();
+                    }
+                });
+            }
+        });
+        return false;
+    }
+</script>
 
 <script>
     document.querySelectorAll('.submit-btn').forEach(function(btn) {

@@ -4,4 +4,4 @@
 
 - Tanıtım sayfaları dinamikliği ile eklenecek!
 
-- Yazarın yazılarını pasife alma özelliği eklenecek.
+- Yazara göre, kategoriye göre filtreleme + Like sayısına göre, yorum sayısına göre asc/desc sıralama (admin blog sayfası)
