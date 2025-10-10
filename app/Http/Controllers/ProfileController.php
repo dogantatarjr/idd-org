@@ -63,4 +63,15 @@ class ProfileController extends Controller
 
         return redirect()->back()->with('success', 'Şifre başarıyla değiştirildi!');
     }
+
+    function deactivate(Request $request)
+    {
+        $user = Auth::user();
+        $user->status = 'passive';
+        $user->save();
+
+        Auth::logout();
+
+        return redirect('/blog')->with('deactivation', 'Hesabınız devre dışı bırakıldı.');
+    }
 }

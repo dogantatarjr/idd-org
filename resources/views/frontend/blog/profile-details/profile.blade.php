@@ -190,7 +190,7 @@
                         E-posta gönderdikten sonra size ulaşılana kadar <b>hesabınıza giriş yapamazsınız.</b>
                     </p>
                 </div>
-                <form action="#" method="POST" onsubmit="return confirmDeactivate(event)">
+                <form action="{{ route('profile.deactivate') }}" method="POST" onsubmit="return confirmDeactivate(event)">
                     @csrf
                     <button type="submit" class="btn btn-danger d-flex align-items-center justify-content-center" style="white-space: nowrap;">
                         <i class="fas fa-user-slash me-2"></i> Hesabı Deaktive Et

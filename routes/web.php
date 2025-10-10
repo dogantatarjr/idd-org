@@ -42,6 +42,8 @@ Route::put('/profile/update-name', [ProfileController::class, 'updateName'])->na
 Route::put('/profile/update-email', [ProfileController::class, 'updateEmail'])->name('profile.update.email');
 Route::put('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
 
+Route::post('/profile/deactivate', [ProfileController::class, 'deactivate'])->name('profile.deactivate');
+
 // Blog Sayfaları
 
 Route::get('/blog/articles/{id}', [ArticleController::class, 'show'])->middleware('auth')->name('blog.show');

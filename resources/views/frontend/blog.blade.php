@@ -10,6 +10,12 @@
         <div class="row">
             @include('frontend.blog.hello')
 
+            @if (session('deactivation'))
+                <div class="alert alert-success w-100 text-center">
+                    {{ session('deactivation') }}
+                </div>
+            @endif
+
             <!-- Blog Listesi -->
             @include('frontend.blog.blog-list')
 
