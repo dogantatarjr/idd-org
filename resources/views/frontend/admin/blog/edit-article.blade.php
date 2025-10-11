@@ -77,13 +77,28 @@
     </div>
 
     <script>
-        // CKEditor'u textarea üzerinde başlat
         ClassicEditor
-            .create(document.querySelector('#content'))
+            .create(document.querySelector('#content'), {
+                toolbar: {
+                    items: [
+                        'undo', 'redo',
+                        '|',
+                        'heading',
+                        '|',
+                        'fontfamily', 'fontsize',
+                        '|',
+                        'bold', 'italic', 'strikethrough', 'underline',
+                        '|',
+                        'link', 'blockQuote',
+                        '|',
+                        'bulletedList', 'numberedList'
+                    ],
+                    shouldNotGroupWhenFull: false
+                }
+            })
             .then(editor => {
                 const form = document.querySelector('#edit-article-form');
                 form.addEventListener('submit', () => {
-                    // Form submit olmadan önce CKEditor içeriğini textarea'ya aktar
                     document.querySelector('#content').value = editor.getData();
                 });
             })

@@ -90,11 +90,12 @@
         <div class="card-body">
             <div class="d-flex flex-wrap gap-2 mb-2">
                 @foreach ($categories_popular as $category)
-                    <a href="/blog/categories/{{ $category->id }}" class="badge text-decoration-none text-bg-warning border text-dark px-3 py-2">{{ $category->name }}</a>
+                    <a href="/blog/categories/{{ $category->id }}" class="badge text-decoration-none bg-light border text-dark px-3 py-2">{{ $category->name }}</a>
                 @endforeach
             </div>
         </div>
     </div>
+
     <!-- Popüler Gönderiler -->
     <div class="card mb-4 shadow-sm border-0">
         <div class="card-header fw-bold">Popüler Gönderiler</div>
@@ -135,7 +136,7 @@
         </div>
     </div>
 
-    <!-- E-posta Bülteni -->
+    <!-- E-posta Bülteni
     <div class="card mb-4 shadow-sm border-0">
         <div class="card-header fw-bold">Yeni Yazılardan Haberdar Ol!</div>
         <div class="card-body">
@@ -145,11 +146,11 @@
             </div>
             <small class="text-muted d-block mt-2">Blogumuza abone olun ve bu sayede en yeni yazılar e-posta kutunuza gelsin.</small>
         </div>
-    </div>
+    </div> -->
 
     <!-- Sosyal Medya -->
     <div class="card mb-4 shadow-sm border-0">
-        <div class="card-header fw-bold">Bizi Takip Edin</div>
+        <div class="card-header fw-bold">Bizi Takip Edin!</div>
         <div class="card-body d-flex gap-3">
             <a href="#" target="_blank" class="text-success fs-4">
                 <i class="fab fa-instagram"></i>

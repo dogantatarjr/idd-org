@@ -29,7 +29,7 @@
                     </thead>
                     <tbody>
                         @foreach($comments as $comment)
-                            <tr>
+                            <tr class="{{ $comment->article?->status !== 'active' ? 'table-secondary' : '' }}">
                                 <td class="py-4 px-4 align-middle">
                                     <div class="d-flex align-items-center">
                                         <i class="fas fa-file-alt text-primary me-2"></i>

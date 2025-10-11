@@ -7,3 +7,7 @@
 - Yazara göre, kategoriye göre filtreleme + Like sayısına göre, yorum sayısına göre asc/desc sıralama (admin blog sayfası)
 
 - Arama fonksiyonelliği
+
+- Fotoğraf yükleme (Yazılar için)
+
+- E-posta ile bildirim
