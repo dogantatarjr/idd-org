@@ -90,4 +90,34 @@ class ArticleController extends Controller
         return redirect()->route('dashboard.blog')->with('success-article', 'Yazı başarıyla aktive edildi.');
     }
 
+    public function addLike(Request $request)
+    {
+        $articleId = $request->article_id;
+        $article = Article::findOrFail($articleId);
+
+        $likedArticles = session()->get('liked_articles', []);
+
+        if (in_array($articleId, $likedArticles)) {
+            $article->decrement('likes');
+
+            $likedArticles = array_diff($likedArticles, [$articleId]);
+            session()->put('liked_articles', array_values($likedArticles));
+
+            $status = 'unliked';
+        } else {
+            $article->increment('likes');
+
+            $likedArticles[] = $articleId;
+            session()->put('liked_articles', $likedArticles);
+
+            $status = 'liked';
+        }
+
+        return response()->json([
+            'success' => true,
+            'status' => $status,
+            'likes' => $article->likes
+        ]);
+    }
+
 }

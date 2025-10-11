@@ -41,6 +41,18 @@ class Article extends Model
         ->with(['children.user', 'user']);
     }
 
+    // Article & Like ilişkisi
+    public function likes()
+    {
+        return $this->hasMany(ArticleLike::class);
+    }
+
+    // Hangi kullanıcıların beğendiği
+    public function likedByUsers()
+    {
+        return $this->belongsToMany(User::class, 'article_likes');
+    }
+
     // Scope Definitions
 
     public function scopeLatestArticles($query, $limit=3)
