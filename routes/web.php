@@ -53,8 +53,6 @@ Route::post('/comments/add/{article}', [CommentController::class, 'add'])->middl
 Route::put('/comments/{comment}', [CommentController::class, 'update'])->middleware('auth')->name('comments.update');
 Route::delete('/comments/delete/{comment}', [CommentController::class, 'delete'])->middleware('auth')->name('comments.delete');
 
-Route::post('/addLike', [ArticleController::class, 'addLike'])->middleware('auth')->name('addLike');
-
 Route::get('/dashboard', function () {
     return view('frontend.admin.dashboard');
 })->middleware(['role:admin'])->name('admin.dashboard');
