@@ -68,16 +68,12 @@ class ArticleController extends Controller
         $article->content     = $validated['content'];
         $article->image       = $validated['image'];
         $article->category_id = $validated['category'];
-        $article->status      = $validated['status'];
+        $article->status      = Auth::user()->isAdmin() ? $validated['status'] : 'waiting';
         $article->save();
 
         if (Auth::user()->isAdmin()) {
             return redirect()->route('dashboard.blog')->with('success-article', 'Yazı başarıyla güncellendi.');
         } else {
-
-            $article->status = 'waiting';
-            $article->save();
-
             return redirect()->route('blog.profile.articles')->with('success-article', 'Yazı başarıyla güncellendi ve tekrar onay sürecine alındı.');
         }
     }

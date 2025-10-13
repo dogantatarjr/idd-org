@@ -1,13 +1,19 @@
-- Like özelliği eklenecek.
+TODO:
+
+- Like özelliği eklenecek (Yorumlar gibi veritabanında ayrı bir tabloda)
 
 - Beğendiğim yazılarım (alt ek özellik olarak favori kategorileriniz)
 
 - Tanıtım sayfaları dinamikliği ile eklenecek!
 
-- Yazara göre, kategoriye göre filtreleme + Like sayısına göre, yorum sayısına göre asc/desc sıralama (admin blog sayfası)
-
 - Arama fonksiyonelliği
 
 - Fotoğraf yükleme (Yazılar için)
 
+TODO AFTER DEPLOY:
+
+-Etkinliğe başvurma
+
 - E-posta ile bildirim
+
+- Yazara göre, kategoriye göre filtreleme + Like sayısına göre, yorum sayısına göre asc/desc sıralama (admin blog sayfası)

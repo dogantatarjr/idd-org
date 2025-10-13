@@ -40,8 +40,7 @@ class AuthController extends Controller
             ]);
         }
 
-        if (Auth::attempt($validated)) {
-            $request->session()->regenerate();
+        if (Auth::attempt($validated, $request->has('remember'))) {
             return redirect()->route('blog');
         }
 
