@@ -1,7 +1,5 @@
 TODO:
 
-- Like özelliği eklenecek (Yorumlar gibi veritabanında ayrı bir tabloda)
-
 - Beğendiğim yazılarım (alt ek özellik olarak favori kategorileriniz)
 
 - Tanıtım sayfaları dinamikliği ile eklenecek!

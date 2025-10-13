@@ -6,6 +6,36 @@
 
 @section('content')
 
+    <style>
+        @keyframes pop {
+            0% { transform: scale(1); }
+            40% { transform: scale(1.4); }
+            60% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        #like-btn {
+            transition: transform 0.2s ease;
+        }
+        #like-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .pop-animation {
+            animation: pop 0.4s ease;
+        }
+
+        .pulse-animation {
+            animation: pulse 0.5s ease;
+        }
+    </style>
+
     <div class="blog-page container my-5">
         <div class="row">
 
@@ -50,7 +80,14 @@
 
                         <div class="d-flex justify-content-{{ $article->status === 'active' ? 'end' : 'between' }} align-items-center mt-3">
                             <div>
-                                <i class="fa-regular fa-heart text-danger me-2"></i> {{ $article->likes }}
+                                @php
+                                    $userLiked = $article->articleLikes()->where('user_id', Auth::id())->exists();
+                                @endphp
+
+                                <span id="like-btn">
+                                    <i id="heart-icon" class="{{ $userLiked ? 'fa-solid' : 'fa-regular' }} fa-heart me-2 text-danger"></i>
+                                    <span id="like-count">{{ $article->articleLikes->count() }}</span>
+                                </span>
                                 <i class="fa-regular fa-comment text-primary ms-4 me-2"></i> {{ $article->comments }}
                             </div>
                             @role('admin')
@@ -307,6 +344,45 @@
                 }
             });
         }
+    </script>
+
+    <script>
+        document.getElementById('like-btn').addEventListener('click', function () {
+            fetch('{{ route('articles.like') }}', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    article_id: {{ $article->id }},
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('like-count').textContent = data.likeCount;
+
+                const icon = document.getElementById('heart-icon');
+
+                if (data.liked) {
+                    icon.classList.remove('fa-regular');
+                    icon.classList.add('fa-solid');
+
+                    // 🎉 Kalp atışı efekti
+                    icon.classList.add('pulse-animation');
+                    setTimeout(() => icon.classList.remove('pulse-animation'), 500);
+
+                } else {
+                    icon.classList.remove('fa-solid');
+                    icon.classList.add('fa-regular');
+
+                    // 💥 Küçülme efekti
+                    icon.classList.add('pop-animation');
+                    setTimeout(() => icon.classList.remove('pop-animation'), 400);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
     </script>
 
 @endsection

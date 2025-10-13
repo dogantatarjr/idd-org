@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Like;
 
 class Article extends Model
 {
@@ -39,6 +40,12 @@ class Article extends Model
             $query->where('status', 'active');
         })
         ->with(['children.user', 'user']);
+    }
+
+    // Article & Like ilişkisi
+    public function articleLikes()
+    {
+        return $this->hasMany(Like::class, 'article_id');
     }
 
     // Scope Definitions

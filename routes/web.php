@@ -9,7 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Category;
+use App\Http\Controllers\LikeController;
 
 // Site Sayfaları
 
@@ -58,6 +58,8 @@ Route::get('/dashboard', function () {
 })->middleware(['role:admin'])->name('admin.dashboard');
 
 Route::post('/blog/create', [ArticleController::class, 'create'])->middleware('role:writer|admin')->name('blog.create-article');
+
+Route::post('/articles/like', [LikeController::class, 'likeArticle'])->middleware('auth')->name('articles.like');
 
 // Admin Paneli Sayfaları
 
