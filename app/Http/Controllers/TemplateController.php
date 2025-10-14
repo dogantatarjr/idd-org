@@ -8,6 +8,7 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\Comment;
+use App\Models\Like;
 
 class TemplateController extends Controller
 {
@@ -68,7 +69,10 @@ class TemplateController extends Controller
 
     public function likedArticles()
     {
-        return view('frontend.blog.profile-details.liked-articles');
+        $user = Auth::user();
+        $likedArticles = Like::where('user_id', $user->id)->with('article')->get()->pluck('article');
+
+        return view('frontend.blog.profile-details.liked-articles', compact("likedArticles"));
     }
 
     public function commentsMade()

@@ -60,6 +60,11 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    // User & Like ilişkisi
+    public function likes() {
+        return $this->hasMany(Like::class);
+    }
+
     // isAdmin Scope
     public function scopeIsAdmin($query)
     {

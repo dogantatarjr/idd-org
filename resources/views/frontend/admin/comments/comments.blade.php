@@ -189,7 +189,8 @@
                 @endforeach
 
                 @if($parentComments->count() == 0)
-                    <div class="text-center p-4">
+                    <div class="text-center p-5">
+                        <i class="fas fa-comments fa-4x text-muted mb-3"></i>
                         <h5 class="text-muted">Henüz hiç yorum yapılmamış.</h5>
                     </div>
                 @endif

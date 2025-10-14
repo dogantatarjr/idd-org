@@ -1,10 +1,8 @@
 TODO:
 
-- Beğendiğim yazılarım (alt ek özellik olarak favori kategorileriniz)
+- Arama fonksiyonelliği
 
 - Tanıtım sayfaları dinamikliği ile eklenecek!
-
-- Arama fonksiyonelliği
 
 - Fotoğraf yükleme (Yazılar için)
 
@@ -15,3 +13,5 @@ TODO AFTER DEPLOY:
 - E-posta ile bildirim
 
 - Yazara göre, kategoriye göre filtreleme + Like sayısına göre, yorum sayısına göre asc/desc sıralama (admin blog sayfası)
+
+- Beğenilerim sayfasına favori kategorileriniz

@@ -44,9 +44,13 @@ class CommentController extends Controller
     public function delete(Comment $comment)
     {
         $articleId = $comment->article_id;
-        $comment->delete();
+        $childCount = Comment::where('parent_comment_id', $comment->id)->count();
+        $totalToDecrement = $childCount + 1;
 
-        Article::where('id', $articleId)->decrement('comments');
+        Article::where('id', $articleId)->decrement('comments', $totalToDecrement);
+        Comment::where('parent_comment_id', $comment->id)->delete();
+
+        $comment->delete();
 
         return redirect()->back()->with('success-comment', 'Yorum başarıyla silindi!');
     }

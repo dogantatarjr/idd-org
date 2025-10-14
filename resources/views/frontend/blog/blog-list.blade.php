@@ -62,7 +62,12 @@
                         <li class="list-inline-item text-uppercase small pe-3 border-end text-secondary">
                             {{ $article->category->name }}
                         </li>
-                        <li class="list-inline-item"><i class="fa-regular fa-heart text-danger"></i> {{ $article->likes }}</li>
+
+                        @php
+                            $userLiked = $article->articleLikes()->where('user_id', Auth::id())->exists();
+                        @endphp
+
+                        <li class="list-inline-item"><i class="{{ $userLiked ? 'fa-solid' : 'fa-regular' }} fa-regular fa-heart text-danger"></i> {{ $article->likes }}</li>
                         <li class="list-inline-item"><i class="fa-regular fa-comment text-primary"></i> {{ $article->comments }}</li>
                     </ul>
                 </div>
