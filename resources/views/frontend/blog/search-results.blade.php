@@ -8,11 +8,29 @@
 
     <div class="blog-page container my-5">
         <div class="row">
-            <!-- Kategoriye Göre Yazı Listesi -->
+
+            @include('frontend.blog.hello')
+
             <div class="col-lg-8 mb-4">
-                <div class="col-12 mb-4">
-                    <h2 class="fw-bold">{{ $category->name }} Konulu Yazılar</h2>
+                @if ($articles->count() == 0)
+                    <div class="text-center p-5">
+                        <i class="fas fa-file fa-4x text-muted mb-3"></i>
+                        <h5 class="text-muted">"{{ $query }}" aramanıza uygun sonuç bulunamadı.</h5>
+                    </div>
+                @else
+                    <div class="col-12 mb-4">
+                        <h2 class="fw-bold">"{{ $query }}" Aramasının Sonuçları:</h2>
+                    </div>
+                @endif
+
+                <div>
+                    <div class="text-center">
+                        <a href="{{ route('blog') }}" class="btn btn-outline-success">
+                            <i class="fa fa-arrow-left me-2"></i> Blog Anasayfasına Dön
+                        </a>
+                    </div>
                 </div>
+
                 @foreach($articles as $article)
                     <div class="card single_post mb-4 shadow-sm border-0">
                         <div class="card-body">

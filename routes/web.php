@@ -61,6 +61,8 @@ Route::post('/blog/create', [ArticleController::class, 'create'])->middleware('r
 
 Route::post('/articles/like', [LikeController::class, 'likeArticle'])->middleware('auth')->name('articles.like');
 
+Route::get('/search', [TemplateController::class, 'search'])->name('blog.search');
+
 // Admin Paneli Sayfaları
 
 Route::get('/dashboard', [TemplateController::class, 'dashboard'])->middleware('role:admin')->name('dashboard');

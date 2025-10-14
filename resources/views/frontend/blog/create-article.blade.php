@@ -55,6 +55,10 @@
             })
             .then(editor => {
                 const form = document.querySelector('#create-article-form');
+
+                editor.ui.view.editable.element.style.minHeight = '300px';
+                editor.ui.view.editable.element.style.maxHeight = '600px';
+
                 form.addEventListener('submit', (e) => {
                     const content = editor.getData().trim();
                     document.querySelector('#content').value = content;

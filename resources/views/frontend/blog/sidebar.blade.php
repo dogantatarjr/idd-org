@@ -62,15 +62,17 @@
     @endrole
 
     <!-- Arama -->
-    <div class="card mb-4 shadow-sm border-0">
-        <div class="card-header fw-bold">Arama</div>
-        <div class="card-body">
-            <div class="input-group">
-                <span class="input-group-text bg-white border-end-0"><i class="fa fa-search"></i></span>
-                <input type="text" class="form-control border-start-0" placeholder="Ara...">
+    <form action="{{ route('blog.search') }}" method="GET">
+        <div class="card mb-4 shadow-sm border-0">
+            <div class="card-header fw-bold">Arama</div>
+            <div class="card-body">
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0"><i class="fa fa-search"></i></span>
+                    <input type="text" name="query" class="form-control border-start-0" placeholder="Ara...">
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 
     <!-- Kategoriler -->
     <div class="card mb-4 shadow-sm border-0">

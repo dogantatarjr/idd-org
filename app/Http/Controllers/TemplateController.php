@@ -58,6 +58,15 @@ class TemplateController extends Controller
         return view('frontend.blog', compact('articles'));
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $articles = Article::where('title', 'like', '%' . $query . '%')->orWhere('content', 'like', '%' . $query . '%')->status('active')->latest()->paginate(6);
+
+        return view('frontend.blog.search-results', compact('articles', 'query'));
+    }
+
     // Profil Paneli Sayfaları
 
     public function profile()
