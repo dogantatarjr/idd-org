@@ -17,19 +17,19 @@
                         <i class="fas fa-file fa-4x text-muted mb-3"></i>
                         <h5 class="text-muted">"{{ $query }}" aramanıza uygun sonuç bulunamadı.</h5>
                     </div>
+
+                    <div>
+                        <div class="text-center">
+                            <a href="{{ route('blog') }}" class="btn btn-outline-success">
+                                <i class="fa fa-arrow-left me-2"></i> Blog Anasayfasına Dön
+                            </a>
+                        </div>
+                    </div>
                 @else
                     <div class="col-12 mb-4">
                         <h2 class="fw-bold">"{{ $query }}" Aramasının Sonuçları:</h2>
                     </div>
                 @endif
-
-                <div>
-                    <div class="text-center">
-                        <a href="{{ route('blog') }}" class="btn btn-outline-success">
-                            <i class="fa fa-arrow-left me-2"></i> Blog Anasayfasına Dön
-                        </a>
-                    </div>
-                </div>
 
                 @foreach($articles as $article)
                     <div class="card single_post mb-4 shadow-sm border-0">

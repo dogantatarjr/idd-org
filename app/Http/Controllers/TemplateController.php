@@ -62,6 +62,9 @@ class TemplateController extends Controller
     {
         $query = $request->input('query');
 
+        // FIXME: Bu rota ile arama yapıldıktan sonra değiştirilen sayfalar rota değiştiriyor.
+        //        Bu rota değişiminden kaynaklı $query değişkeni sayfa tarafından algılanmıyor.
+
         $articles = Article::where('title', 'like', '%' . $query . '%')->orWhere('content', 'like', '%' . $query . '%')->status('active')->latest()->paginate(6);
 
         return view('frontend.blog.search-results', compact('articles', 'query'));
