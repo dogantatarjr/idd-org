@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\MessageController;
 
 // Site Sayfaları
 
@@ -19,7 +20,10 @@ Route::get('/podcast', [TemplateController::class, 'podcast'])->name('podcast');
 Route::get('/campaings', [TemplateController::class, 'campaings'])->name('campaings');
 Route::get('/events', [TemplateController::class,  'events'])->name('events');
 Route::get('/about', [TemplateController::class, 'about'])->name('about');
+
 Route::get('/contact', [TemplateController::class, 'contact'])->name('contact');
+Route::post('/contact', [MessageController::class, 'submit'])->name('contact.submit');
+
 Route::get('/blog', [TemplateController::class, 'blog'])->name('blog');
 
 // Authentication Sayfaları
@@ -53,6 +57,7 @@ Route::post('/comments/add/{article}', [CommentController::class, 'add'])->middl
 Route::put('/comments/{comment}', [CommentController::class, 'update'])->middleware('auth')->name('comments.update');
 Route::delete('/comments/delete/{comment}', [CommentController::class, 'delete'])->middleware('auth')->name('comments.delete');
 
+// Rotalar bu şekilde de tanımlanabilir.
 Route::get('/dashboard', function () {
     return view('frontend.admin.dashboard');
 })->middleware(['role:admin'])->name('admin.dashboard');
@@ -69,6 +74,7 @@ Route::get('/dashboard', [TemplateController::class, 'dashboard'])->middleware('
 Route::get('/dashboard/podcasts', [TemplateController::class, 'adminPodcasts'])->middleware('role:admin')->name('dashboard.podcasts');
 Route::get('/dashboard/campaigns', [TemplateController::class, 'adminCampaigns'])->middleware('role:admin')->name('dashboard.campaigns');
 Route::get('/dashboard/events', [TemplateController::class, 'adminEvents'])->middleware('role:admin')->name('dashboard.events');
+
 Route::get('/dashboard/messages', [TemplateController::class, 'adminMessages'])->middleware('role:admin')->name('dashboard.messages');
 
 // Admin Blog Management Page

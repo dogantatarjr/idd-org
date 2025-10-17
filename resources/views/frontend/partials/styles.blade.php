@@ -626,3 +626,183 @@
         transition: all 0.3s ease;
     }
 </style>
+
+<style>
+    .contact-section {
+        padding: 80px 0;
+        background-color: #ffffff;
+    }
+    .contact-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 4rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        color: #000;
+    }
+    .contact-description {
+        font-family: 'Inter', sans-serif;
+        color: #999;
+        font-size: 1rem;
+        line-height: 1.8;
+        margin-bottom: 40px;
+        margin-right: 40px;
+    }
+    .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .contact-item i {
+        font-size: 1.3rem;
+        margin-top: 3px;
+        color: #000;
+    }
+    .contact-item-text {
+        font-family: 'Inter', sans-serif;
+        color: #333;
+    }
+    .icon-wrapper {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .icon-wrapper i {
+        font-size: 140px;
+    }
+    .form-label {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #000;
+    }
+    .form-control {
+        font-family: 'Inter', sans-serif;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 12px 15px;
+        width: 100%;
+    }
+    .form-control:focus {
+        border-color: #327a38;
+        box-shadow: 0 0 0 0.2rem rgba(50, 122, 56, 0.15);
+    }
+    textarea.form-control {
+        min-height: 220px;
+        resize: vertical;
+    }
+    .btn-send {
+        font-family: 'Inter', sans-serif;
+        background-color: #327a38;
+        color: white;
+        padding: 12px 40px;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: 100%;
+    }
+    .btn-send:hover {
+        background-color: #296330;
+    }
+
+    /* Tablet responsiveness */
+    @media (max-width: 991px) {
+        .contact-section {
+            padding: 60px 0;
+        }
+        .contact-title {
+            font-size: 3rem;
+        }
+        .icon-wrapper i {
+            font-size: 100px;
+        }
+        .contact-description {
+            margin-right: 0;
+        }
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+        .contact-section {
+            padding: 40px 15px;
+        }
+        .contact-title {
+            font-size: 2.5rem;
+            text-align: center;
+        }
+        .contact-description {
+            font-size: 0.95rem;
+            text-align: center;
+            margin-right: 0;
+            margin-bottom: 30px;
+        }
+        .icon-wrapper {
+            margin-bottom: 20px;
+        }
+        .icon-wrapper i {
+            font-size: 80px;
+        }
+        textarea.form-control {
+            min-height: 180px;
+        }
+        .btn-send {
+            padding: 14px 30px;
+        }
+    }
+
+    /* Small mobile devices */
+    @media (max-width: 576px) {
+        .contact-section {
+            padding: 30px 10px;
+        }
+        .contact-title {
+            font-size: 2rem;
+        }
+        .contact-description {
+            font-size: 0.9rem;
+        }
+        .icon-wrapper i {
+            font-size: 60px;
+        }
+        .form-control {
+            padding: 10px 12px;
+            font-size: 0.95rem;
+        }
+        textarea.form-control {
+            min-height: 150px;
+        }
+        .btn-send {
+            padding: 12px 25px;
+            font-size: 0.95rem;
+        }
+    }
+
+    .invalid-feedback {
+        display: block;
+        color: #dc3545;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .form-control.is-invalid {
+        border-color: #dc3545;
+        background-image: none;
+    }
+
+    .form-control.is-invalid:focus {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.15);
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        border: 1px solid #c3e6cb;
+        color: #155724;
+        padding: 15px 20px;
+        border-radius: 4px;
+        font-family: 'Inter', sans-serif;
+        margin-top: 20px;
+    }
+</style>

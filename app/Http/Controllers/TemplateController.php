@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\User;
 use App\Models\Comment;
 use App\Models\Like;
+use App\Models\Message;
 
 class TemplateController extends Controller
 {
@@ -163,7 +164,9 @@ class TemplateController extends Controller
     }
 
     public function adminMessages() {
-        return view('frontend.admin.messages');
+        $messages = Message::latest()->paginate(10);
+
+        return view('frontend.admin.messages', compact('messages'));
     }
 
     public function adminCategories() {

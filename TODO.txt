@@ -1,8 +1,34 @@
 TODO:
 
-- Arama fonksiyonelliği
-
-- Tanıtım sayfaları dinamikliği ile eklenecek!
+- Tanıtım sayfaları dinamikliği ile eklenecek!:
+    - Hakkımızda, Kitap statik olacak (Yazıları lazım)
+    - Kampanyalarımız:
+        - Kampanya ismi
+        - Açıklaması
+        - Tarihi
+        - Linki
+        - Fotoğraf (Kapak)
+    - Podcastlerimiz:
+        - Podcast ismi
+        - Açıklaması
+        - Tarihi
+        - Linki
+        - Fotoğraf (kapak)
+    - Etkinliklerimiz:
+        - Etkinlik ismi
+        - Açıklaması
+        - Tarihi
+        - Link (gerekirse)
+        - Fotoğraf (etkinlikten)
+    - Anasayfa slider'ı:
+        - Başlık
+        - İçerik
+        - Link
+        - Fotoğraf
+    - İletişim Formu:
+        - İsim & Soyisim
+        - Mail
+        - Mesaj içeriği
 
 - Fotoğraf yükleme (Yazılar için)
 

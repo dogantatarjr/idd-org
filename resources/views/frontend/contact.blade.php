@@ -5,17 +5,52 @@
 @section('contact-sit', 'active')
 
 @section('content')
-    <br><br><br><br><br>
-    <section class="py-5 bg-light">
-        <div class="container">
-        <div class="row justify-content-center text-center">
-            <div class="col-md-8">
-            <h3 class="mb-4">İletişim</h3>
-            <p class="lead">
-                Bu kısımda organizasyonla iletişim kurmak için gerekli bilgiler ve form yer alacaktır.
-            </p>
+    <div class="container contact-section">
+        <div class="row">
+            <div class="col-lg-5 col-md-6 mb-5 mb-md-0" data-aos="fade-right" data-aos-duration="1000">
+                <div class="icon-wrapper" data-aos="fade-right">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h1 class="contact-title">İletişim</h1>
+                <p class="contact-description">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quaerat autem corrupti asperiores accusantium et fuga! Facere excepturi, quo eos, nobis doloremque dolor labore expedita illum iusto, aut repellat fuga! Vestibulum ante eros, vulputate non eros in, commodo rhoncus neque.
+                </p>
+            </div>
+
+            <div class="col-lg-7 col-md-6" data-aos="fade-left" data-aos-duration="1000">
+
+                @if(session('success'))
+                    <div class="alert alert-success mt-4" role="alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                <form action="{{ route('contact.submit') }}" method="POST">
+                    @csrf
+
+                    <div class="mb-4">
+                        <label for="name" class="form-label">İsim</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="subject" class="form-label">Konu</label>
+                        <input type="text" class="form-control" id="subject" name="subject" value="{{ old('subject') }}" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="message" class="form-label">Mesaj</label>
+                        <textarea class="form-control" id="message" name="message" required>{{ old('message') }}</textarea>
+                    </div>
+
+                    <button type="submit" class="btn-send">Mesaj Gönder</button>
+                </form>
             </div>
         </div>
-    </section>
-    <br><br><br><br><br>
+    </div>
 @endsection
