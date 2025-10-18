@@ -76,6 +76,8 @@ Route::get('/dashboard/campaigns', [TemplateController::class, 'adminCampaigns']
 Route::get('/dashboard/events', [TemplateController::class, 'adminEvents'])->middleware('role:admin')->name('dashboard.events');
 
 Route::get('/dashboard/messages', [TemplateController::class, 'adminMessages'])->middleware('role:admin')->name('dashboard.messages');
+Route::post('/dashboard/messages/{message}/mark-read', [MessageController::class, 'markRead'])->middleware('role:admin')->name('dashboard.messages.mark-read');
+Route::post('/dashboard/messages/{message}/mark-unread', [MessageController::class, 'markUnread'])->middleware('role:admin')->name('dashboard.messages.mark-unread');
 
 // Admin Blog Management Page
 

@@ -6,207 +6,98 @@
 
 @section('content')
 
-<style>
-    /* Accordion açıkken mavi arkaplanı engelle */
-    .accordion-button:not(.collapsed) {
-        background-color: #f8f9fa !important;
-        box-shadow: none !important;
-    }
-    .accordion-button:focus {
-        box-shadow: none !important;
-        border-color: transparent !important;
-    }
-
-    /* Üst yorum satırları + içindeki tablo ve hücreler */
-    .parent-comment-row,
-    .parent-comment-row table,
-    .parent-comment-row td {
-        background-color: #f8f9fa !important;
-    }
-    .parent-comment-row:hover,
-    .parent-comment-row:hover table,
-    .parent-comment-row:hover td {
-        background-color: #ececec !important;
-    }
-
-    /* Alt yorum satırları */
-    .child-comment {
-        background-color: #fff;
-    }
-    .child-comment:hover {
-        background-color: #f5f5f5;
-    }
-
-    /* Alt yorum olmayan satırlar için daha dar padding */
-    .no-children-row {
-        padding-top: 0.5rem !important;
-        padding-bottom: 0.5rem !important;
-    }
-
-    /* Ana yorum satırlarının font boyutunu alt yorumlarla eşitle */
-    .parent-comment-row table td {
-        font-size: 0.9rem;
-        font-weight: normal;
-    }
-
-    .parent-comment-row table td strong {
-        font-weight: 600;
-    }
-
-    /* Alt yorumların paddingini küçült */
-    .child-comment {
-        padding: 0.25rem 0.5rem !important;
-    }
-
-    /* Pasif kullanıcı yorum satırları için gri arka plan (tablo dahil) */
-    .inactive-user,
-    .inactive-user table,
-    .inactive-user tr,
-    .inactive-user td {
-        background-color: #e0e0e0 !important;
-    }
-</style>
-
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-auto">
 
             @if(session('success-comment'))
-                <div class="alert alert-success">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success-comment') }}
                 </div>
             @endif
 
-            <div class="accordion" id="commentsAccordion">
-                @php
-                    $parentComments = collect();
-                    $allChildComments = collect();
+            @if($comments->count())
+                <table class="table table-hover align-middle">
+                    <thead class="table-secondary">
+                        <tr class="text-center" style="border-radius: 0.5rem 0.5rem 0 0;">
+                            <th class="text-center rounded-top-start" style="border-top-left-radius: 0.5rem;">ID</th>
+                            <th class="text-center">Kullanıcı</th>
+                            <th class="text-center">Yazı</th>
+                            <th class="text-center">Yorum</th>
+                            <th class="text-center">Tarih</th>
+                            <th class="text-center">Üst Yorum</th>
+                            <th class="text-center rounded-top-start" style="border-top-right-radius: 0.5rem;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($comments as $comment)
+                            <tr class="{{ $comment->user->status === 'passive' ? 'table-secondary' : '' }}">
+                                <td class="text-center py-4 px-4 align-middle fw-semibold">{{ $comment->id }}</td>
 
-                    foreach($comments as $comment) {
-                        if($comment->parent_comment_id === null) {
-                            $parentComments->push($comment);
-                        } else {
-                            $allChildComments->push($comment);
-                        }
-                    }
-                @endphp
+                                <td class="text-center py-4 px-4 align-middle">
+                                    {{ $comment->user->name ?? '-' }}
+                                </td>
 
-                @foreach ($parentComments as $parentComment)
-                    @php
-                        $childComments = $allChildComments->where('parent_comment_id', $parentComment->id);
-                        $hasChildren = $childComments->count() > 0;
-                    @endphp
+                                <td class="text-center py-4 px-4 align-middle">
+                                    <a href="{{ route('blog.show', $comment->article->id) }}" target="_blank" class="text-decoration-none fw-semibold text-dark">
+                                        {{ Str::limit($comment->article->title ?? '-', 30) }}
+                                    </a>
+                                </td>
 
-                    <div class="accordion-item mb-3 shadow-sm rounded-3">
-                        <h2 class="accordion-header" id="heading{{ $parentComment->id }}">
-                            @if($hasChildren)
-                                <!-- Çocuk yorum varsa accordion -->
-                                <button class="accordion-button collapsed py-2 parent-comment-row {{ $parentComment->user->status === 'passive' ? 'inactive-user' : '' }}"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#collapse{{ $parentComment->id }}"
-                                        aria-expanded="false"
-                                        aria-controls="collapse{{ $parentComment->id }}">
-                                    <table class="table table-borderless mb-0 align-middle">
-                                        <tr>
-                                            <td style="width: 10%"><strong>{{ $parentComment->id }}</strong></td>
-                                            <td style="width: 20%">{{ $parentComment->user->name }}</td>
-                                            <td style="width: 35%">"{{ $parentComment->content }}"</td>
-                                            <td style="width: 15%">{{ $parentComment->created_at->format('d-m-Y H:i') }}</td>
-                                            <td style="width: 10%">
-                                                <span class="badge bg-primary">{{ $childComments->count() }} Alt Yorum</span>
-                                            </td>
-                                            <td style="width: 10%" class="text-end">
-                                                <a href="{{ route('blog.show', $parentComment->article->id) }}" class="btn btn-sm btn-success me-1">
-                                                    <i class="fas fa-external-link-square"></i>
-                                                </a>
-                                                <a href="javascript:void(0);" class="btn btn-sm btn-danger" onclick="deleteReply({{ $parentComment->id }})">
-                                                    <i class="fa fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </button>
-                            @else
-                                <!-- Çocuk yorum yoksa düz satır -->
-                                <div class="px-3 no-children-row parent-comment-row d-flex align-items-center rounded-3 {{ $parentComment->user->status === 'passive' ? 'inactive-user' : '' }}">
-                                    <table class="table table-borderless mb-0 align-middle w-100">
-                                        <tr>
-                                            <td style="width: 10%"><strong>{{ $parentComment->id }}</strong></td>
-                                            <td style="width: 20%">{{ $parentComment->user->name }}</td>
-                                            <td style="width: 35%">"{{ $parentComment->content }}"</td>
-                                            <td style="width: 15%">{{ $parentComment->created_at->format('d-m-Y H:i') }}</td>
-                                            <td style="width: 10%">
-                                                <span class="badge bg-secondary">Alt Yorum Yok</span>
-                                            </td>
-                                            <td style="width: 10%" class="text-end">
-                                                <a href="{{ route('blog.show', $parentComment->article->id) }}" class="btn btn-sm btn-success me-1">
-                                                    <i class="fas fa-external-link-square"></i>
-                                                </a>
-                                                <a href="javascript:void(0);" class="btn btn-sm btn-danger" onclick="deleteReply({{ $parentComment->id }})">
-                                                    <i class="fa fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            @endif
-                        </h2>
+                                <td class="text-center py-4 px-4 align-middle fst-italic text-secondary">
+                                    "{{ Str::limit($comment->content, 60) }}"
+                                </td>
 
-                        @if($hasChildren)
-                            <div id="collapse{{ $parentComment->id }}" class="accordion-collapse collapse"
-                                 aria-labelledby="heading{{ $parentComment->id }}"
-                                 data-bs-parent="#commentsAccordion">
-                                <div class="accordion-body p-3">
-                                    <div class="p-3 rounded" style="background-color: #fff;">
-                                        <h6 class="text-muted mb-3">Alt Yorumlar ({{ $childComments->count() }} adet)</h6>
+                                <td class="text-center py-4 px-4 align-middle">
+                                    <span class="badge bg-light text-dark border">
+                                        <i class="far fa-calendar me-1"></i>
+                                        {{ $comment->created_at->format('d.m.Y H:i') }}
+                                    </span>
+                                </td>
 
-                                        @foreach($childComments as $child)
-                                            <div class="d-flex justify-content-between align-items-center mb-2 rounded child-comment {{ $child->user->status === 'passive' ? 'inactive-user' : '' }}">
-                                                <div>
-                                                    <strong>{{ $child->id }}</strong> –
-                                                    <span>{{ $child->user->name }}</span>:
-                                                    "<span>{{ $child->content }}</span>"
-                                                </div>
+                                <td class="text-center py-4 px-4 align-middle">
+                                    @if($comment->parent_comment_id)
+                                        <span class="badge bg-success text-white">#{{ $comment->parent_comment_id }}</span>
+                                    @else
+                                        <span class="badge bg-secondary">-</span>
+                                    @endif
+                                </td>
 
-                                                <div class="d-flex align-items-center">
-                                                    <small class="text-muted me-3">{{ $child->created_at->format('d-m-Y H:i') }}</small>
-                                                    <a href="{{ route('blog.show', $child->article->id) }}" class="btn btn-xs btn-success me-1">
-                                                        <i class="fas fa-external-link-square"></i>
-                                                    </a>
-                                                    <a href="javascript:void(0);" class="btn btn-xs btn-danger" onclick="deleteReply({{ $child->id }})">
-                                                        <i class="fa fa-trash"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        @endforeach
+                                <td class="text-end py-4 px-4 align-middle">
+                                    <a href="{{ route('blog.show', $comment->article->id) }}#comment-{{ $comment->id }}"
+                                       class="btn btn-outline-success btn-sm me-1"
+                                       title="Yazıyı Görüntüle"
+                                       target="_blank">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <button class="btn btn-outline-danger btn-sm"
+                                            onclick="deleteReply({{ $comment->id }})"
+                                            title="Yorumu Sil">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
 
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                    </div>
-                @endforeach
-
-                @if($parentComments->count() == 0)
-                    <div class="text-center p-5">
-                        <i class="fas fa-comments fa-4x text-muted mb-3"></i>
-                        <h5 class="text-muted">Henüz hiç yorum yapılmamış.</h5>
-                    </div>
-                @endif
-
-            </div>
-
-            <div class="d-flex justify-content-center fw-bold mt-4">
-                {{ $comments->links('pagination::bootstrap-5') }}
-            </div>
+                <div class="d-flex justify-content-center fw-bold mt-4">
+                    {{ $comments->links('pagination::bootstrap-5') }}
+                </div>
+            @else
+                <div class="text-center p-5">
+                    <i class="fas fa-comments fa-4x text-muted mb-3"></i>
+                    <h5 class="text-muted">Henüz hiç yorum yapılmamış.</h5>
+                    <p class="text-muted">Kullanıcıların yaptığı yorumlar burada listelenecektir.</p>
+                </div>
+            @endif
 
         </div>
     </div>
 </div>
 
 <script>
-    function deleteReply(replyId) {
+    function deleteReply(commentId) {
         Swal.fire({
             title: 'Emin misiniz?',
             text: "Bu yorumu silmek istediğinize emin misiniz?",
@@ -214,13 +105,13 @@
             showCancelButton: true,
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Evet',
+            confirmButtonText: 'Evet, sil',
             cancelButtonText: 'Vazgeç'
         }).then((result) => {
             if (result.isConfirmed) {
                 const form = document.createElement('form');
                 form.method = 'POST';
-                form.action = '/comments/delete/' + replyId;
+                form.action = '/comments/delete/' + commentId;
 
                 const tokenInput = document.createElement('input');
                 tokenInput.type = 'hidden';

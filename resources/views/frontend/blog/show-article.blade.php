@@ -84,7 +84,7 @@
                                     $userLiked = $article->articleLikes()->where('user_id', Auth::id())->exists();
                                 @endphp
 
-                                <span id="like-btn">
+                                <span id="like-btn" style="cursor: pointer; user-select: none;">
                                     <i id="heart-icon" class="{{ $userLiked ? 'fa-solid' : 'fa-regular' }} fa-heart me-2 text-danger"></i>
                                     <span id="like-count">{{ $article->articleLikes->count() }}</span>
                                 </span>

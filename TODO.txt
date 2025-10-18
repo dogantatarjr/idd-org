@@ -25,16 +25,12 @@ TODO:
         - İçerik
         - Link
         - Fotoğraf
-    - İletişim Formu:
-        - İsim & Soyisim
-        - Mail
-        - Mesaj içeriği
 
 - Fotoğraf yükleme (Yazılar için)
 
 TODO AFTER DEPLOY:
 
--Etkinliğe başvurma
+- Etkinliğe başvurma
 
 - E-posta ile bildirim
 
