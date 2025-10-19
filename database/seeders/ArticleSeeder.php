@@ -13,6 +13,9 @@ class ArticleSeeder extends Seeder
      */
     public function run(): void
     {
+
+        // Deploy esnasında oluşturulacak makaleler
+
         Article::create([
             'title' => 'Sürdürülebilir Moda',
             'content' => 'Sürdürülebilir moda çevre dostu ve etik olarak üretilmesi gereken ürünler olarak tanımlanır. Özellikle son zamanlarda sürdürülebilirlik terimi hemen her yerde görülüyor. Aslında hemen her şeye uygulanabilen sürdürülebilirlik, içinde yaşadığımız dünyanın sürdürülmesi için dengeyi sağlayan bir kavram. Üretim ve tüketimin en hızlı sektörleri arasında yer alan modanın bu kapsamda çevreye pek çok olumsuz etkisi oluyor. Sürdürülebilir moda ile giyim ürünlerinde bulunan çevresel etkiler en aza indirgeniyor. Hatta sürdürülebilir moda için bazı markalar ikinci el ürünler satarak tüketicileri teşvik etmeye çalışıyor.

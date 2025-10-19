@@ -12,6 +12,9 @@ class RoleSeeder extends Seeder
 {
     public function run(): void
     {
+
+        // Deploy esnasında oluşturulacak roller ve izinler
+
         // Roles
 
         $adminRole = Role::create(['name' => 'admin']); // Admin Rolü

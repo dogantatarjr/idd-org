@@ -35,12 +35,16 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::middleware(['auth', 'verified'])->group(function () {
+
 // Profil Sayfaları
 
 Route::get('/blog/profile', [TemplateController::class, 'profile'])->middleware('auth')->name('blog.profile');
 Route::get('/blog/profile/likes', [TemplateController::class, 'likedArticles'])->middleware('auth')->name('blog.profile.likes');
 Route::get('/blog/profile/comments', [TemplateController::class, 'commentsMade'])->middleware('auth')->name('blog.profile.comments');
 Route::get('/blog/profile/articles', [TemplateController::class, 'myArticles'])->middleware('role:writer|admin')->name('blog.profile.articles');
+
+});
 
 Route::put('/profile/update-name', [ProfileController::class, 'updateName'])->name('profile.update.name');
 Route::put('/profile/update-email', [ProfileController::class, 'updateEmail'])->name('profile.update.email');

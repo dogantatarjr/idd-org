@@ -2,6 +2,9 @@ TODO:
 
 - Tanıtım sayfaları dinamikliği ile eklenecek!:
     - Hakkımızda, Kitap statik olacak (Yazıları lazım)
+
+    HER BİRİNE SEEDER OLUŞTUR + DEPLOYDAKİ ROLÜNÜ YAZ!
+
     - Kampanyalarımız:
         - Kampanya ismi
         - Açıklaması
@@ -27,6 +30,12 @@ TODO:
         - Fotoğraf
 
 - Fotoğraf yükleme (Yazılar için)
+
+FOR DEPLOY:
+
+- Migrationlar yapılacak.
+
+- Tanıtım sayfalarında ilk açıldığında gözükecek maddeler, roller, admin için Seeder'lar kullanılacak. (Ctrl+Shift+F Deploy yazarak hangileri ile seedleyeceğini bul!)
 
 TODO AFTER DEPLOY:
 

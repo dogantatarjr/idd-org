@@ -13,6 +13,9 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+
+        // Deploy esnasında oluşturulacak kullanıcılar
+
         User::create([
             'name' => 'Doğan TATAR',
             'email' => 'dogantatarjr@gmail.com',
