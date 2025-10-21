@@ -5,9 +5,8 @@ TODO:
 
     HER BİRİNE SEEDER OLUŞTUR + DEPLOYDAKİ ROLÜNÜ YAZ!
 
-    - Kampanyalarımız: Kampanya ismi, Açıklaması, Tarihi, Linki, Fotoğraf (Kapak)
     - Podcastlerimiz: Podcast ismi, Açıklaması, Tarihi, Linki, Fotoğraf (kapak)
-    - Etkinliklerimiz: Etkinlik ismi, Açıklaması, Tarihi, Link (gerekirse), Fotoğraf (etkinlikten)
+    - Etkinliklerimiz: Etkinlik ismi, Açıklaması, Tarihi, Yeri, Link (gerekirse), Fotoğraf (etkinlikten)
     - Anasayfa slider'ı: Başlık, İçerik, Link, Fotoğraf
 
 - Google Captcha ve throttle ekle! (Login ve Contact sayfalarına)

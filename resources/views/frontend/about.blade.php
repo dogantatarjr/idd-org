@@ -11,9 +11,5 @@
         <h1><b>Hakkımızda</b></h1>
     </div>
 
-    <section class="container py-5">
-
-    </section>
-
 @endsection
 

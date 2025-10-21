@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Message;
+use App\Models\Campaign;
 
 class TemplateController extends Controller
 {
@@ -30,7 +31,9 @@ class TemplateController extends Controller
 
     public function campaings()
     {
-        return view('frontend.campaigns');
+        $campaigns = Campaign::all();
+
+        return view('frontend.campaigns', compact('campaigns'));
     }
 
     public function events()

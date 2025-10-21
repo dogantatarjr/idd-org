@@ -7,7 +7,7 @@
 @section('content')
     <div class="container contact-section">
         <div class="row">
-            <div class="col-lg-5 col-md-6 mb-5 mb-md-0 text-success">
+            <div class="col-lg-5 col-md-6 mb-5 mb-md-0 text-success text-center">
                 <div class="icon-wrapper">
                     <i class="fas fa-users"></i>
                 </div>
