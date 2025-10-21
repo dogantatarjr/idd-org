@@ -5,16 +5,14 @@
 @section('projects-sit', 'active')
 
 @section('content')
-    <br><br><br><br><br>
-    <section class="py-5 bg-light">
-        <div class="container">
-        <div class="row justify-content-center text-center">
-            <div class="col-md-8">
-            <h3 class="mb-4">Kitap</h3>
-            <p class="lead">
-                Bu kısımda organizasyonun kitabı hakkında bilgi verilecektir.
-            </div>
-        </div>
+
+    <div class="text-center fw-bold text-success mb-5" style="padding-top: 50px">
+        <i class="fas fa-book fa-4x mb-3"></i>
+        <h1><b>Change Before Climate Change</b></h1>
+    </div>
+
+    <section class="container py-5">
+
     </section>
-    <br><br><br><br><br>
+
 @endsection

@@ -5,17 +5,44 @@
 @section('projects-sit', 'active')
 
 @section('content')
-    <br><br><br><br><br>
-    <section class="py-5 bg-light">
-        <div class="container">
-        <div class="row justify-content-center text-center">
-            <div class="col-md-8">
-            <h3 class="mb-4">Kampanyalarımız</h3>
-            <p class="lead">
-                Bu kısımda organizasyonun yürüttüğü kampanyalar hakkında bilgi verilecektir.
-            </p>
+
+    <div class="text-center fw-bold text-success mb-5" style="padding-top: 50px">
+        <i class="fas fa-bullhorn fa-4x mb-3"></i>
+        <h1><b>Kampanyalarımız</b></h1>
+    </div>
+
+    <section class="container py-5">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="#" class="card-img-top" alt="Kampanya">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-semibold">Yapay Zeka Zirvesi 2025</h5>
+                        <p class="card-text flex-grow-1">Teknolojinin geleceğini konuşacağımız büyük bir zirvede bir araya geliyoruz...</p>
+                        <div class="text-muted small mb-2">
+                            <p class="mb-0">📅 21 Ekim 2025</p>
+                            <p class="mb-0">📍 İstanbul Kongre Merkezi</p>
+                        </div>
+                        <a href="#" class="btn btn-success mt-auto">Detayları Gör</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="#" class="card-img-top" alt="Kampanya">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-semibold">Yapay Zeka Zirvesi 2025</h5>
+                        <p class="card-text flex-grow-1">Teknolojinin geleceğini konuşacağımız büyük bir zirvede bir araya geliyoruz...</p>
+                        <div class="text-muted small mb-2">
+                            <p class="mb-0">📅 21 Ekim 2025</p>
+                            <p class="mb-0">📍 İstanbul Kongre Merkezi</p>
+                        </div>
+                        <a href="#" class="btn btn-success mt-auto">Detayları Gör</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <br><br><br><br><br>
+
 @endsection
