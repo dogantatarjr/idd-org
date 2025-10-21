@@ -12,13 +12,7 @@ TODO:
 
 - Google Captcha ve throttle ekle! (Login ve Contact sayfalarına)
 
-- Status'ü passive olan mesajlardan 30 günü dolduran mesajları listelememe (süreye göre listeleme)
-
-- Aramaya min 3 karakter gerekliliği koy
-
 - Email Verification konfigürasyonunu yap
-
-- Rotaları rollere ve verified olup olmayacağına göre grupla
 
 - Fotoğraf yükleme (Yazılar için)
 

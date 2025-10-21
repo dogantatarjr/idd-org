@@ -54,6 +54,10 @@
             </tbody>
         </table>
 
+        <div class="text-end text-muted mt-2 small">
+            *Bu sayfada son 30 günün mesajları listelenmektedir.
+        </div>
+
         <div class="mt-3">
             {{ $messages->links('pagination::bootstrap-5') }}
         </div>

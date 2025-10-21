@@ -166,7 +166,7 @@ class TemplateController extends Controller
     }
 
     public function adminMessages() {
-        $messages = Message::latest()->paginate(10);
+        $messages = Message::visibleMessages()->paginate(10);
 
         return view('frontend.admin.messages', compact('messages'));
     }

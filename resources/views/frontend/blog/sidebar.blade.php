@@ -67,8 +67,17 @@
             <div class="card-header fw-bold">Arama</div>
             <div class="card-body">
                 <div class="input-group">
-                    <span class="input-group-text bg-white border-end-0"><i class="fa fa-search"></i></span>
-                    <input type="text" name="query" class="form-control border-start-0" placeholder="Ara...">
+                    <span class="input-group-text bg-white border-end-0">
+                        <i class="fa fa-search"></i>
+                    </span>
+                    <input
+                        type="text"
+                        name="query"
+                        class="form-control border-start-0"
+                        placeholder="Ara..."
+                        minlength="3"
+                        required
+                    >
                 </div>
             </div>
         </div>
