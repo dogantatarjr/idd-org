@@ -11,12 +11,17 @@ use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Message;
 use App\Models\Campaign;
+use App\Models\Event;
+use App\Models\Podcast;
+use App\Models\Carousel;
 
 class TemplateController extends Controller
 {
     public function index()
     {
-        return view('frontend.home');
+        $carousels = Carousel::all();
+
+        return view('frontend.home', compact('carousels'));
     }
 
     public function book()
@@ -26,7 +31,9 @@ class TemplateController extends Controller
 
     public function podcast()
     {
-        return view('frontend.podcast');
+        $podcasts = Podcast::all();
+
+        return view('frontend.podcast', compact('podcasts'));
     }
 
     public function campaings()
@@ -38,7 +45,9 @@ class TemplateController extends Controller
 
     public function events()
     {
-        return view('frontend.events');
+        $events = Event::all();
+
+        return view('frontend.events', compact('events'));
     }
 
     public function about()
@@ -65,9 +74,6 @@ class TemplateController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-
-        // FIXME: Bu rota ile arama yapıldıktan sonra değiştirilen sayfalar rota değiştiriyor.
-        //        Bu rota değişiminden kaynaklı $query değişkeni sayfa tarafından algılanmıyor.
 
         $articles = Article::where('title', 'like', '%' . $query . '%')->orWhere('content', 'like', '%' . $query . '%')->status('active')->latestArticles()->paginate(3);
 
@@ -116,7 +122,10 @@ class TemplateController extends Controller
     }
 
     public function adminPodcasts() {
-        return view('frontend.admin.podcasts');
+
+        $podcasts = Podcast::orderBy('created_at', 'desc')->paginate(10);
+
+        return view('frontend.admin.podcasts', compact('podcasts'));
     }
 
     public function adminCampaigns() {

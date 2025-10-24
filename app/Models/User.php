@@ -71,4 +71,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return Auth::check() && $this->hasRole('admin');
     }
+
+    // isWriter Scope
+    public function scopeIsWriter($query)
+    {
+        return Auth::check() && $this->hasRole('writer');
+    }
 }

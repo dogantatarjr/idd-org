@@ -21,10 +21,7 @@ class CategoryController extends Controller
             ->latest()
             ->paginate(3);
 
-        return view(
-            'frontend.blog.show-category-articles',
-            compact('category', 'articles')
-        );
+        return view('frontend.blog.show-category-articles',compact('category', 'articles'));
     }
 
     public function update(Request $request) {

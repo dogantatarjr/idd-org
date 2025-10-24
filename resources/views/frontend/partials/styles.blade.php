@@ -8,7 +8,7 @@
         padding: 0;
         overflow-x: hidden;
         font-family: 'Inter', Arial, Helvetica, sans-serif;
-        padding-top: 56px;
+        padding-top: 32px;
     }
 
     p, .about-desc, .slider-desc, .logo-section .about-subtitle, .stat-card, .lead, .footer, .auth-buttons, .btn, .navbar, .dropdown-item {

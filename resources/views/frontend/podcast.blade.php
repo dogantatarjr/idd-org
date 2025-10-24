@@ -11,22 +11,22 @@
         <h1><b>IDD ORG Podcast</b></h1>
     </div>
 
-    <section class="container py-5">
+    <section class="container" style="padding-bottom: 50px">
         <div class="row g-4">
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100 shadow-sm border-0">
-                    <img src="#" class="card-img-top" alt="Kampanya">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-semibold">Yapay Zeka Zirvesi 2025</h5>
-                        <p class="card-text flex-grow-1">Teknolojinin geleceğini konuşacağımız büyük bir zirvede bir araya geliyoruz...</p>
-                        <div class="text-muted small mb-2">
-                            <p class="mb-0"><i class="fas fa-calendar" style="padding-right: 5px"></i> 21 Ekim 2025</p>
-                            <p class="mb-0"><i class="fas fa-map-pin" style="padding-right: 5px"></i> İstanbul Kongre Merkezi</p>
+            @foreach ($podcasts as $index => $podcast)
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <img src="{{ asset('storage/' . $podcast->image) }}" class="card-img-top" alt="Podcast">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-semibold">{{ $podcast->name }}</h5>
+                            <p class="card-text flex-grow-1" style="padding-top: 5px;">{{ $podcast->description }}</p>
+                            <a href="{{ $podcast->link }}" target="_blank" class="btn btn-success align-self-end">
+                                <i class="fas fa-external-link" style="padding-right: 5px;"></i> Detayları Gör
+                            </a>
                         </div>
-                        <a href="#" class="btn btn-success mt-auto">Detayları Gör</a>
                     </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </section>
 

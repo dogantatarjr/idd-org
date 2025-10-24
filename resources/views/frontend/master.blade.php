@@ -25,7 +25,9 @@
 
     @include('frontend.partials.header')
 
-    @yield('content')
+    <div class="content-wrapper" style="padding-top: 0; margin-top: 0;">
+        @yield('content')
+    </div>
 
     @include('frontend.partials.footer')
 

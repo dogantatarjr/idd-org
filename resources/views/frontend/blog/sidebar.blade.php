@@ -16,10 +16,6 @@
                 <h6 class="fw-bold mb-1">{{ Auth::user()->name }}</h6>
                 <small class="text-muted d-block mb-3">{{ Auth::user()->email }}</small>
 
-                @if(Auth::user()->bio)
-                    <p class="small text-muted mb-3">{{ Str::limit(Auth::user()->bio, 60) }}</p>
-                @endif
-
                 <div class="d-grid gap-2">
                     <a href="{{ route('blog.profile') }}" class="btn btn-outline-success btn-sm">
                         <i class="fa fa-info-circle me-1"></i> Profil Bilgileri

@@ -50,7 +50,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('frontend.blog.create-article', function ($view) {
-            $categories = Category::status('active')->get();
+            $categories = Category::all();
 
             $view->with('categories', $categories);
         });
