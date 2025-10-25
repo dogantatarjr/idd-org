@@ -129,7 +129,9 @@ class TemplateController extends Controller
     }
 
     public function adminCampaigns() {
-        return view('frontend.admin.campaigns');
+        $campaigns = Campaign::orderBy('created_at', 'desc')->paginate(9);
+
+        return view('frontend.admin.campaigns.campaigns', compact('campaigns'));
     }
 
     public function adminEvents() {

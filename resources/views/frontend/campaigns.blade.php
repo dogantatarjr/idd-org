@@ -13,19 +13,19 @@
 
     <section class="container" style="padding-bottom: 50px">
         <div class="row g-4">
-            @foreach ($campaigns as $index => $campaign)
+            @forelse ($campaigns as $index => $campaign)
                 <div class="col-12 mb-4">
                     <div class="card shadow-sm border-0 {{ $index % 2 == 1 ? 'flex-row-reverse' : 'flex-row' }} h-100">
-                        <img src="{{ $campaign->image }}"
+                        <img src="{{ asset('storage/' . $campaign->image) }}"
                             class="img-fluid"
-                            alt="Kampanya"
-                            style="width: 400px; max-width: 60%; object-fit: cover;">
+                            alt="{{ $campaign->name }}"
+                            style="width: 600px; object-fit: cover;">
                         <div class="card-body d-flex flex-column h-100 justify-content-between">
                             <div style="padding-bottom: 15px;">
-                                <h5 class="card-title fw-semibold" style="padding-bottom: 5px;">{{ $campaign->name }}</h5>
-                                <p class="card-text">
-                                    {{ $campaign->description }}
-                                </p>
+                                <h4 class="card-title fw-semibold" style="padding-bottom: 5px;">{{ $campaign->name }}</h4>
+                                <div class="card-text">
+                                    {!! $campaign->description !!}
+                                </div>
                             </div>
                             <a href="{{ $campaign->link }}" target="_blank" class="btn btn-success align-self-end">
                                 <i class="fas fa-external-link" style="padding-right: 5px;"></i> Detayları Gör
@@ -33,7 +33,14 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="col-12">
+                    <div class="alert alert-info text-center" role="alert">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Şu anda aktif kampanya bulunmamaktadır.
+                    </div>
+                </div>
+            @endforelse
         </div>
     </section>
 

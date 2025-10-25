@@ -59,7 +59,7 @@
                                 <input type="hidden" name="status" value="{{ $article->status }}">
                             @endrole
 
-                            <button type="submit" class="btn btn-success rounded-pill px-4">Yazıyı Güncelle!</button>
+                            <button type="submit" class="btn btn-success rounded-pill px-4">Yazıyı Güncelle</button>
                         </form>
                     </div>
                 </div>

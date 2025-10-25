@@ -1,10 +1,10 @@
 @extends('frontend.admin.master')
 
-@section('topbar-header', 'Yeni Podcast Ekle')
+@section('topbar-header', 'Yeni Kampanya Ekle')
 
 @section('topbar-icon', 'fas fa-plus')
 
-@section('podcasts-sit', 'active')
+@section('campaigns-sit', 'active')
 
 @section('content')
 
@@ -14,17 +14,17 @@
                 <div class="card shadow-sm border-0">
                     <div class="card-header fw-bold">
                         <h3 class="h5 fw-bold mb-4" style="padding-top: 15px;">
-                            <i class="fa fa-plus me-2"></i> Yeni Podcast Ekle
+                            <i class="fa fa-plus me-2"></i> Yeni Kampanya Ekle
                         </h3>
                     </div>
                     <div class="card-body">
-                        <form id="create-podcast-form" action="{{ route('dashboard.podcasts.store') }}" method="POST" enctype="multipart/form-data">
+                        <form id="create-campaign-form" action="{{ route('dashboard.campaigns.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="mb-3">
-                                <label for="title" class="form-label">Başlık</label>
-                                <input type="text" id="title" name="title" class="form-control @error('title') is-invalid @enderror" required value="{{ old('title') }}">
-                                @error('title')
+                                <label for="name" class="form-label">Kampanya Adı</label>
+                                <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" required value="{{ old('name') }}">
+                                @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -38,15 +38,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="time" class="form-label">Süre</label>
-                                <input type="text" id="time" name="time" class="form-control @error('time') is-invalid @enderror" placeholder="Örn: 25 dakika 11 saniye" value="{{ old('time') }}" required>
-                                @error('time')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="link" class="form-label">Podcast Linki</label>
+                                <label for="link" class="form-label">Kampanya Linki</label>
                                 <input type="url" id="link" name="link" class="form-control @error('link') is-invalid @enderror" required value="{{ old('link') }}">
                                 @error('link')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -56,18 +48,18 @@
                             <div class="mb-3">
                                 <label for="image" class="form-label">Görsel</label>
                                 <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror" accept="image/*" required>
-                                <small class="form-text text-muted">Podcast için bir görsel seçin.</small>
+                                <small class="form-text text-muted">Kampanya için bir görsel seçin.</small>
                                 @error('image')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center">
-                                <a href="{{ route('dashboard.podcasts') }}" class="btn btn-secondary">
+                                <a href="{{ route('dashboard.campaigns') }}" class="btn btn-secondary">
                                     <i class="fas fa-arrow-left me-1"></i> Geri Dön
                                 </a>
                                 <button type="submit" class="btn btn-success rounded-pill px-4">
-                                    <i class="fas fa-save me-1"></i> Podcast Ekle
+                                    <i class="fas fa-save me-1"></i> Kampanya Ekle
                                 </button>
                             </div>
                         </form>
@@ -94,7 +86,7 @@
                 }
             })
             .then(editor => {
-                const form = document.querySelector('#create-podcast-form');
+                const form = document.querySelector('#create-campaign-form');
                 form.addEventListener('submit', function(e) {
                     const data = editor.getData();
 

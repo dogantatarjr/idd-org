@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PodcastController;
+use App\Http\Controllers\CampaignController;
 
 // Verify middleware eklenebilir ileride.
 
@@ -27,6 +28,11 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::delete('/dashboard/podcasts/{podcast}', [PodcastController::class, 'delete'])->name('dashboard.podcasts.delete');
 
     Route::get('/dashboard/campaigns', [TemplateController::class, 'adminCampaigns'])->name('dashboard.campaigns');
+    Route::get('/dashboard/campaigns/create', [CampaignController::class, 'create'])->name('dashboard.campaigns.create');
+    Route::post('/dashboard/campaigns', [CampaignController::class, 'store'])->name('dashboard.campaigns.store');
+    Route::get('/dashboard/campaigns/{campaign}/edit', [CampaignController::class, 'edit'])->name('dashboard.campaigns.edit');
+    Route::put('/dashboard/campaigns/{campaign}', [CampaignController::class, 'update'])->name('dashboard.campaigns.update');
+    Route::delete('/dashboard/campaigns/{campaign}', [CampaignController::class, 'delete'])->name('dashboard.campaigns.delete');
 
     Route::get('/dashboard/events', [TemplateController::class, 'adminEvents'])->name('dashboard.events');
 
