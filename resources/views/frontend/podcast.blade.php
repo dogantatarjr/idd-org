@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="text-center fw-bold text-success mb-5" style="padding-top: 50px">
-        <i class="fas fa-podcast fa-4x mb-3"></i>
+        <i class="fas fa-microphone fa-4x mb-3"></i>
         <h1><b>IDD ORG Podcast</b></h1>
     </div>
 
@@ -15,14 +15,24 @@
         <div class="row g-4">
             @foreach ($podcasts as $index => $podcast)
                 <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm border-0">
+                    <div class="card h-100 shadow-sm border-0 d-flex flex-column">
                         <img src="{{ asset('storage/' . $podcast->image) }}" class="card-img-top" alt="Podcast">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title fw-semibold">{{ $podcast->name }}</h5>
-                            <p class="card-text flex-grow-1" style="padding-top: 5px;">{{ $podcast->description }}</p>
-                            <a href="{{ $podcast->link }}" target="_blank" class="btn btn-success align-self-end">
-                                <i class="fas fa-external-link" style="padding-right: 5px;"></i> Detayları Gör
-                            </a>
+                        <div class="card-body d-flex flex-column flex-grow-1">
+                            <h5 class="card-title fw-semibold mb-2">{{ $podcast->title }}</h5>
+
+                            @if($podcast->time)
+                                <p class="text-muted small mb-2">
+                                    <i class="fas fa-clock" style="padding-right: 5px;"></i> {{ $podcast->time }}
+                                </p>
+                            @endif
+
+                            <p class="card-text mb-1">{!! $podcast->description !!}</p>
+
+                            <div class="mt-auto text-end">
+                                <a href="{{ $podcast->link }}" target="_blank" class="btn btn-success">
+                                    <i class="fas fa-external-link" style="padding-right: 5px;"></i> Detayları Gör
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -11,32 +11,46 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\PodcastController;
 
 // Verify middleware eklenebilir ileride.
 
 Route::group(['middleware' => ['role:admin']], function () {
 
     Route::get('/dashboard', [TemplateController::class, 'dashboard'])->name('dashboard');
+
     Route::get('/dashboard/podcasts', [TemplateController::class, 'adminPodcasts'])->name('dashboard.podcasts');
+    Route::get('/dashboard/podcasts/create', [PodcastController::class, 'create'])->name('dashboard.podcasts.create');
+    Route::post('/dashboard/podcasts', [PodcastController::class, 'store'])->name('dashboard.podcasts.store');
+    Route::get('/dashboard/podcasts/{podcast}/edit', [PodcastController::class, 'edit'])->name('dashboard.podcasts.edit');
+    Route::put('/dashboard/podcasts/{podcast}', [PodcastController::class, 'update'])->name('dashboard.podcasts.update');
+    Route::delete('/dashboard/podcasts/{podcast}', [PodcastController::class, 'delete'])->name('dashboard.podcasts.delete');
+
     Route::get('/dashboard/campaigns', [TemplateController::class, 'adminCampaigns'])->name('dashboard.campaigns');
+
     Route::get('/dashboard/events', [TemplateController::class, 'adminEvents'])->name('dashboard.events');
-    Route::get('/dashboard/messages', [TemplateController::class, 'adminMessages'])->name('dashboard.messages');
-    Route::post('/dashboard/messages/{message}/mark-read', [MessageController::class, 'markRead'])->name('dashboard.messages.mark-read');
-    Route::post('/dashboard/messages/{message}/mark-unread', [MessageController::class, 'markUnread'])->name('dashboard.messages.mark-unread');
+
     Route::get('/dashboard/blog', [TemplateController::class, 'adminBlog'])->name('dashboard.blog');
     Route::get('/dashboard/blog/pending', [TemplateController::class, 'adminBlogPending'])->name('dashboard.blog.pending');
     Route::get('/dashboard/blog/passive', [TemplateController::class, 'adminBlogPassive'])->name('dashboard.blog.passive');
+    Route::put('/dashboard/articles/{article}/approve', [ArticleController::class, 'approve'])->name('dashboard.articles.approve');
+
     Route::get('/dashboard/comments', [TemplateController::class, 'adminComments'])->name('dashboard.comments');
+
     Route::get('/dashboard/categories', [TemplateController::class, 'adminCategories'])->name('dashboard.blog.categories');
     Route::post('/dashboard/categories', [CategoryController::class, 'add'])->name('dashboard.categories.add');
     Route::put('/dashboard/categories/{category}', [CategoryController::class, 'update'])->name('dashboard.categories.update');
-    Route::put('/dashboard/articles/{article}/approve', [ArticleController::class, 'approve'])->name('dashboard.articles.approve');
+
     Route::get('/dashboard/users', [UserController::class, 'show'])->name('dashboard.users');
     Route::put('/dashboard/users/{user}', [UserController::class, 'update'])->name('dashboard.users.update');
 
+    Route::get('/dashboard/messages', [TemplateController::class, 'adminMessages'])->name('dashboard.messages');
+    Route::post('/dashboard/messages/{message}/mark-read', [MessageController::class, 'markRead'])->name('dashboard.messages.mark-read');
+    Route::post('/dashboard/messages/{message}/mark-unread', [MessageController::class, 'markUnread'])->name('dashboard.messages.mark-unread');
+
 });
 
-Route::group(['middleware' => ['writer|admin']], function () {
+Route::group(['middleware' => ['role:writer|admin']], function () {
 
     Route::get('/blog/profile/articles', [TemplateController::class, 'myArticles'])->name('blog.profile.articles');
     Route::get('/dashboard/articles/{article}/edit', [ArticleController::class, 'edit'])->name('dashboard.articles.edit');

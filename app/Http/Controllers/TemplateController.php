@@ -123,9 +123,9 @@ class TemplateController extends Controller
 
     public function adminPodcasts() {
 
-        $podcasts = Podcast::orderBy('created_at', 'desc')->paginate(10);
+        $podcasts = Podcast::orderBy('created_at', 'desc')->paginate(9);
 
-        return view('frontend.admin.podcasts', compact('podcasts'));
+        return view('frontend.admin.podcasts.podcasts', compact('podcasts'));
     }
 
     public function adminCampaigns() {

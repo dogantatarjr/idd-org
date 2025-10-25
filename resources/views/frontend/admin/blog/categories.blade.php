@@ -64,19 +64,18 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="d-flex justify-content-end mb-3">
-                            <button type="button" class="btn btn-success" data-toggle="modal" onclick="showCategoryAdd()">
-                                <i class="fas fa-plus" href="javascript:void(0)"></i> Yeni Kategori
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
-
-            <br><br>
-
         </div>
     </div>
+
+    <div class="d-flex justify-content-end mb-3" style="padding-right: 30px;">
+        <button type="button" class="btn btn-success" data-toggle="modal" onclick="showCategoryAdd()">
+            <i class="fas fa-plus" href="javascript:void(0)"></i> Yeni Kategori
+        </button>
+    </div>
+
 </div>
 
 @include('frontend.admin.blog.category-detail')

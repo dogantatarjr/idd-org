@@ -7,14 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Podcast extends Model
 {
     protected $fillable = [
-        'name',
+        'title',
         'description',
         'time',
         'link',
         'image',
-    ];
-
-    protected $casts = [
-        'time' => 'datetime',
     ];
 }

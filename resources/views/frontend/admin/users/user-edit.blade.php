@@ -17,18 +17,18 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Kullanıcı Adı</label>
+                            <div class="form-group mb-2">
+                                <label class="mb-1">Kullanıcı Adı</label>
                                 <input type="text" class="form-control" name="name" id="edit-user-name">
                             </div>
                             <div class="form-group">
-                                <label>E-mail</label>
+                                <label class="mb-1">E-mail</label>
                                 <input type="email" class="form-control" name="email" id="edit-user-email">
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Rol</label>
+                            <div class="form-group mb-2">
+                                <label class="mb-1">Rol</label>
                                 <select class="form-control" name="role" id="edit-user-role">
                                     <option value="admin">Admin</option>
                                     <option value="writer">Writer</option>
@@ -37,7 +37,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Durum</label>
+                                <label class="mb-1">Durum</label>
                                 <select class="form-control" name="status" id="edit-user-status">
                                     <option value="active">Aktif</option>
                                     <option value="passive">Pasif</option>

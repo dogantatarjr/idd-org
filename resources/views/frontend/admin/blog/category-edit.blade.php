@@ -16,11 +16,11 @@
                     <input type="hidden" name="id" id="edit-category-id">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group mb-3">
+                            <div class="form-group mb-2">
                                 <label style="padding-bottom: 5px">Kategori Adı</label>
                                 <input type="text" class="form-control" name="name" id="edit-category-name">
                             </div>
-                            <div class="form-group mb-3">
+                            <div class="form-group mb-2">
                                 <label style="padding-bottom: 5px">Durum</label>
                                 <select class="form-control" name="status" id="edit-category-status">
                                     <option value="active">Aktif</option>
