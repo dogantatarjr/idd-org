@@ -18,6 +18,12 @@
                     </div>
                 @endif
 
+                @if (empty($articles) || $articles->count() == 0)
+                    <div class="alert alert-info">
+                        <i class="fa fa-info-circle" style="padding-right: 5px;"></i> Aktif herhangi bir yazı bulunmamaktadır.
+                    </div>
+                @endif
+
                 <div class="row row-cols-1 row-cols-md-3 g-4">
                     @foreach ($articles as $article)
                         @include('frontend.admin.blog.article-card')

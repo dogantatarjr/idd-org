@@ -45,20 +45,23 @@
                 </div>
             @endif
 
-            @php
-                if($article->user->status != 'active'){
-                    $article->user->name = 'Anonim Yazar';
-                }
-            @endphp
-
             <div class="col-lg-8 mb-4">
                 <div class="card single_post shadow-sm border-0">
-                    <img src="{{ $article->image }}" class="card-img-top rounded" alt="article-image">
+                    @if($article->image)
+                        <img src="{{ asset('storage/' . $article->image) }}"
+                             class="card-img-top rounded"
+                             alt="{{ $article->title }}">
+                    @else
+                        <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center rounded"
+                             style="height: 400px;">
+                            <i class="fas fa-image fa-4x text-white"></i>
+                        </div>
+                    @endif
                     <br>
                     <div class="card-body">
                         <h1 class="h3 fw-bold mb-3">{{ $article->title }}</h1>
                         <div class="text-muted small mb-4">
-                            <i class="fa fa-user me-2"></i> {{ $article->user->name }}
+                            <i class="fa fa-user me-2"></i> {{ $article->user->status === 'active' ? $article->user->name : 'Anonim Yazar' }}
                             <span class="mx-2">|</span>
                             <i class="fa fa-calendar me-2"></i> {{ $article->created_at->format('d.m.Y') }}
                             <span class="mx-2">|</span>
@@ -368,7 +371,6 @@
                     icon.classList.remove('fa-regular');
                     icon.classList.add('fa-solid');
 
-                    // 🎉 Kalp atışı efekti
                     icon.classList.add('pulse-animation');
                     setTimeout(() => icon.classList.remove('pulse-animation'), 500);
 
@@ -376,7 +378,6 @@
                     icon.classList.remove('fa-solid');
                     icon.classList.add('fa-regular');
 
-                    // 💥 Küçülme efekti
                     icon.classList.add('pop-animation');
                     setTimeout(() => icon.classList.remove('pop-animation'), 400);
                 }

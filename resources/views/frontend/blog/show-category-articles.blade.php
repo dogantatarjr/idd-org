@@ -17,10 +17,17 @@
                     <div class="card single_post mb-4 shadow-sm border-0">
                         <div class="card-body">
                             <div class="img-post mb-3">
-                                <img src="{{ $article->image }}"
-                                    class="img-fluid rounded object-fit-cover"
-                                    style="height: 300px; width: 100%;"
-                                    alt="article-image">
+                                @if($article->image)
+                                    <img src="{{ asset('storage/' . $article->image) }}"
+                                        class="img-fluid rounded object-fit-cover"
+                                        style="height: 300px; width: 100%;"
+                                        alt="{{ $article->title }}">
+                                @else
+                                    <div class="bg-secondary rounded d-flex align-items-center justify-content-center"
+                                         style="height: 300px; width: 100%;">
+                                        <i class="fas fa-image fa-3x text-white"></i>
+                                    </div>
+                                @endif
                             </div>
 
                             <h3 class="h5 fw-bold">{{ $article->title }}</h3>
@@ -48,7 +55,7 @@
                             </p>
 
                             <div class="d-flex justify-content-between align-items-center">
-                                <a href="/blog/articles/{{ $article->id }}" class="btn btn-outline-success btn-sm rounded-pill px-4">
+                                <a href="{{ route('blog.show', $article->id) }}" class="btn btn-outline-success btn-sm rounded-pill px-4">
                                     Devamını Oku
                                 </a>
                                 <ul class="list-inline mb-0">

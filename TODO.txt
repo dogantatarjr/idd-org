@@ -5,12 +5,8 @@ TODO:
 
     HER BİRİNE SEEDER OLUŞTUR + DEPLOYDAKİ ROLÜNÜ YAZ!
 
-    - Sekmelere içerik ekleme (Admin Paneli)
-
 - Google Captcha ve throttle ekle! (Login ve Contact sayfalarına)
 - Email Verification konfigürasyonunu yap
-
-- Fotoğraf yükleme (Yazılar için)
 
 FOR DEPLOY:
 

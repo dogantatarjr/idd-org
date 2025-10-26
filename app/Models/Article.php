@@ -17,7 +17,13 @@ class Article extends Model
         'title',
         'content',
         'user_id',
+        'image',
+        'category_id',
+        'likes',
+        'status',
     ];
+
+    protected $guarded = ['id'];
 
     // Article & User ilişkisi
     public function user()
