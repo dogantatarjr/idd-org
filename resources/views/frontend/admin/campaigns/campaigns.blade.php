@@ -22,12 +22,12 @@
                     @foreach ($campaigns as $campaign)
                         <div class="col">
                             <div class="card h-100">
-                                <img src="{{ asset('storage/' . $campaign->image) }}" class="card-img-top" alt="campaign-image" style="height: 200px; object-fit: cover;">
+                                <img src="{{ asset('storage/' . $campaign->image) }}" class="card-img-top" alt="campaign-image" style="object-fit: contain;">
                                 <div class="card-body">
                                     <h5 class="card-title" style="padding-bottom: 5px;">{{ $campaign->name }}</h5>
 
                                     @php
-                                        $maxWords = 25;
+                                        $maxWords = 30;
                                         $temp = strip_tags($campaign->description);
                                         $words = Str::words($temp, $maxWords, '...');
 
@@ -42,8 +42,18 @@
 
                                     <p class="card-text">{{ $words }}</p>
 
-                                    <a href="{{ $campaign->link }}" target="_blank" class="card-link text-decoration-none"><i class="fas fa-external-link"></i> Detayları Gör</a>
-                                    <a href="/dashboard/campaigns/{{ $campaign->id }}/edit" class="card-link text-decoration-none"><i class="fas fa-edit"></i> Düzenle</a><br><br>
+                                    <br><br>
+
+                                    <div class="position-absolute bottom-0 end-0 p-3">
+                                        <div class="d-flex gap-2">
+                                            <a href="{{ $campaign->link }}" target="_blank" class="btn btn-success btn-sm shadow-sm">
+                                                <i class="fas fa-external-link-alt"></i> Detayları Gör
+                                            </a>
+                                            <a href="/dashboard/campaigns/{{ $campaign->id }}/edit" class="btn btn-outline-primary btn-sm">
+                                                <i class="fas fa-edit"></i> Düzenle
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

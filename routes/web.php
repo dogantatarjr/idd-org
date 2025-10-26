@@ -13,6 +13,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\EventController;
 
 // Verify middleware eklenebilir ileride.
 
@@ -35,6 +36,11 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::delete('/dashboard/campaigns/{campaign}', [CampaignController::class, 'delete'])->name('dashboard.campaigns.delete');
 
     Route::get('/dashboard/events', [TemplateController::class, 'adminEvents'])->name('dashboard.events');
+    Route::get('/dashboard/events/create', [EventController::class, 'create'])->name('dashboard.events.create');
+    Route::post('/dashboard/events', [EventController::class, 'store'])->name('dashboard.events.store');
+    Route::get('/dashboard/events/{event}/edit', [EventController::class, 'edit'])->name('dashboard.events.edit');
+    Route::put('/dashboard/events/{event}', [EventController::class, 'update'])->name('dashboard.events.update');
+    Route::delete('/dashboard/events/{event}', [EventController::class, 'delete'])->name('dashboard.events.delete');
 
     Route::get('/dashboard/blog', [TemplateController::class, 'adminBlog'])->name('dashboard.blog');
     Route::get('/dashboard/blog/pending', [TemplateController::class, 'adminBlogPending'])->name('dashboard.blog.pending');

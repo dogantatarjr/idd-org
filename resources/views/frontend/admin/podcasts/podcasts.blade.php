@@ -21,24 +21,26 @@
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 @foreach ($podcasts as $podcast)
                     <div class="col">
-                        <div class="card h-100">
-                            <img src="{{ asset('storage/' . $podcast->image) }}" class="card-img-top" alt="podcast-image">
-                            <div class="card-body">
-                                <h5 class="card-title" style="padding-bottom: 5px;">{{ $podcast->title }}</h5>
+                        <div class="card h-100 position-relative shadow-sm border-0">
+                            <img src="{{ asset('storage/' . $podcast->image) }}"
+                                 class="card-img-top"
+                                 alt="podcast-image"
+                                 style="object-fit: contain;">
+
+                            <div class="card-body pb-5">
+                                <h5 class="card-title fw-semibold mb-2">{{ $podcast->title }}</h5>
 
                                 @if($podcast->time)
                                     <p class="text-muted small mb-2">
-                                        <i class="fas fa-clock" style="padding-right: 5px;"></i> {{ $podcast->time }}
+                                        <i class="fas fa-clock me-2"></i>{{ $podcast->time }}
                                     </p>
                                 @endif
 
                                 @php
-                                    $maxWords = 25;
+                                    $maxWords = 20;
                                     $temp = strip_tags($podcast->description);
                                     $words = Str::words($temp, $maxWords, '...');
-
                                     $lastPeriodPos = strrpos($words, '.');
-
                                     if ($lastPeriodPos !== false) {
                                         $words = substr($words, 0, $lastPeriodPos + 1);
                                     } else {
@@ -47,9 +49,19 @@
                                 @endphp
 
                                 <p class="card-text">{{ $words }}</p>
+                            </div>
 
-                                <a href="{{ $podcast->link }}" target="_blank" class="card-link text-decoration-none"><i class="fas fa-external-link"></i> Detayları Gör</a>
-                                <a href="/dashboard/podcasts/{{ $podcast->id }}/edit" class="card-link text-decoration-none"><i class="fas fa-edit"></i> Düzenle</a><br><br>
+                            <br>
+
+                            <div class="position-absolute bottom-0 end-0 p-3">
+                                <div class="d-flex gap-2">
+                                    <a href="{{ $podcast->link }}" target="_blank" class="btn btn-success btn-sm shadow-sm">
+                                        <i class="fas fa-external-link-alt"></i> Detayları Gör
+                                    </a>
+                                    <a href="/dashboard/podcasts/{{ $podcast->id }}/edit" class="btn btn-outline-primary btn-sm">
+                                        <i class="fas fa-edit"></i> Düzenle
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -63,13 +75,12 @@
     </div>
 
     <div class="row mb-4">
-        <div class="col-12 d-flex justify-content-end" style="padding-right: 30px;">
+        <div class="col-12 d-flex justify-content-end pe-4">
             <a href="{{ route('dashboard.podcasts.create') }}" class="btn btn-success">
                 <i class="fas fa-plus"></i> Yeni Podcast
             </a>
         </div>
     </div>
-
 </div>
 
 @endsection
