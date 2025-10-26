@@ -118,7 +118,10 @@ class TemplateController extends Controller
     // Admin Paneli Sayfaları
 
     public function dashboard(){
-        return view('frontend.admin.dashboard');
+
+        $carousels = Carousel::orderBy('created_at', 'desc')->paginate(9);
+
+        return view('frontend.admin.dashboard', compact('carousels'));
     }
 
     public function adminPodcasts() {

@@ -14,12 +14,19 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\CarouselController;
 
 // Verify middleware eklenebilir ileride.
 
 Route::group(['middleware' => ['role:admin']], function () {
 
-    Route::get('/dashboard', [TemplateController::class, 'dashboard'])->name('dashboard');
+    Route::get('/dashboard', [CarouselController::class, 'index'])->name('dashboard');
+
+    Route::get('/dashboard/carousels/create', [CarouselController::class, 'create'])->name('dashboard.carousels.create');
+    Route::post('/dashboard/carousels', [CarouselController::class, 'store'])->name('dashboard.carousels.store');
+    Route::get('/dashboard/carousels/{carousel}/edit', [CarouselController::class, 'edit'])->name('dashboard.carousels.edit');
+    Route::put('/dashboard/carousels/{carousel}', [CarouselController::class, 'update'])->name('dashboard.carousels.update');
+    Route::delete('/dashboard/carousels/{carousel}', [CarouselController::class, 'delete'])->name('dashboard.carousels.delete');
 
     Route::get('/dashboard/podcasts', [TemplateController::class, 'adminPodcasts'])->name('dashboard.podcasts');
     Route::get('/dashboard/podcasts/create', [PodcastController::class, 'create'])->name('dashboard.podcasts.create');

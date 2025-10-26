@@ -47,7 +47,7 @@
         position: relative;
         z-index: 2;
         margin-left: 240px;
-        margin-top: 60px; /* İçeriği aşağı kaydır */
+        margin-top: 60px;
         max-width: 900px;
         color: white;
     }
@@ -62,7 +62,7 @@
 
     .slider-content p {
         font-size: 1.25rem;
-        margin-bottom: 2.5rem;
+        margin-bottom: 2rem;
         max-width: 700px;
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         line-height: 1.6;
@@ -160,10 +160,10 @@
                 <div class="slider-overlay"></div>
                 <div class="slider-content">
                     <h2>{{ $carousel->title }}</h2>
-                    <p>{{ $carousel->content }}</p>
+                    <p>{!! $carousel->content !!}</p>
                     @if($carousel->link)
                         <a href="{{ $carousel->link }}" target="_blank" class="btn btn-success btn-lg">
-                            <i class="fas fa-external-link" style="margin-right: 8px;"></i>Detayları Gör
+                            <i class="fas fa-external-link" style="margin-right: 8px;"></i> Detayları Gör
                         </a>
                     @endif
                 </div>
