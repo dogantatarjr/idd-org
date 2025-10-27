@@ -98,11 +98,11 @@ Route::get('/campaings', [TemplateController::class, 'campaings'])->name('campai
 Route::get('/events', [TemplateController::class,  'events'])->name('events');
 Route::get('/about', [TemplateController::class, 'about'])->name('about');
 Route::get('/contact', [TemplateController::class, 'contact'])->name('contact');
-Route::post('/contact', [MessageController::class, 'submit'])->name('contact.submit');
+Route::post('/contact', [MessageController::class, 'submit'])->name('contact.submit')->middleware('throttle: 5, 1');
 Route::get('/blog', [TemplateController::class, 'blog'])->name('blog');
 Route::get('/login', [AuthController::class, 'authLogin'])->name('auth.login');
 Route::get('/register', [AuthController::class, 'authRegister'])->name('auth.register');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login')->middleware('throttle: 5, 1');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::put('/profile/update-name', [ProfileController::class, 'updateName'])->name('profile.update.name');

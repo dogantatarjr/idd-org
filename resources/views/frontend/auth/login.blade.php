@@ -6,6 +6,8 @@
 
 @section('content')
 
+<br><br>
+
 <!-- Validation Errors -->
 @if ($errors->any())
     <div class="alert alert-danger mt-3 text-center">
@@ -52,9 +54,18 @@
                     required
                 >
             </div>
+
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="rememberMe" name="remember">
                 <label class="form-check-label" for="rememberMe">Beni hatırla</label>
+            </div>
+
+            <!-- reCAPTCHA v2 Checkbox -->
+            <div class="mb-3">
+                <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
+                @error('g-recaptcha-response')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
 
             <button type="submit" class="btn btn-success w-100" onclick="login()">Giriş Yap!</button>
@@ -69,6 +80,9 @@
 </div>
 
 <br>
+
+<!-- Google reCAPTCHA v2 script -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <script>
     function login(){

@@ -4,6 +4,10 @@
 
 @section('blog-sit', 'active')
 
+@section('content')
+
+<br><br>
+
 <!-- Validation Errors -->
 @if ($errors->any())
     <div class="alert alert-danger mt-3 text-center">
@@ -15,7 +19,7 @@
     </div>
 @endif
 
-@section('content')
+<br><br><br>
 
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
@@ -78,6 +82,14 @@
                 >
             </div>
 
+            <!-- reCAPTCHA v2 Checkbox -->
+            <div class="mb-3">
+                <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
+                @error('g-recaptcha-response')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
+            </div>
+
             <button type="submit" class="btn btn-success w-100" onclick="register()">Kayıt Ol!</button>
 
             <div class="mt-3 text-center">
@@ -91,10 +103,13 @@
 
 <br><br><br>
 
+<!-- Google reCAPTCHA v2 script -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 <script>
     function register(){
         Swal.fire({
-            title: 'Giriş yapılıyor...',
+            title: 'Kayıt oluyor...',
             icon: 'success',
             showConfirmButton: false,
             timer: 1500,

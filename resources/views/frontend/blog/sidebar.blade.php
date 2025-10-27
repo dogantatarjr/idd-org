@@ -159,16 +159,16 @@
     <div class="card mb-4 shadow-sm border-0">
         <div class="card-header fw-bold">Bizi Takip Edin!</div>
         <div class="card-body d-flex gap-3">
-            <a href="#" target="_blank" class="text-success fs-4">
+            <a href="https://www.instagram.com/idd.org.tr/" target="_blank" class="text-success fs-4">
                 <i class="fab fa-instagram"></i>
             </a>
-            <a href="#" target="_blank" class="text-success fs-4">
+            <a href="https://www.linkedin.com/company/i%CC%87klim-de%C4%9Fi%C5%9Fmeden-de%C4%9Fi%C5%9F-%C5%9Firket" target="_blank" class="text-success fs-4">
                 <i class="fab fa-linkedin"></i>
             </a>
-            <a href="#" target="_blank" class="text-success fs-4">
+            <a href="https://open.spotify.com/show/0FnjKhFwwugAHvTSIOiVS0?si=5fe08b0c2dde4414&nd=1&dlsi=b1f7cc70aa8e45e4" target="_blank" class="text-success fs-4">
                 <i class="fab fa-spotify"></i>
             </a>
-            <a href="#" target="_blank" class="text-success fs-4">
+            <a href="https://www.youtube.com/@iklimdegismedendegis" target="_blank" class="text-success fs-4">
                 <i class="fab fa-youtube"></i>
             </a>
         </div>

@@ -23,10 +23,10 @@
                     <div class="social-links-wrapper">
                         <h5 class="mb-3">Bizi Takip Edin</h5>
                         <div class="social-links">
-                            <a href="#" class="text-white me-3 fs-4"><i class="bi bi-instagram"></i></a>
-                            <a href="#" class="text-white me-3 fs-4"><i class="bi bi-linkedin"></i></a>
-                            <a href="#" class="text-white me-3 fs-4"><i class="bi bi-spotify"></i></a>
-                            <a href="#" class="text-white me-3 fs-4"><i class="bi bi-youtube"></i></a>
+                            <a href="https://www.instagram.com/idd.org.tr/" class="text-white me-3 fs-4"><i class="bi bi-instagram"></i></a>
+                            <a href="https://www.linkedin.com/company/i%CC%87klim-de%C4%9Fi%C5%9Fmeden-de%C4%9Fi%C5%9F-%C5%9Firket" class="text-white me-3 fs-4"><i class="bi bi-linkedin"></i></a>
+                            <a href="https://open.spotify.com/show/0FnjKhFwwugAHvTSIOiVS0?si=5fe08b0c2dde4414&nd=1&dlsi=b1f7cc70aa8e45e4" class="text-white me-3 fs-4"><i class="bi bi-spotify"></i></a>
+                            <a href="https://www.youtube.com/@iklimdegismedendegis" class="text-white me-3 fs-4"><i class="bi bi-youtube"></i></a>
                         </div>
                     </div>
                 </div>
