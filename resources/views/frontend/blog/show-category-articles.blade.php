@@ -18,7 +18,7 @@
                         <div class="card-body">
                             <div class="img-post mb-3">
                                 @if($article->image)
-                                    <img src="{{ asset('storage/' . $article->image) }}"
+                                    <img src="{{ asset('/storage/app/public/' . $article->image) }}"
                                         class="img-fluid rounded object-fit-cover"
                                         style="height: 300px; width: 100%;"
                                         alt="{{ $article->title }}">

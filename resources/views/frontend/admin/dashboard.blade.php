@@ -22,7 +22,7 @@
                     @foreach ($carousels as $carousel)
                         <div class="col">
                             <div class="card h-100 position-relative shadow-sm border-0">
-                                <img src="{{ asset('storage/' . $carousel->image) }}"
+                                <img src="{{ asset('/storage/app/public/' . $carousel->image) }}"
                                     class="card-img-top"
                                     alt="carousel-image"
                                     style="object-fit: contain;">

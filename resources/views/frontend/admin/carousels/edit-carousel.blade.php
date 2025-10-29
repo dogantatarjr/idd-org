@@ -50,7 +50,7 @@
                             <label for="image" class="form-label">Görsel</label>
                             @if($carousel->image)
                                 <div class="mb-2">
-                                    <img src="{{ asset('storage/' . $carousel->image) }}" alt="Current image" class="img-thumbnail" style="max-width: 200px;">
+                                    <img src="{{ asset('/storage/app/public/' . $carousel->image) }}" alt="Current image" class="img-thumbnail" style="max-width: 200px;">
                                     <p class="text-muted small mt-1">Mevcut görsel</p>
                                 </div>
                             @endif

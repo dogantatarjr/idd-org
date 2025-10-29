@@ -22,7 +22,7 @@
                     @foreach ($podcasts as $podcast)
                         <div class="col">
                             <div class="card h-100 position-relative shadow-sm border-0">
-                                <img src="{{ asset('storage/' . $podcast->image) }}"
+                                <img src="{{ asset('/storage/app/public/' . $podcast->image) }}"
                                     class="card-img-top"
                                     alt="podcast-image"
                                     style="object-fit: contain;">

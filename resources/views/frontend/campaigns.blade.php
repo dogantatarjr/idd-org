@@ -18,7 +18,7 @@
                     <div class="card shadow-sm border-0 h-100">
                         <div class="row g-0 {{ $index % 2 == 1 ? 'flex-row-reverse' : '' }}">
                             <div class="col-md-5">
-                                <img src="{{ asset('storage/' . $campaign->image) }}"
+                                <img src="{{ asset('/storage/app/public/' . $campaign->image) }}"
                                     class="img-fluid w-100 h-100"
                                     alt="{{ $campaign->name }}"
                                     style="object-fit: cover; min-height: 300px;">

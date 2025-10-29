@@ -58,7 +58,7 @@
             <div class="col-lg-8 mb-4">
                 <div class="card single_post shadow-sm border-0">
                     @if($article->image)
-                        <img src="{{ asset('storage/' . $article->image) }}"
+                        <img src="{{ asset('/storage/app/public/' . $article->image) }}"
                              class="card-img-top rounded"
                              alt="{{ $article->title }}">
                     @else

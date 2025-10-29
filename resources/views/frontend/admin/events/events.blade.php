@@ -22,7 +22,7 @@
                 @foreach ($events as $event)
                     <div class="col">
                         <div class="card h-100 shadow-sm border-0">
-                            <img src="{{ asset('storage/' . $event->image) }}" class="card-img-top" alt="event-image" style="object-fit: contain;">
+                            <img src="{{ asset('/storage/app/public/' . $event->image) }}" class="card-img-top" alt="event-image" style="object-fit: contain;">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title fw-semibold" style="padding-bottom: 5px;">{{ $event->name }}</h5>
 
