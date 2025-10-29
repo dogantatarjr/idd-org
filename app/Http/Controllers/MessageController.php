@@ -10,7 +10,7 @@ class MessageController extends Controller
 {
     public function submit(Request $request)
     {
-        // Validation
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -32,7 +32,6 @@ class MessageController extends Controller
             return back()->withErrors(['g-recaptcha-response' => 'Lütfen reCAPTCHA doğrulamasını tamamlayın.'])->withInput();
         }
 
-        // Mesajı kaydet
         Message::create($request->only('name', 'email', 'subject', 'message'));
 
         return back()->with('success', 'Mesajınız başarıyla gönderildi!');
@@ -41,12 +40,21 @@ class MessageController extends Controller
     public function markRead(Message $message)
     {
         $message->update(['status' => 'passive']);
-        return back()->with('success', 'Mesaj okundu olarak işaretlendi.');
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Mesaj okundu olarak işaretlendi.'
+        ]);
     }
 
     public function markUnread(Message $message)
     {
         $message->update(['status' => 'active']);
-        return back()->with('success', 'Mesaj okunmadı olarak işaretlendi.');
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Mesaj okunmadı olarak işaretlendi.'
+        ]);
     }
+
 }

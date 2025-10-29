@@ -68,7 +68,7 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-success w-100" onclick="login()">Giriş Yap!</button>
+            <button type="submit" class="btn btn-success w-100">Giriş Yap!</button>
 
             <div class="mt-3 text-center">
                 <small>
@@ -82,20 +82,32 @@
 <br>
 
 <!-- Google reCAPTCHA v2 script -->
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 
+<!-- SweetAlert + reCAPTCHA kontrol -->
 <script>
-    function login(){
+document.getElementById('login-form').addEventListener('submit', function(e) {
+    var response = grecaptcha.getResponse();
+    if(response.length === 0){
+        e.preventDefault();
+        Swal.fire({
+            title: 'Lütfen reCAPTCHA doğrulamasını tamamlayın!',
+            icon: 'error'
+        });
+        return false;
+    } else {
+        e.preventDefault(); // Token varsa da önce SweetAlert göster
         Swal.fire({
             title: 'Giriş yapılıyor...',
             icon: 'success',
             showConfirmButton: false,
-            timer: 1500,
+            timer: 1000,
             willClose: () => {
-                document.getElementById('login-form').submit();
+                e.target.submit(); // Formu submit et
             }
         });
     }
+});
 </script>
 
 @endsection

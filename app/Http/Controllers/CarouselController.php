@@ -41,7 +41,7 @@ class CarouselController extends Controller
 
     public function edit($id)
     {
-        
+
         $carousel = Carousel::findOrFail($id);
 
         return view('frontend.admin.carousels.edit-carousel', compact('carousel'));
@@ -71,7 +71,7 @@ class CarouselController extends Controller
         return redirect()->route('dashboard')->with('success-carousel', 'Carousel başarıyla güncellendi!');
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $carousel = Carousel::findOrFail($id);
 

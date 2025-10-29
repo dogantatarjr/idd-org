@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="text-center fw-bold text-success mb-5" style="padding-top: 50px">
+    <div class="text-center fw-bold text-success mb-5" style="padding-top: 70px">
         <i class="fas fa-microphone fa-4x mb-3"></i>
         <h1><b>IDD ORG Podcast</b></h1>
     </div>
@@ -30,7 +30,7 @@
 
                             <div class="mt-auto text-end">
                                 <a href="{{ $podcast->link }}" target="_blank" class="btn btn-success">
-                                    <i class="fas fa-external-link" style="padding-right: 5px;"></i> Detayları Gör
+                                    <i class="fas fa-external-link" style="padding-right: 5px;"></i> Bölümü Dinle!
                                 </a>
                             </div>
                         </div>

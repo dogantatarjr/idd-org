@@ -8,9 +8,9 @@ use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+
+    // Deploy esnasında oluşturulacak kategoriler
+
     public function run(): void
     {
         Category::create(['id' => 1, 'name' => 'Sürdürülebilirlik', 'status' => 'active']);

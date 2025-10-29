@@ -63,7 +63,7 @@
     .slider-content p {
         font-size: 1.25rem;
         margin-bottom: 2rem;
-        max-width: 700px;
+        max-width: 750px;
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         line-height: 1.6;
     }
@@ -163,7 +163,7 @@
                     <p>{!! $carousel->content !!}</p>
                     @if($carousel->link)
                         <a href="{{ $carousel->link }}" target="_blank" class="btn btn-success btn-lg">
-                            <i class="fas fa-external-link" style="margin-right: 8px;"></i> Detayları Gör
+                            <i class="fas fa-external-link" style="margin-right: 8px;"></i> Detayları Gör!
                         </a>
                     @endif
                 </div>
@@ -191,6 +191,7 @@
             currentIndex = index;
         }
 
+        // Manuel butonlar
         rightArrow.addEventListener('click', () => {
             showSlide((currentIndex + 1) % total);
         });
@@ -198,5 +199,10 @@
         leftArrow.addEventListener('click', () => {
             showSlide((currentIndex - 1 + total) % total);
         });
+
+        setInterval(() => {
+            showSlide((currentIndex + 1) % total);
+        }, 7000);
     });
 </script>
+

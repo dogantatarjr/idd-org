@@ -354,6 +354,7 @@
         font-size: 1.1rem;
         color: #444;
         margin-bottom: 0;
+        max-width: 700px;
     }
     @media (max-width: 991px) {
         .logo-section .about-title {

@@ -32,29 +32,29 @@
     @endauth
 
     @guest
-        <div class="d-none d-lg-flex align-items-center mb-2">
-            <a class="btn btn-outline-success btn-m w-100" href="{{ route('auth.login') }}">
-                <i class="fa fa-sign-in-alt me-1"></i> Giriş Yap
-            </a>
-        </div>
-
-        <div class="d-none d-lg-flex align-items-center mb-2">
-            <a class="btn btn-outline-success btn-m w-100" href="{{ route('auth.register') }}">
-                <i class="fa fa-user-plus me-1"></i> Kayıt Ol
-            </a>
+        <div class="card mb-4 shadow-sm border-0">
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a class="btn btn-outline-success" href="{{ route('auth.login') }}">
+                        <i class="fa fa-sign-in-alt me-1"></i> Giriş Yap
+                    </a>
+                    <a class="btn btn-outline-success" href="{{ route('auth.register') }}">
+                        <i class="fa fa-user-plus me-1"></i> Kayıt Ol
+                    </a>
+                </div>
+            </div>
         </div>
     @endguest
 
     @role('admin')
         <!-- Admin Paneli -->
-        <div>
+        <div class="mb-4">
             <div class="text-center">
                 <a href="{{ route('dashboard') }}" class="btn btn-success w-100">
                     <i class="fa fa-house me-2"></i> Admin Paneline Git
                 </a>
             </div>
         </div>
-        <br>
     @endrole
 
     <!-- Arama -->
@@ -109,7 +109,7 @@
         <div class="card-body">
             @foreach($articles_like as $article_like)
             <div class="d-flex mb-3 align-items-center">
-                <img src="{{ $article_like->image }}" style="width:50px; height:50px; object-fit:cover;" class="me-3 rounded shadow-sm" alt="Popüler Gönderi">
+                <img src="{{ asset('storage/' . $article_like->image) }}" style="width:50px; height:50px; object-fit:cover;" class="me-3 rounded shadow-sm" alt="Popüler Gönderi">
                 <div>
                     <p class="mb-1 fw-semibold">
                         <a href="/blog/articles/{{ $article_like->id }}" class="text-decoration-none text-dark">
@@ -129,7 +129,7 @@
         <div class="card-body">
             @foreach($articles_latest as $article)
             <div class="d-flex mb-3 align-items-center">
-                <img src="{{ $article->image }}" style="width:50px; height:50px; object-fit:cover;" class="me-3 rounded shadow-sm" alt="Popüler Gönderi">
+                <img src="{{ asset('storage/' . $article->image) }}" style="width:50px; height:50px; object-fit:cover;" class="me-3 rounded shadow-sm" alt="Popüler Gönderi">
                 <div>
                     <p class="mb-1 fw-semibold">
                         <a href="/blog/articles/{{ $article->id }}" class="text-decoration-none text-dark">
@@ -211,4 +211,3 @@
         });
     }
 </script>
-

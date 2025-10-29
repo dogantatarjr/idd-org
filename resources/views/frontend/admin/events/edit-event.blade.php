@@ -140,7 +140,7 @@
         document.getElementById('delete-btn').addEventListener('click', function() {
             Swal.fire({
                 title: 'Emin misiniz?',
-                text: "Bu etkinliği silmek istediğinizden emin misiniz? Bu işlem geri alınamaz!",
+                text: "Bu etkinlik gönderisini silmek istediğinizden emin misiniz? Bu işlem geri alınamaz!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',

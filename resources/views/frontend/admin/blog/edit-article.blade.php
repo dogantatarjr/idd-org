@@ -13,8 +13,6 @@
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-    <!-- CKEditor 5 -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 </head>
 <body>
     <div class="container my-5">
@@ -67,7 +65,6 @@
                                     <div class="text-danger small mt-1">{{ $message }}</div>
                                 @enderror
 
-                                <!-- Önizleme -->
                                 <div class="mt-3" id="image-preview" style="display:none;">
                                     <p class="fw-bold mb-1">Yeni Görsel:</p>
                                     <img src="#" alt="Preview" class="img-thumbnail" style="max-width: 200px;">
@@ -117,36 +114,102 @@
         </div>
     </div>
 
-    <script>
-        // CKEditor'u textarea üzerinde başlat
-        ClassicEditor
-            .create(document.querySelector('#content'))
-            .then(editor => {
-                const form = document.querySelector('#edit-article-form');
-                form.addEventListener('submit', () => {
-                    // Form submit olmadan önce CKEditor içeriğini textarea'ya aktar
-                    document.querySelector('#content').value = editor.getData();
-                });
-            })
-            .catch(error => console.error(error));
+    <style>
+        .ck-editor__editable_inline {
+            min-height: 300px !important;
+            max-height: 600px !important;
+            font-size: 1rem !important;
+            font-weight: 400 !important;
+            font-family: 'Inter', 'Montserrat', sans-serif !important;
+            line-height: 1.4 !important;
+        }
 
-        // Görsel önizleme fonksiyonu
+        .ck-editor__editable_inline strong,
+        .ck-editor__editable_inline b {
+            font-weight: 900 !important;
+        }
+        .ck-editor__editable_inline p {
+            text-align: justify;
+        }
+    </style>
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const titleInput = document.querySelector('#title');
+            const categorySelect = document.querySelector('#category');
+            const statusSelect = document.querySelector('#status');
+
+            ClassicEditor
+                .create(document.querySelector('#content'), {
+                    toolbar: [
+                        'undo', 'redo',
+                        '|',
+                        'heading',
+                        '|',
+                        'bold', 'italic', 'underline',
+                        '|',
+                        'link', 'blockQuote',
+                        '|',
+                        'bulletedList', 'numberedList'
+                    ]
+                })
+                .then(editor => {
+                    const form = document.querySelector('#edit-article-form');
+
+                    const articleId = "{{ $article->id }}";
+                    const titleKey = `edit-title-${articleId}`;
+                    const contentKey = `edit-content-${articleId}`;
+                    const categoryKey = `edit-category-${articleId}`;
+                    const statusKey = `edit-status-${articleId}`;
+
+                    const savedTitle = localStorage.getItem(titleKey);
+                    const savedContent = localStorage.getItem(contentKey);
+                    const savedCategory = localStorage.getItem(categoryKey);
+                    const savedStatus = localStorage.getItem(statusKey);
+
+                    if (savedTitle) titleInput.value = savedTitle;
+                    if (savedContent) editor.setData(savedContent);
+                    if (savedCategory) categorySelect.value = savedCategory;
+                    if (statusSelect && savedStatus) statusSelect.value = savedStatus;
+
+                    titleInput.addEventListener('input', e => localStorage.setItem(titleKey, e.target.value));
+                    editor.model.document.on('change:data', () => localStorage.setItem(contentKey, editor.getData()));
+                    categorySelect.addEventListener('change', e => localStorage.setItem(categoryKey, e.target.value));
+                    if (statusSelect) statusSelect.addEventListener('change', e => localStorage.setItem(statusKey, e.target.value));
+
+                    form.addEventListener('submit', e => {
+                        const content = editor.getData().trim();
+                        document.querySelector('#content').value = content;
+                        if (content === '') {
+                            e.preventDefault();
+                            alert('İçerik alanı boş olamaz.');
+                        } else {
+                            localStorage.removeItem(titleKey);
+                            localStorage.removeItem(contentKey);
+                            localStorage.removeItem(categoryKey);
+                            localStorage.removeItem(statusKey);
+                        }
+                    });
+                })
+                .catch(error => console.error(error));
+        });
+
         function previewFile(event) {
             const preview = document.getElementById('image-preview');
             const img = preview.querySelector('img');
             const file = event.target.files[0];
 
-            if(file) {
-                // Dosya boyutu kontrolü (5MB)
-                if(file.size > 5242880) {
+            if (file) {
+                if (file.size > 5242880) {
                     alert('Dosya boyutu 5MB\'dan büyük olamaz!');
                     event.target.value = '';
                     preview.style.display = 'none';
                     return;
                 }
 
-                // Dosya tipi kontrolü
-                if(!file.type.match('image.*')) {
+                if (!file.type.match('image.*')) {
                     alert('Lütfen sadece görsel dosyası seçiniz!');
                     event.target.value = '';
                     preview.style.display = 'none';
@@ -154,7 +217,7 @@
                 }
 
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     img.src = e.target.result;
                     preview.style.display = 'block';
                 }
@@ -165,12 +228,10 @@
             }
         }
 
-        // Görseli kaldırma fonksiyonu
         function clearImage() {
             const fileInput = document.getElementById('image');
             const preview = document.getElementById('image-preview');
             const img = preview.querySelector('img');
-
             fileInput.value = '';
             img.src = '#';
             preview.style.display = 'none';

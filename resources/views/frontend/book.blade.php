@@ -89,7 +89,7 @@
     }
 </style>
 
-    <div class="text-center fw-bold text-success mb-5" style="padding-top: 100px; background-color: #ffffff;">
+    <div class="text-center fw-bold text-success mb-5" style="padding-top: 70px; background-color: #ffffff;">
         <i class="fas fa-book fa-4x mb-4"></i>
         <h1><b>Change Before Climate Change</b></h1>
     </div>

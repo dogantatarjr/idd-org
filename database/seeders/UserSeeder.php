@@ -16,25 +16,6 @@ class UserSeeder extends Seeder
 
         // Deploy esnasında oluşturulacak kullanıcılar
 
-        User::create([
-            'name' => 'Doğan TATAR',
-            'email' => 'dogantatarjr@gmail.com',
-            'password' => bcrypt('12345678'),
-            'role' => 'admin',
-        ]);
 
-        User::create([
-            'name' => 'Aydan COMBA',
-            'email' => 'aydancemrecomba@gmail.com',
-            'password'=> bcrypt('12345678'),
-            'role' => 'writer',
-        ]);
-
-        User::create([
-            'name' => 'Kuzey GÖKTEPE',
-            'email' => 'kuzey.goktepe@gmail.com',
-            'password'=> bcrypt('12345678'),
-            'role' => 'user',
-        ]);
     }
 }

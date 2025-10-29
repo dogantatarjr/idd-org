@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Validation\ValidationException;
-use \Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Http;
 
 class AuthController extends Controller
 {
@@ -28,6 +28,7 @@ class AuthController extends Controller
             'g-recaptcha-response' => 'required',
         ]);
 
+        // reCAPTCHA doğrulama
         $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
             'secret' => env('RECAPTCHA_SECRET_KEY'),
             'response' => $request->input('g-recaptcha-response'),
@@ -56,7 +57,11 @@ class AuthController extends Controller
             ]);
         }
 
-        if (Auth::attempt($validated, $request->has('remember'))) {
+        // Sadece email ve password ile login
+        if (Auth::attempt([
+            'email' => $validated['email'],
+            'password' => $validated['password']
+        ], $request->has('remember'))) {
             return redirect()->route('blog');
         }
 
@@ -74,6 +79,7 @@ class AuthController extends Controller
             'g-recaptcha-response' => 'required',
         ]);
 
+        // reCAPTCHA doğrulama
         $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
             'secret' => env('RECAPTCHA_SECRET_KEY'),
             'response' => $request->input('g-recaptcha-response'),

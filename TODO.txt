@@ -1,6 +1,14 @@
 TODO:
 
     HER BİRİ OBJEYE SEEDER OLUŞTUR + DEPLOYDAKİ ROLÜNÜ YAZ!
+        - Podcastler
+        - Etkinlikler
+        - Kampanyalar
+        - Blog Yazısı
+        - Roller & İzinler
+        - Kategoriler
+        - Kullanıcılar
+
 
 FOR DEPLOY:
 

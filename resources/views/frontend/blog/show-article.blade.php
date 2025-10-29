@@ -34,7 +34,17 @@
         .pulse-animation {
             animation: pulse 0.5s ease;
         }
+        .single_post .card-body {
+            font-size: 1.05rem;
+            line-height: 1.6 !important;
+        }
+        .single_post .card-body p {
+            font-size: 1.05rem;
+            line-height: 1.6 !important;
+            text-align: justify;
+        }
     </style>
+
 
     <div class="blog-page container my-5">
         <div class="row">
@@ -59,7 +69,7 @@
                     @endif
                     <br>
                     <div class="card-body">
-                        <h1 class="h3 fw-bold mb-3">{{ $article->title }}</h1>
+                        <h1 class="h3 fw-bold mb-3" style="line-height: 2.5rem">{{ $article->title }}</h1>
                         <div class="text-muted small mb-4">
                             <i class="fa fa-user me-2"></i> {{ $article->user->status === 'active' ? $article->user->name : 'Anonim Yazar' }}
                             <span class="mx-2">|</span>
@@ -119,11 +129,12 @@
                         <form action="{{ route('comments.add', $article->id) }}" method="POST" class="mt-3">
                             @csrf
                             <input type="hidden" name="article_id" value="{{ $article->id }}">
-                            <div class="mb-3">
+                            <div class="form-floating mb-3">
                                 <textarea name="content" class="form-control @error('content') is-invalid @enderror" rows="3" placeholder="Yorumunuzu yazın...">{{ old('content') }}</textarea>
                                 @error('content')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                                <label for="floatingTextarea">Yorumunuzu yazın...</label>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <button type="submit" class="btn btn-success"><i class="fa fa-paper-plane" style="padding-right: 5px;"></i> Gönder</button>
@@ -162,7 +173,7 @@
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton{{ $comment->id }}">
                                                     <a href="javascript:void(0);" class="dropdown-item" onclick="editComment({{ $comment->id }})">
-                                                        <i class="fa fa-pencil-square text-success me-2"></i> Düzenle
+                                                        <i class="fa fa-pencil-square text-warning me-2"></i> Düzenle
                                                     </a>
                                                     <a href="javascript:void(0);" class="dropdown-item" onclick="deleteReply({{ $comment->id }})">
                                                         <i class="fa fa-trash text-danger me-2"></i> Sil
@@ -184,8 +195,9 @@
 
                                     <p class="fw-bold"><i class="fa fa-user me-2"></i> {{ $user->name }}</p>
 
-                                    <div class="mb-2">
+                                    <div class="form-floating mb-2">
                                         <textarea name="content" class="form-control" rows="2" placeholder="Yanıtınızı yazın..."></textarea>
+                                        <label for="floatingTextarea">Yanıtınızı yazın...</label>
                                     </div>
 
                                     <button type="submit" class="btn btn-sm btn-outline-success">Yanıtla!</button>

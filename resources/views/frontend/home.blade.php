@@ -1,6 +1,6 @@
 @extends('frontend.master')
 
-@section('title', 'İklim Değişmeden Değiş')
+@section('title', 'İklim Değişmeden Değiş (IDD ORG)')
 
 @section('home-sit', 'active')
 

@@ -43,11 +43,9 @@
             <a href="{{ route('blog.show', $article->id) }}" class="card-link text-decoration-none">
                 <i class="fas fa-eye"></i> Görüntüle
             </a>
-            @can('update', $article)
-                <a href="{{ route('dashboard.articles.edit', $article->id) }}" class="card-link text-decoration-none">
-                    <i class="fas fa-edit"></i> Düzenle
-                </a>
-            @endcan
+            <a href="{{ route('dashboard.articles.edit', $article->id) }}" class="card-link text-decoration-none">
+                <i class="fas fa-edit"></i> Düzenle
+            </a>
         </div>
         <div class="card-footer">
             <small class="text-body-secondary">

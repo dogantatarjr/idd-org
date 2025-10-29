@@ -25,7 +25,7 @@
         }
     @endphp
 
-    <div class="col-12 mb-4">
+    <div class="col-12 mb-4 mt-2">
         <div class="alert alert-{{ $color }} d-flex align-items-center shadow-sm" role="alert">
             <i class="fa fa-{{ $icon }} fa-2x me-3"></i>
             <div>

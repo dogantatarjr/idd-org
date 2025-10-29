@@ -3,8 +3,8 @@
         <div class="row">
             <div class="col-md-7">
                 <img src="{{ asset('idd-logo.png') }}" alt="idd-logo" class="img-fluid mb-3" style="max-height: 100px;">
-                <h5>İklim Değişmeden Değiş</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a vestibulum ante. Fusce vitae commodo lectus. Sed semper varius molestie. Donec iaculis erat at arcu lobortis, egestas molestie tortor tristique. Etiam et metus quam. In lobortis ut augue in sodales. Etiam sagittis elit et ante aliquam sodales. Donec et felis sit amet lorem porta vestibulum.</p>
+                <h5>İklim Değişmeden Değiş (IDD ORG)</h5>
+                <p>İklim için harekete geçmek, yalnızca bilimin değil, sanatın, teknolojinin ve dayanışmanın da ortak sorumluluğudur. Değişim ise birlikte düşündüğümüzde, ürettiğimizde ve harekete geçtiğimizde mümkündür. <i>Çünkü iklim krizi tek bir alanın değil, insanlığın yaratıcılığının sınavıdır.</i></p>
             </div>
             <div class="col-md-5">
                 <div class="contact-social-wrapper" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; padding-left: 3rem;">
@@ -14,7 +14,7 @@
                             <i class="bi bi-envelope me-2"></i>iklimdegismedendegis@gmail.com
                         </p>
                         <p class="mb-2">
-                            <i class="bi bi-telephone me-2"></i>+90 532 123 4567
+                            <i class="bi bi-telephone me-2"></i>+90 (532) 542 56 97
                         </p>
                         <p class="mb-0">
                             <i class="bi bi-geo-alt me-2"></i>İstanbul, Türkiye

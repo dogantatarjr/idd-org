@@ -53,8 +53,11 @@
                             @php
                                 $maxWords = 50;
 
+                                // Tüm &nbsp; karakterlerini boşlukla değiştir
+                                $content = str_replace('&nbsp;', ' ', $article->content);
+
                                 // Sadece header taglerini (h1-h6) nokta ile değiştir, diğer tüm tagleri düz kaldır
-                                $temp = preg_replace('/<\/h[1-6]>/i', '. ', $article->content); // header kapanışlarını nokta ile değiştir
+                                $temp = preg_replace('/<\/h[1-6]>/i', '. ', $content); // header kapanışlarını nokta ile değiştir
                                 $temp = preg_replace('/<h[1-6][^>]*>/i', '', $temp); // header açılışlarını kaldır
                                 $temp = strip_tags($temp); // diğer tüm tagleri kaldır
 

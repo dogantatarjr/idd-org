@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="text-center fw-bold text-success mb-5" style="padding-top: 50px">
+    <div class="text-center fw-bold text-success mb-5" style="padding-top: 70px">
         <i class="fas fa-calendar-alt fa-4x mb-3"></i>
         <h1><b>Etkinliklerimiz</b></h1>
     </div>
@@ -30,7 +30,7 @@
                                 {!! $event->description !!}
                             </div>
                             <a href="{{ $event->link }}" target="_blank" class="btn btn-success align-self-end mt-3">
-                                <i class="fas fa-external-link" style="padding-right: 5px;"></i> Detayları Gör
+                                <i class="fas fa-external-link" style="padding-right: 5px;"></i> Detayları Gör!
                             </a>
                         </div>
                     </div>
