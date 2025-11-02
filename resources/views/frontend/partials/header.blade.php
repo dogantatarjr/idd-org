@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link @yield('home-sit')" href="/">Ana Sayfa</a>
+                    <a class="nav-link @yield('home-sit')" href="/">Ana Sayfa?</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link  @yield('about-sit')" href="/about">Hakkımızda</a>

@@ -8,7 +8,9 @@
 
     <div class="blog-page container my-5">
         <div class="row">
-            <!-- Kategoriye Göre Yazı Listesi -->
+
+            @include('frontend.blog.hello')
+
             <div class="col-lg-8 mb-4">
                 <div class="col-12 mb-4">
                     <h2 class="fw-bold">{{ $category->name }} Konulu Yazılar</h2>
