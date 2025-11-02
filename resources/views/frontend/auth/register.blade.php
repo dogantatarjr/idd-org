@@ -90,7 +90,7 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-success w-100" onclick="register()">Kayıt Ol!</button>
+            <button type="button" class="btn btn-success w-100" onclick="register()">Kayıt Ol!</button>
 
             <div class="mt-3 text-center">
                 <small>

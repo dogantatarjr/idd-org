@@ -9,6 +9,8 @@
 
     @include('frontend.partials.about')
 
+    @include('frontend.partials.blog')
+
     @include('frontend.partials.stats')
 
     @include('frontend.partials.teams')

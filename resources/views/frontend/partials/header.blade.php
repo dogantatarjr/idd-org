@@ -3,7 +3,7 @@
         <a class="navbar-brand d-flex align-items-center" href="/">
             <img src="{{ asset('idd-logo.png') }}" alt="idd-logo" height="48" class="me-2 d-none d-lg-block">
             <img src="{{ asset('idd-logo.png') }}" alt="idd-logo" height="48" class="d-lg-none" style="padding-right: 10px;">
-            <span class="d-lg-none fw-bold text-white">IDD ORG</span>
+            <span class="d-lg-none fw-bold text-white"><b>IDD ORG</b></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>

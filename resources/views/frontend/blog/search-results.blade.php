@@ -77,7 +77,7 @@
 
                             <div class="d-flex justify-content-between align-items-center">
                                 <a href="{{ route('blog.show', $article->id) }}" class="btn btn-outline-success btn-sm rounded-pill px-4">
-                                    Devamını Oku
+                                    Devamını Oku!
                                 </a>
                                 <ul class="list-inline mb-0">
                                     <li class="list-inline-item text-uppercase small pe-3 border-end text-secondary">
