@@ -109,7 +109,7 @@
         <div class="card-body">
             @foreach($articles_like as $article_like)
             <div class="d-flex mb-3 align-items-center">
-                <img src="{{ asset('/storage/app/public/' . $article_like->image) }}" style="width:50px; height:50px; object-fit:cover;" class="me-3 rounded shadow-sm" alt="Popüler Gönderi">
+                <img src="{{ asset('/storage/' . $article_like->image) }}" style="width:50px; height:50px; object-fit:cover;" class="me-3 rounded shadow-sm" alt="Popüler Gönderi">
                 <div>
                     <p class="mb-1 fw-semibold">
                         <a href="/blog/articles/{{ $article_like->id }}" class="text-decoration-none text-dark">
@@ -129,7 +129,7 @@
         <div class="card-body">
             @foreach($articles_latest as $article)
             <div class="d-flex mb-3 align-items-center">
-                <img src="{{ asset('/storage/app/public/' . $article->image) }}" style="width:50px; height:50px; object-fit:cover;" class="me-3 rounded shadow-sm" alt="Popüler Gönderi">
+                <img src="{{ asset('/storage/' . $article->image) }}" style="width:50px; height:50px; object-fit:cover;" class="me-3 rounded shadow-sm" alt="Popüler Gönderi">
                 <div>
                     <p class="mb-1 fw-semibold">
                         <a href="/blog/articles/{{ $article->id }}" class="text-decoration-none text-dark">

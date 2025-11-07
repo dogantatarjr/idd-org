@@ -48,7 +48,7 @@
 
                                 @if($article->image)
                                     <div class="mb-2">
-                                        <img src="{{ asset('/storage/app/public/' . $article->image) }}"
+                                        <img src="{{ asset('/storage/' . $article->image) }}"
                                              class="img-thumbnail"
                                              style="max-width: 200px;"
                                              alt="Mevcut görsel">

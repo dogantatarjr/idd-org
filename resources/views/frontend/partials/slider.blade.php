@@ -156,7 +156,7 @@
 <section id="main-slider">
     <div class="slides-wrapper">
         @foreach($carousels as $carousel)
-            <div class="slide" style="background-image: url('{{ asset('/storage/app/public/' . $carousel->image) }}');">
+            <div class="slide" style="background-image: url('{{ asset('/storage/' . $carousel->image) }}');">
                 <div class="slider-overlay"></div>
                 <div class="slider-content">
                     <h2>{{ $carousel->title }}</h2>

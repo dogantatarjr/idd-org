@@ -22,7 +22,7 @@
                     @foreach ($campaigns as $campaign)
                         <div class="col">
                             <div class="card h-100">
-                                <img src="{{ asset('/storage/app/public/' . $campaign->image) }}" class="card-img-top" alt="campaign-image" style="object-fit: contain;">
+                                <img src="{{ asset('/storage/' . $campaign->image) }}" class="card-img-top" alt="campaign-image" style="object-fit: contain;">
                                 <div class="card-body">
                                     <h5 class="card-title" style="padding-bottom: 5px;">{{ $campaign->name }}</h5>
 

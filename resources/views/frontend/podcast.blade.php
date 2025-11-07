@@ -16,7 +16,7 @@
             @foreach ($podcasts as $index => $podcast)
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100 shadow-sm border-0 d-flex flex-column">
-                        <img src="{{ asset('/storage/app/public/' . $podcast->image) }}" class="card-img-top" alt="Podcast">
+                        <img src="{{ asset('/storage/' . $podcast->image) }}" class="card-img-top" alt="Podcast">
                         <div class="card-body d-flex flex-column flex-grow-1">
                             <h5 class="card-title fw-semibold mb-2">{{ $podcast->title }}</h5>
 

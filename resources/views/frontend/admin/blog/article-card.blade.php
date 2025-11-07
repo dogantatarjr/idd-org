@@ -1,6 +1,6 @@
 <div class="col">
     <div class="card h-100">
-        <img src="{{ asset('/storage/app/public/' . $article->image) }}"
+        <img src="{{ asset('/storage/' . $article->image) }}"
                  class="card-img-top"
                  alt="{{ $article->title }}">
         <div class="card-body">
