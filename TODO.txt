@@ -1,24 +1,6 @@
 TODO:
 
-    HER BİRİ OBJEYE SEEDER OLUŞTUR + DEPLOYDAKİ ROLÜNÜ YAZ!
-        - Podcastler
-        - Etkinlikler
-        - Kampanyalar
-        - Blog Yazısı
-        - Roller & İzinler
-        - Kategoriler
-        - Kullanıcılar
-
-
-FOR DEPLOY:
-
-- Yeni reCAPTCHA keyleri ve domaini oluşturulacak.
-
-- Migrationlar yapılacak.
-
-- Tanıtım sayfalarında ilk açıldığında gözükecek maddeler, roller, admin için Seeder'lar kullanılacak. (Ctrl+Shift+F Deploy yazarak hangileri ile seedleyeceğini bul!)
-
-TODO AFTER DEPLOY:
+- SEO optimizasyonu
 
 - Etkinliğe başvurma
 
