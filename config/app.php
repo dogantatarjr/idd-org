@@ -147,6 +147,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Routing\RoutingServiceProvider::class,
         Illuminate\Database\DatabaseServiceProvider::class,
+        Laravel\Pail\PailServiceProvider::class,
 
     ],
 
